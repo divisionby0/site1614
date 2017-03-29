@@ -6,7 +6,10 @@
   <title>CS:GO • Новости, стримы и обсуждение на сайте 16-14.ru</title>
   <meta name="description" content="?" />
   <meta name="keywords" content="csgo, cs, cs:go, контра, кс" />
-  <?php require_once("+/meta.php");?>
+  <?php
+  require_once("+/meta.php");
+  include_once ("div0/utils/Logger.php");
+  ?>
 </head>
 
 <body>
@@ -15,7 +18,10 @@
     <main class="index">
 <?php
 
-    if(file_exists( 'remote/stream/stream.php')):
+$streamSubsystemExists = file_exists( 'remote/stream/stream.php');
+Logger::logMessage("streamSubsystemExists=".$streamSubsystemExists);
+
+    if($streamSubsystemExists):
         DEFINE('STREAM_SUBSYSTEM', true);
         require_once('remote/stream/stream.php');
         $streams = new Streams();
