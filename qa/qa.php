@@ -1,22 +1,13 @@
 <?php
 require_once(__DIR__ . '/../remote/util.php');
-define('DBHOST', 'localhost');
-define('DBNAME', 'u0210881_default');
-define('DBUSER', 'u0210881_stream');
-define('DBPASS', 'GXmP2NOn');
-define('DBCHARSET', 'utf8');
+require_once(__DIR__ . '/../remote/Remote.php');
 
-class QA {
-    private $db;
-    public function __construct()
-    {
-        $dsn = 'mysql:host='.DBHOST.';dbname='.DBNAME.';charset='.DBCHARSET;
-        $options = array(
-            PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-        );
-        $this->db = new PDO($dsn, DBUSER, DBPASS, $options);
-    }
+class QA extends Remote{
+	
+	public function __construct()
+	{
+		parent::__construct();
+	}
 
     function getSections($limit = 0){
         $stmt = $this->db->prepare("SELECT * FROM qa_sections ORDER BY questions_number DESC".($limit ? " LIMIT ".$limit : ""));

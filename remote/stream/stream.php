@@ -3,17 +3,13 @@ if( !defined('STREAM_SUBSYSTEM')){
     die('sorry');
 }
 require_once(__DIR__ . '/../config.php');
+require_once(__DIR__ . '/../Remote.php');
 
-class Streams {
-    private $db;
+class Streams extends Remote{
+
     public function __construct()
     {
-        $dsn = 'mysql:host='.DBHOST.';dbname='.DBNAME.';charset='.DBCHARSET;
-        $options = array(
-            PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-        );
-        $this->db = new PDO($dsn, DBUSER, DBPASS, $options);
+        parent::__construct();
     }
 
     function getServiceData( $serviceName ){

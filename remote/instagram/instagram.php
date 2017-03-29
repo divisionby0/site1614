@@ -4,18 +4,14 @@ if( !defined('STREAM_SUBSYSTEM')){
 }
 require_once(__DIR__ . '/../config.php');
 require_once(__DIR__ . '/../yandextranslate.php');
+require_once(__DIR__ . '/../Remote.php');
 
-
-class Instagram {
+class Instagram extends Remote{
     private $db;
+
     public function __construct()
     {
-        $dsn = 'mysql:host='.DBHOST.';dbname='.DBNAME.';charset='.DBCHARSET;
-        $options = array(
-            PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-        );
-        $this->db = new PDO($dsn, DBUSER, DBPASS, $options);
+        parent::__construct();
     }
 
     public function getUser($username) {

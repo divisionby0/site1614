@@ -23,57 +23,13 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/remote/steam/steamsignin.php');
 				</li>
 				<li>
 					<a href="/svodki/" class="nav">Сводки</a>
-						<!--<div class="multi-menu">
-							<div class="bckgr">
-								<a href="/svodki">Все сводки за день <sup>+315</sup></a>
-								<span>CS:GO на одной странице</span>
-							</div>
-							<div>
-								<a href="/svodki/twitter">Twitter <sup>+10</sup></a> 
-								<span>Твиты за день известных игроков в&nbsp;CS:GO</span>
-							</div>
-							<div>
-								<a href="/svodki/vk">Вконтакте <sup>+2</sup></a> 
-								<span>Посты из соц. сети лучших русскоязычных игроков в&nbsp;CS:GO</span>
-							</div>
-							<div>
-								<a href="/svodki/facebook">Facebook <sup></sup></a> 
-								<span>Посты из соц. сети лучших зарубежных игроков в&nbsp;CS:GO</span>
-							</div>
-							<div>
-								<a href="/svodki/instagram">Instagram <sup>+15</sup></a> 
-								<span>Лента фотографий известных личностей в&nbsp;мире CS:GO</span>
-							</div>
-							<div>
-								<a href="/svodki/instagram">Youtube <sup>+2</sup></a> 
-								<span>Самые качественные видеосюжеты по&nbsp;CS:GO</span>
-							</div>
-						</div>-->
 				</li>
 				<li >
 					<a href="/streams" class="nav">Стримы</a>
 				</li>
-				<!--<li class="inside gradmenu">
-					<a href="#" class="nav"><span>Киберспорт</span></a>
-					<div class="multi-menu">
-4
-					</div>
-				</li>-->
 				
-				<li><!--class="gradmenu"-->
-					<a href="/qa" class="nav"><!--<span>-->Вопросы<!--</span>--></a>
-					<!--
-							<div class="multi-menu">
-								<div class="bckgr">
-									<a href="/qa">Новые вопросы <sup>+20</sup></a>
-									<span>Вопросы и ответы по игре CS:GO</span>
-								</div>
-								<div>
-									<a href="/qa/tech">Технические вопросы <sup>+10</sup></a> 
-									<span>Обсуждение технических проблем, ошибок в&nbsp;CS:GO, вылетов, багов и&nbsp;пр.</span>
-								</div>
-							</div>
-					-->
+				<li>
+					<a href="/qa" class="nav">Вопросы</a>
 				</li>
 				<li><a href="#" class="nav">Блоги</a></li>
 			</ul>

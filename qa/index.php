@@ -1,12 +1,11 @@
-<?
+<?php
 session_start();
 #echo "<pre>"; print_r($_SESSION); echo "</pre>"; exit;
 
 require_once('../remote/util.php');
-
 require_once('qa.php');
-$qa = new QA();
 
+$qa = new QA();
 
 $UnansweredQuestionsCount=$qa->getUnansweredQuestionsCount();
 

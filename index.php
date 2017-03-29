@@ -18,10 +18,7 @@
     <main class="index">
 <?php
 
-$streamSubsystemExists = file_exists( 'remote/stream/stream.php');
-Logger::logMessage("streamSubsystemExists=".$streamSubsystemExists);
-
-    if($streamSubsystemExists):
+    if(file_exists( 'remote/stream/stream.php')):
         DEFINE('STREAM_SUBSYSTEM', true);
         require_once('remote/stream/stream.php');
         $streams = new Streams();
