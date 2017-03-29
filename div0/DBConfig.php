@@ -1,7 +1,6 @@
 <?php
 
-class DBConfig
-{
+class DBConfig{
     public static $DBCHARSET = "utf8";
     
     // local
@@ -17,5 +16,4 @@ class DBConfig
     public static $DBUSER = "u0210881_stream";
     public static $DBPASS = "GXmP2NOn";
     */
-    
 }

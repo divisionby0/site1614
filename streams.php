@@ -41,7 +41,6 @@
 		<h1 class="center">Стримы</h1>
 
 		<?php
-		Logger::logMessage("adding stream subsystem");
 		if(file_exists( 'remote/stream/stream.php')):
 		DEFINE('STREAM_SUBSYSTEM', true);
 		require_once('remote/stream/stream.php');

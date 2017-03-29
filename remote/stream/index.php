@@ -36,6 +36,7 @@
         $streams = new Streams();
     }
     $name = array_pop(explode('/stream/', $_SERVER['REQUEST_URI']));
+
     if( $name && $streams ) {
         $stream = $streams->loadStreamData( $name );
     }
@@ -54,6 +55,7 @@
         <h2>Записи трансляций <strong><?= $stream['display_name'] ?></strong></h2>
         <div class="history_streams">
 <?php
+
 function rdate($param, $time=0) {
     if(intval($time)==0)$time=time();
     $MonthNames=array("Января", "Февраля", "Марта", "Апреля", "Мая", "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря");

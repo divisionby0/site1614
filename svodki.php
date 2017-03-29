@@ -12,7 +12,6 @@
 	<!-- content -->
 	<main class="svodki">
 
-		<!-- breadcrumbs -->
 		<div class="breadcrumbs">
 			<ul>
 				<li><a href="#">CS:GO</a></li>
@@ -20,9 +19,7 @@
 				<li>Сводки (сегодня, 15 июня)</li>
 			</ul>
 		</div>
-		<!-- /breadcrumbs -->
 
-		<!-- nav -->
 		<nav class="svodki">
 				<ul>
 					<li>Всё</li>
@@ -36,7 +33,6 @@
 				<p>Сообщить новость</p>
 			</div>
 		</nav>
-		<!-- /nav -->
 
 
 		<h1 class="center">Сводки с фронта</h1>
@@ -62,8 +58,6 @@
 				<iframe width="540" height="303" src="https://www.youtube.com/embed/MusjJsRunmI" frameborder="0" allowfullscreen></iframe>
 				<div class="ydesc"><nofollow><a href="#" rel="nofollow">WATCH FIRST: seized vs ex-CSGL @ SL i-League Invitational #1</a></nofollow><span>12 127 просмотров</span></div>
 		</div>
-
-
 
 		<div class="grid-item svodki_twitter">
 				<div class="svodki_info_twitter">
@@ -141,7 +135,6 @@
 			<li><a href="#">1 мая</a></li>
 		</ul>
 
-		<!-- breadcrumbs -->
 		<div class="breadcrumbs">
 			<ul>
 				<li><a href="#">CS:GO</a></li>
@@ -149,10 +142,8 @@
 				<li>Сводки (сегодня, 15 июня)</li>
 			</ul>
 		</div>
-		<!-- /breadcrumbs -->
 
 	</main>
-	<!-- /content -->
 
 
 	<?php require_once("+/prefooter.php");?>

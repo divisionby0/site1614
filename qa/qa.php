@@ -1,5 +1,4 @@
 <?php
-require_once(__DIR__ . '/../remote/util.php');
 require_once(__DIR__ . '/../remote/Remote.php');
 
 class QA extends Remote{

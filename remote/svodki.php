@@ -1,7 +1,11 @@
 <?php 
 DEFINE('STREAM_SUBSYSTEM', true);
 require_once('SvodkiMain.php');
+require_once ("../div0/DBConfig.php");
+
+
 $svodki = new SvodkiMain();
+
 if(isset($_REQUEST['sv'])):
     $svodki->displaySvodki($_REQUEST['page']);
 else:
@@ -22,10 +26,8 @@ else:
     var currentDate = '<?= date('Y-m-d', $svodki->startdate) ?>';
 </script>
 
-<!-- content -->
 <main class="svodki">
 
-    <!-- breadcrumbs -->
     <div class="breadcrumbs">
         <ul>
             <li><a href="#">CS:GO</a></li>
@@ -33,9 +35,7 @@ else:
             <li>Сводки (сегодня, 15 июня)</li>
         </ul>
     </div>
-    <!-- /breadcrumbs -->
-
-    <!-- nav -->
+    
     <nav class="svodki">
         <ul>
             <?php if($svodki->url_final == ''): ?>
@@ -69,8 +69,6 @@ else:
             <p>Сообщить новость</p>
         </div>
     </nav>
-    <!-- /nav -->
-
 
     <h1 class="center"><?= $svodki->getPageTitle()?></h1>
     <div class="today_date"><?= $svodki->getCurrentDateText()?></div>

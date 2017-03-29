@@ -8,7 +8,6 @@
  */
 define('STREAM_SUBSYSTEM', true);
 require_once(__DIR__ . '/../config.php');
-require_once(__DIR__ . '/../util.php');
 require_once(__DIR__ . '/../Remote.php');
 
 class SteamSignIn extends Remote

@@ -3,8 +3,8 @@ if( !defined('STREAM_SUBSYSTEM')){
     die('sorry');
 }
 require_once(__DIR__ . '/../config.php');
-require_once(__DIR__ . '/../util.php');
 require_once(__DIR__ . '/../Remote.php');
+require_once("../div0/utils/StringUtil.php");
 
 
 class Vk extends Remote{
@@ -127,7 +127,8 @@ class Vk extends Remote{
             WHERE NOT u.disabled $in_ids ORDER BY p.publication_date DESC $limit")->fetchAll();
 
         foreach($posts as $key => $post){
-            $posts[$key]['text'] = replaceLinks($post['text']);
+            //$posts[$key]['text'] = replaceLinks($post['text']);
+            $posts[$key]['text'] = StringUtil::replaceLinks($post['text']);
         }
 
         return $posts;

@@ -22,9 +22,8 @@ function RenderQList($questions, $limit=5, $page=1)
                     <span>
                         <b>
                             <?php
-                                $creationTime = strtotime($q["when_added"]);
-                                $text = DateUtil::format($creationTime, true);
-                                echo $text;
+                                $timePassed = DateUtil::showDate($q["when_added"]);
+                                echo $timePassed;
                             ?>
                             от
                             <a href="#" title="Профиль пользователя <?php echo $q["user_name"] ?>"><?php echo $q["user_name"] ?></a>

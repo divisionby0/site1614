@@ -43,8 +43,15 @@ foreach ($AnotherQuestions as $i=>$aq)
 {
 	if ($i==2) break;
 ?>								<div>
-									<p><? echo rdate(strtotime($aq["when_added"]), $true) ?> от <a href="#" class="green"><? echo $aq["user_name"] ?></a></p>
-									<?/*<p>Сегодня от BOT Eliot</p>*/?>
+									<p>
+										<?
+											$timePassed = DateUtil::showDate($aq["when_added"]);
+											echo $timePassed;
+										?>
+										от
+										<a href="#" class="green"><? echo $aq["user_name"] ?></a>
+									</p>
+
 									<h5><a href="/qa/<? echo $aq["question_id"] ?>/"><? echo $aq["question_title"] ?></a></h5>
 									<ul>
 										<? if ($aq["votes"]) { ?><li><strong style="color:#f9cc4f" title="Кол-во патронов"><? echo $aq["votes"] ?></strong></li><? } ?>
@@ -70,7 +77,12 @@ foreach ($answers as $a)
 									<tr>
 										<td	valign="top" class="left"><? echo ($a["level"] ? "<span>".($a["level"]+1)."</span>" : "") ?><a href="#"><img src="<? echo $a["user_avatar_url"] ?>" alt=""></a></td>
 										<td valign="top" class="right">
-												<b><a href="#" class="green"><? echo $a["user_name"] ?></a> ответил(а) <? echo ($a["parent_id"] ? "" : "тс'у&nbsp;") ?><a href="#" class="green"><? echo ($a["to_whom"] ? $a["to_whom"] : $Q["user_name"]) ?></a> <? echo rdate(strtotime($a["when_added"]), $true) ?></b> <span class="plus_minus"><a id="voteA<? echo $a["answer_id"] ?>minus" href="#" class="minus<? echo (isset($a["user_vote"]) && $a["user_vote"]==-1 ? "s" : "") ?>" onclick="voteA(<? echo $a["answer_id"] ?>, 'minus');return false;"></a><strong style="color:#f9cc4f" title="Кол-во патронов" id="avotes<? echo $a["answer_id"] ?>"><? echo $a["votes"] ?></strong><a id="voteA<? echo $a["answer_id"] ?>plus" href="#" class="plus<? echo (isset($a["user_vote"]) && $a["user_vote"]==1 ? "s" : "") ?>" title="Подсыпать патронов" onclick="voteA(<? echo $a["answer_id"] ?>, 'plus');return false;"></a></span>
+												<b><a href="#" class="green"><? echo $a["user_name"] ?></a> ответил(а) <? echo ($a["parent_id"] ? "" : "тс'у&nbsp;") ?><a href="#" class="green"><? echo ($a["to_whom"] ? $a["to_whom"] : $Q["user_name"]) ?></a> 
+													<? 
+														echo DateUtil::format(strtotime($a["when_added"]), $true);
+														//echo rdate(strtotime($a["when_added"]), $true) 
+													?>
+												</b> <span class="plus_minus"><a id="voteA<? echo $a["answer_id"] ?>minus" href="#" class="minus<? echo (isset($a["user_vote"]) && $a["user_vote"]==-1 ? "s" : "") ?>" onclick="voteA(<? echo $a["answer_id"] ?>, 'minus');return false;"></a><strong style="color:#f9cc4f" title="Кол-во патронов" id="avotes<? echo $a["answer_id"] ?>"><? echo $a["votes"] ?></strong><a id="voteA<? echo $a["answer_id"] ?>plus" href="#" class="plus<? echo (isset($a["user_vote"]) && $a["user_vote"]==1 ? "s" : "") ?>" title="Подсыпать патронов" onclick="voteA(<? echo $a["answer_id"] ?>, 'plus');return false;"></a></span>
 												<div>
 													<p><? echo $a["answer_text"] ?>
 												</div>
@@ -98,14 +110,17 @@ if ($best_comment["votes"])
 									<tr>
 										<td	valign="top" class="left"><a href="#"><img src="<? echo $best_comment["user_avatar_url"] ?>" alt=""></a></td>
 										<td valign="top" class="right">
-												<b><a href="#" class="green"><? echo $best_comment["user_name"] ?></a> ответил(а) <? echo ($best_comment["parent_id"] ? "" : "тс'у&nbsp;") ?><a href="#" class="green"><? echo ($best_comment["to_whom"] ? $best_comment["to_whom"] : $Q["user_name"]) ?></a> <? echo rdate(strtotime($best_comment["when_added"]), $true) ?></b>  <span class="plus_minus"><a id="voteA<? echo $best_comment["answer_id"] ?>minus" href="#" class="minus<? echo (isset($best_comment["user_vote"]) && $best_comment["user_vote"]==-1 ? "s" : "") ?>" onclick="voteA(<? echo $best_comment["answer_id"] ?>, 'minus');return false;"></a><strong style="color:#f9cc4f" title="Кол-во патронов"><? echo $best_comment["user_name"] ?></strong><a id="voteA<? echo $best_comment["answer_id"] ?>plus" href="#" class="plus<? echo (isset($best_comment["user_vote"]) && $best_comment["user_vote"]==1 ? "s" : "") ?>" title="Подсыпать патронов" onclick="voteA(<? echo $best_comment["answer_id"] ?>, 'plus');return false;"></a></span>
+												<b><a href="#" class="green"><? echo $best_comment["user_name"] ?></a> ответил(а) <? echo ($best_comment["parent_id"] ? "" : "тс'у&nbsp;") ?><a href="#" class="green"><? echo ($best_comment["to_whom"] ? $best_comment["to_whom"] : $Q["user_name"]) ?></a> 
+													<? 
+														echo DateUtil::format(strtotime($best_comment["when_added"]), $true);
+													?>
+												</b>  
+											<span class="plus_minus"><a id="voteA<? echo $best_comment["answer_id"] ?>minus" href="#" class="minus<? echo (isset($best_comment["user_vote"]) && $best_comment["user_vote"]==-1 ? "s" : "") ?>" onclick="voteA(<? echo $best_comment["answer_id"] ?>, 'minus');return false;"></a><strong style="color:#f9cc4f" title="Кол-во патронов"><? echo $best_comment["user_name"] ?></strong><a id="voteA<? echo $best_comment["answer_id"] ?>plus" href="#" class="plus<? echo (isset($best_comment["user_vote"]) && $best_comment["user_vote"]==1 ? "s" : "") ?>" title="Подсыпать патронов" onclick="voteA(<? echo $best_comment["answer_id"] ?>, 'plus');return false;"></a></span>
 												<div>
 													<p><? echo $best_comment["answer_text"] ?>
 												</div>
 												<ul>
 													<li><a href="#loginforcomment" class="otvet">Ответить</a></li>
-													<?/*<li><a href="#">Редактировать</a></li>
-													<li><a href="#" class="delete">Удалить</a></li>*/?>
 												</ul>
 												<input type="hidden" name="pid" value="<? echo $best_comment["answer_id"] ?>">
 											</td>
@@ -114,7 +129,6 @@ if ($best_comment["votes"])
 								
 								
 							</div>
-							<!-- /best_comment-->
 <?
 }
 ?>

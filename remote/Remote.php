@@ -1,13 +1,11 @@
 <?php
-
-
 class Remote
 {
     protected $db;
 
     public function __construct()
     {
-        require (__DIR__ . "../../div0/DBConfig.php");
+        require_once (__DIR__ . "../../div0/DBConfig.php");
         
         $dsn = 'mysql:host='.DBConfig::$DBHOST.';dbname='.DBConfig::$DBNAME.';charset='.DBConfig::$DBCHARSET;
         $options = array(

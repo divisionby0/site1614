@@ -3,9 +3,10 @@ if( !defined('STREAM_SUBSYSTEM')){
     die('sorry');
 }
 require_once(__DIR__ . '/../config.php');
-require_once(__DIR__ . '/../util.php');
 require_once('vendor/autoload.php');
 require_once(__DIR__ . '/../yandextranslate.php');
+require_once("../div0/utils/StringUtil.php");
+
 use Abraham\TwitterOAuth\TwitterOAuth;
 
 
@@ -58,7 +59,12 @@ class Twitters extends Remote{
         }
         if(!$stored_twit || !$stored_twit['lang_detected']){
             $yt = new YandexTranslate();
-            $text = replaceTwitterTags(replaceLinks($twit->text));
+
+            $text = StringUtil::replaceTwitterTags(StringUtil::replaceLinks($twit->text));
+
+            //$text = replaceTwitterTags(replaceLinks($twit->text));
+            //$text = StringUtil(replaceLinks($twit->text));
+
             $lang = $yt->detectLanguage($twit->text);
             if($lang != 'ru'){
                 $text_eng = $text;

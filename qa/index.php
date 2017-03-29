@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-require_once('../remote/util.php');
 require_once('qa.php');
 require_once('../div0/utils/Logger.php');
 

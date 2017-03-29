@@ -1,27 +1,25 @@
 <?php
 require_once('config.php');
-require_once('util.php');
+require_once('../div0/utils/Logger.php');
+require_once('../remote/Remote.php');
+require_once('../div0/utils/DateUtil.php');
 
 
-class SvodkiMain
+class SvodkiMain extends Remote
 {
-    private $db;
     public $startdate;
     private $enddate;
     private $services;
     public $url_final;
     public $counts;
+
     public function __construct()
     {
         $url_parts = explode('/', strtok($_SERVER["REQUEST_URI"],'?'));
         $this->url_final = $url_parts[count($url_parts) - 1];
         $serviceName = "'{$this->url_final}'";
-        $dsn = 'mysql:host='.DBHOST.';dbname='.DBNAME.';charset='.DBCHARSET;
-        $options = array(
-            PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-        );
-        $this->db = new PDO($dsn, DBUSER, DBPASS, $options);
+
+        parent::__construct();
 
         $twitter_enabled = file_exists( 'twitter/twitter.php');
         $youtube_enabled = file_exists( 'youtube/youtube.php');
@@ -100,7 +98,16 @@ class SvodkiMain
         ?>
         <div class="grid-item svodki_twitter">
             <div class="svodki_info_twitter">
-                <span><a href="/svodki/twitter" title="Лента новостей CS:GO из twitter">Twitter</a> <b><?= rdate(strtotime($record['created_at'])) ?> от<a href="https://twitter.com/@<?= $record['screen_name'] ?>" title="Перейти на аккаунт <?= $record['screen_name'] ?> в twitter"><img src="<?= $record['profile_image_url'] ?>" alt="<?= $record['screen_name']?>"><em>@</em><?= $record['screen_name'] ?></a></b></span>
+                <span><a href="/svodki/twitter" title="Лента новостей CS:GO из twitter">Twitter</a>
+                    <b>
+                        <?=
+                            DateUtil::format(strtotime($record['created_at']));
+                        ?>
+                        от
+                        <a href="https://twitter.com/@<?= $record['screen_name'] ?>" title="Перейти на аккаунт <?= $record['screen_name'] ?> в twitter"><img src="<?= $record['profile_image_url'] ?>" alt="<?= $record['screen_name']?>"><em>@</em><?= $record['screen_name'] ?>
+                        </a>
+                    </b>
+                </span>
                 <noindex><div class="anchor"><a href="https://twitter.com/@<?= $record['screen_name'] ?>/status/<?= $record['remote_id']?>" rel="nofollow" target="_blank" title="Перейти на это сообщение в twitter"></a></div></noindex>
             </div>
             <p class="ru">
@@ -123,9 +130,13 @@ class SvodkiMain
         ?>
         <div class="grid-item svodki_youtube">
             <div class="svodki_info_youtube">
-            <span><a href="/svodki/youtube"
-                     title="Видео CS:GO в Youtube">youtube</a> <b><?= rdate(strtotime($video['published_at'])) ?><a
-                        href="https://www.youtube.com/channel/<?= $video['user_id'] ?>"
+            <span>
+                <a href="/svodki/youtube" title="Видео CS:GO в Youtube">youtube</a>
+                <b>
+                    <?=
+                    DateUtil::format(strtotime($video['published_at']));
+                    ?>
+                    <a href="https://www.youtube.com/channel/<?= $video['user_id'] ?>"
                         title="Перейти на ютуб канал <?= $video['usertitle'] ?>"><img src="<?= $video['userthumb'] ?>"
                                                                                       alt="<?php $video['usertitle'] ?>"><?= $video['usertitle'] ?>
                     </a></b></span>
@@ -150,7 +161,11 @@ class SvodkiMain
         <div class="grid-item svodki_vk">
             <div class="svodki_info_vk">
             <span><a href="/svodki/vkontakte"
-                     title="Лента новостей CS:GO из ВКонтакте">vk</a> <b><?= rdate(strtotime($record['publication_date'])) ?>
+                     title="Лента новостей CS:GO из ВКонтакте">vk</a> 
+                <b>
+                    <?= 
+                    DateUtil::format(strtotime($record['publication_date']));
+                    ?>
                     от<a href="https://vk.com/id<?= $record['userid'] ?>"
                          title="Перейти на аккаунт <?= $record['first_name'] ?> <?= $record['last_name'] ?> в ВКонтакте"><img
                             src="<?= $record['photo_url'] ?>"
@@ -177,7 +192,11 @@ class SvodkiMain
         <div class="grid-item svodki_instagram">
             <div class="svodki_info_instagram">
             <span><a href="/svodki/instagram"
-                     title="Лента новостей CS:GO в instagram">instagram</a> <b><?= rdate(strtotime($media['publication_date'])) ?>
+                     title="Лента новостей CS:GO в instagram">instagram</a> 
+                <b>
+                    <?= 
+                    DateUtil::format(strtotime($media['publication_date']));
+                    ?>
                     от<a href="https://instagram.com/<?= $media['username']; ?>"
                          title="Перейти на аккаунт <?= $media['username'] ?> в instagram"><img
                             src="<?= $media['profile_pic_url'] ?>"
@@ -278,7 +297,7 @@ class SvodkiMain
             strtotime('today') ?
                 'Сегодня' :
                 ($curDate == strtotime('yesterday') ?
-                    'Вчера' : rdate($curDate));
+                    'Вчера' : DateUtil::format($curDate));
         }
         else {
             $text = $curDate ==
@@ -286,7 +305,8 @@ class SvodkiMain
                 ($usebold ? '<strong>Сегодня,</strong> ' : 'Сегодня, ') :
                 ($curDate == strtotime('yesterday') ?
                     ($usebold ? '<strong>Вчера,</strong> ' : 'Вчера, ') : '');
-            $text .= rdate($curDate, false);
+
+            $text .= DateUtil::format($curDate, false);
         }
         return $text;
     }

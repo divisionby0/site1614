@@ -1,9 +1,8 @@
 ﻿<?php include_once ("../div0/utils/DateUtil.php") ?>
 <h1 class="center"><? echo $h1 ?></h1>
 		<div class="grid2">
-			<h2><? echo $h2 ?></h2>
-				
-			<!-- left_column -->		
+			<h2></h2>
+
 			<div class="left_column">
 <?
 foreach ($Questions as $i=>$q)
@@ -22,9 +21,8 @@ foreach ($Questions as $i=>$q)
 											<span>
 												<b>
 													<?
-														$creationTime = strtotime($q["when_added"]);
-														$text = DateUtil::format($creationTime, false);
-														echo $text
+														$timePassed = DateUtil::showDate($q["when_added"]);
+														echo $timePassed
 													?>
 													от
 													<a href="#" title="Профиль пользователя <? echo $q["user_name"] ?>"><? echo $q["user_name"] ?></a></b></span></div>
