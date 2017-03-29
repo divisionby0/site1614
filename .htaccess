@@ -1,0 +1,15 @@
+RewriteEngine On 
+RewriteBase /
+
+AddDefaultCharset utf-8
+
+RewriteCond %{REQUEST_FILENAME} -s [OR]
+RewriteCond %{REQUEST_FILENAME} -l [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^.*$ - [NC,L]
+
+RewriteRule ^stream/(.*)$ remote/stream/index.php [L]
+RewriteRule ^svodki/(.*)$ remote/svodki.php [L]
+RewriteRule ^qa/(.*)$ qa/index.php [L]
+
+RewriteRule ^([A-Za-z0-9-_]+)/?$ $1.php [L]

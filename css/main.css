@@ -1,0 +1,1397 @@
+/* reset
+----------------------------------------------- */
+html, body, div, h1, h2, h3, h4, h5, h6, ul, dl, li, dt, dd, p,
+blockquote, pre, form, fieldset, table, th, td, header, footer, nav, figure, figcaption,
+section, article, main {
+  margin: 0;
+  padding: 0;
+  text-indent: 0;
+  text-decoration: none;
+  list-style-type: none
+}
+
+header, footer, nav, section, article, hgroup, main {
+  display: block;
+}
+
+/* links
+----------------------------------------------- */
+a:hover, div.m__a table:hover {
+  color: #5aa0de !important;
+}
+
+a:focus {
+  outline: none
+}
+
+a img {
+  border: none
+}
+
+a.anchor {
+  position: absolute;
+  margin-top: -20px;
+}
+
+a.green, div.svodki_nonews p a {
+  color: #91dd27;
+  text-decoration: none;
+  background: url(/i/green_u.png) repeat-x right 17px
+}
+a.ts_color {
+  color: #E02A4E;
+  text-decoration: none;
+}
+
+
+a.green:hover, div.streams h2 a:hover, div.news__row h2 a:hover, div.right_side h2 a:hover, div.f_rring div a:hover {
+  background-image: url(/i/green_u_hover.png) !important
+}
+
+/*f9cc4f*/
+div.svodki_info_news span a, div.svodki_news_tags a, div.svodki_news p a, div.question ul li a, div.t_a a, div.breadcrumbs ul li a, figure.author a:last-of-type, form.comment p select {
+  color: #f9cc4f;
+  text-decoration: none;
+}
+
+/*fffdb3*/
+div.svodki_news h3 a, div.svodki_news_summary a, div.svodki_twitter p a, div.svodki_instagram p a, div.svodki_twitter a.single, div.svodki_vk p a, div.question h4 a, div.random_team h5 a, div.uncover ul li a,
+main nav ul li a, ul.pagination li a, div.grid4 h3 a, div.grid2 div.pop-cat h5 a, div.more_questions h5 a, div.more_questions ul li a, div.multi-menu div a {
+  color: #fffdb3;
+  text-decoration: none;
+}
+
+/* global
+---------------------------------------------- */
+@font-face {
+  font-family: "helios";
+  src: url("/fonts/helios.otf")
+}
+
+@font-face {
+  font-family: "helios-b";
+  src: url("/fonts/helios-bold.otf")
+}
+
+@font-face {
+  font-family: "dinpro-l";
+  src: url("/fonts/dinpro-l.otf")
+}
+
+@font-face {
+  font-family: "dinpro-r";
+  src: url("/fonts/dinpro-r.otf")
+}
+
+@font-face {
+  font-family: "dinpro-m";
+  src: url("/fonts/dinpro-m.otf")
+}
+
+@font-face {
+  font-family: "dinpro-b";
+  src: url("/fonts/dinpro-b.otf")
+}
+
+@font-face {
+  font-family: "dinpro-bb";
+  src: url("/fonts/dinpro-bb.otf")
+}
+
+html {
+}
+
+body {
+  background: #000 url(/i/bg.png) no-repeat top center;
+  font-size: 62.5%;
+  font-family: arial, verdana, "sans-serif";
+  line-height: 1;
+  height: 100% !important;
+}
+
+*.clear {
+  clear: both;
+}
+
+*.patrons {
+  cursor: crosshair
+}
+
+/* header
+----------------------------------------------- */
+header, header nav, div.streams, main, div.prefooter, footer {
+  margin: 0 auto;
+  width: 118em;
+  
+}
+
+header p {
+  margin: 24px -20px 33px 18px;
+  float: left;
+  color: #fff;
+}
+
+header p, header div.auth a, ul.auth a, div.grid4 h3, header div.logout a {
+  font: 1.5em dinpro-m, verdana, arial, sans-serif;
+}
+
+header div.logo {
+  margin: 15px 0 12px 0;
+  text-align: center;
+  opacity: 1;
+}
+
+div.logo a:hover {
+  opacity: .9;
+  background-image: none !important;
+}
+
+header div.auth, ul.auth {margin: 15px 20px 0 0;padding: 9px 0 0 43px;float: right;background: url(/i/steam_icon.png) no-repeat;}
+ul.auth 		{padding-left:80px;background: none;}
+ul.auth li		{margin:0 0 0 8px;float:left;}
+ul.auth li:last-child a	{margin:-14px 0 0 0;display: block;text-decoration: none;color:red;font:normal 3.4em dinpro-l, verdana, arial, sans-serif}
+
+header nav {
+  padding: 1px;
+  background: #000;
+}
+
+header nav ul {
+  position: relative;
+  float: left;
+}
+
+header nav ul li {
+  margin: 0 0 0 1px;
+  float: left;
+  font: 1.8em dinpro-bb, verdana, arial, sans-serif;
+  text-transform: uppercase;
+  background: url(/i/nav-li.png) repeat-x
+}
+header nav ul li:last-child{margin-right: 1px;}
+
+header nav ul li:hover {
+  background: #5aa0de;
+}
+
+header nav ul li div.multi-menu {
+  width: 1178px;
+  height: 100px;
+  position: absolute;
+  left: 0;
+  top: 48px;
+  display: none;
+  background: #2e4354;
+  z-index: 1;
+  border:1px solid #000;
+  border-top: none!important;
+}
+
+header nav ul li:hover 	div.multi-menu {display: block;height:362px}
+header nav ul li:hover 	div.multi-menu div, header nav ul li:hover div.multi-menu div * {margin:0;padding:0;text-transform:none}
+						div.multi-menu div a {font:normal .8em dinpro-b, verdana, arial, sans-serif;text-transform: uppercase!important;}
+						div.multi-menu div span {font:normal .7em helios, verdana, arial, sans-serif;color:#7f7f7f}
+						div.multi-menu div.bckgr {background:#243645;width:97.5%!important}
+						div.multi-menu div {padding:22px 0 27px 30px!important;float:left;width:30%}
+						div.multi-menu div a {cursor:pointer;border:none!important}
+						div.multi-menu span {margin:6px 0 0 0!important;display: block;width:66%;line-height:1.5!important}
+
+header nav ul li.gradmenu:hover {background: #2e4354s;}
+header nav ul li.gradmenu:hover a {border-bottom: 1px solid #2e4354;}
+
+header nav ul li a.nav {
+  padding: 10px 29px 13px 30px;
+  text-decoration: none;
+  border: 1px solid #363f47;
+  display: block;
+}
+
+header nav ul li a.nav, header nav ul li a.nav:hover {
+  color: #fff !important;
+  cursor: pointer
+}
+
+header nav ul li.active {
+  padding: 10px 30px 13px 30px;
+  border: 1px solid #f9cc4f;
+  color: #f9cc4f;
+  background: url(/i/active-li.png) no-repeat
+}
+
+header nav ul li.inside a {
+  padding: 10px 30px 13px 30px;
+  border: 1px solid #f9cc4f;
+}
+
+/*@-moz-document url-prefix() {*/
+  /*header nav ul li.inside a {*/
+    /*padding: 10px 30px 12px 30px;*/
+  /*}*/
+/*}*/
+
+header nav ul li.active h1, header nav ul li.active h2 {
+  font-size: 1em;
+  font-weight: normal;
+}
+
+header nav ul li a.nav span {
+  background: url(/i/dotted_u.png) repeat-x left 21px
+}
+
+header nav ul li a.nav:hover span {
+  background: url(/i/dotted_u_hover.png) repeat-x left 21px
+}
+
+header nav div.searchfield {
+	padding-right: 8px;
+  margin-right: 1px;
+  height: 46px;
+  overflow: hidden;
+  color: #fff;
+  border: 1px solid #363f47;
+  background: url(/i/nav-li.png) repeat-x
+}
+
+@-moz-document url-prefix() {
+  /*header nav ul li a.nav, header nav ul li.active {*/
+    /*padding: 10px 30px 12px 29px;*/
+  /*}*/
+  header nav ul li div.multi-menu {top: 50px;}
+  .searchfield__input {padding: 0 0 5px 10px!important;}
+  header nav div.searchfield {
+    padding-bottom: 2px;
+  }
+}
+
+.searchfield__input {
+  background: #2e4354;
+  color:#fff;
+  border:none;
+  height: 46px;
+  width: 0;
+  display: none;
+
+}
+
+.searchfield__input_active {
+  width: 100%;
+  display: block;
+  padding: 0 10px;
+}
+
+.searchfield__button {
+  display: none
+}
+
+.searchfield__button_active {
+  display: block
+}
+
+div.searchfield img {
+  float: right;
+  opacity: .7;
+  padding: 14px 10px 0 0;
+}
+
+div.searchfield img:hover {
+  opacity: 1;
+}
+
+/* streams
+----------------------------------------------- */
+main.index div.streams {
+  margin: 0 0 45px 3px;
+}
+
+div.streams h2, div.news__row h2, div.right_side h2, div.uncover h6, div.grid4 h2, div.grid2 h2, div.right_column h4, div.more_questions h4, div.best_comment h4 {
+  margin: 0 0 16px 21px;
+  color: #fff;
+  text-transform: uppercase;
+  font: 1.5em dinpro-m, verdana, arial, sans-serif;
+}
+
+div.streams h2 a, div.news__row h2 a, div.right_side h2 a, div.uncover h6 a, div.f_rring div a, div.right_column h4 a, div.more_questions h4 a {
+  color: #fff;
+  text-decoration: none;
+  background: url(/i/white_u.png) repeat-x right 17px;
+}
+
+div.streams__area {
+  white-space: nowrap;
+  overflow-x: visible;
+  max-height: 300px;
+}
+
+div.streams figure {
+  margin-right: 20px;
+  background-repeat: no-repeat;
+  display: inline-block;
+  border: 1px solid #000;
+  margin-bottom: 31px;
+}
+
+div.streams figure:last-child {
+  margin-right: 0 !important
+}
+
+div.streams figure a {
+  width: 278px;
+  height: 157px;
+  display: block;
+  color: #fffdb3;
+  text-decoration: none;
+  float: left;
+}
+div.streams figure a span {padding:3px 9px 0 0;color:#fff;font:bold 1.3em dinpro-bb, verdana, sans-serif;float:right;opacity:.3}
+
+div.streams figure a.stream_off {
+  color: #51504f;
+}
+
+div.streams figure a figcaption {
+  margin-top: 107px;
+  padding: 4px 0 6px 20px;
+  font: 1.5em dinpro-m, verdana, arial, sans-serif;
+  text-decoration: none;
+  background: linear-gradient(to right, #000, transparent);
+}
+
+div.streams figure a img {
+  margin: 100px 0 0 -6px;
+  float: left;
+}
+
+main.streams div.streams {
+  margin-bottom: 87px;
+  width: 119em;
+}
+
+main.streams div.streams h2 {
+  margin-top: 55px;
+}
+
+main.streams div.streams div {
+  margin: -50px 0 0 0;
+}
+
+main.streams div.streams div figure {
+  margin: 50px 20px 0 0;
+}
+
+main.streams div.streams div figure:nth-child(4n) {
+  margin-right: 0 !important;
+}
+
+main.streams div.streams div.history_streams {
+  margin: 0 !important;
+  padding: 0;
+}
+
+main.streams div.streams div.history_streams figure {
+  margin-top: 0 !important;
+}
+
+main.streams div.streams div.history_streams figcaption {
+  color: #f7f7f7;
+  opacity: .8
+}
+
+main.streams div.streams div.history_streams span {
+  margin: 0 0 10px 20px;
+  padding-top: 13px;
+  clear: both;
+  color: #757472;
+  display: block;
+  font: 1.1em helios, verdana, arial, sans-serif;
+}
+
+main.streams div.streams div.history_streams a:last-child {
+  display: inline;
+  font: 1.5em helios, verdana, arial, sans-serif;
+  line-height: 1.5;
+}
+
+/* main index
+----------------------------------------------- */
+main {
+		overflow: hidden;
+		width: 118.4em
+	}
+main.index {
+  margin-top: 34px; 
+}
+
+main.index div.news__row, main.qa div.news__row {
+  float: left;
+  width: 48.9%;
+  margin-left:5px;
+}
+
+/* svodki news
+----------------------------------------------- */
+
+div.svodki_news, div.svodki_twitter, div.svodki_instagram, div.svodki_vk, div.question, div.m__a, div.random_team, div.svodki_youtube, div.content {
+  margin-bottom: 10px;
+  padding-bottom: 27px;
+  background: #161410 url(/i/light.png) no-repeat;
+  border: 1px solid #000;
+}
+
+div.sticked{ border: 1px dashed #333;}
+
+div.svodki_info_news span, div.svodki_news_tags span, div.svodki_info_twitter span, div.svodki_info_instagram span, div.svodki_info_vk span, div.svodki_info_youtube span, div.ydesc, div.vdesc, div.idesc, 
+div.all, div.question ul li, div.m__a p, div.m__a strong, div.t_a a, div.more_questions p, div.more_questions ul {
+  font: normal 1.1em helios, verdana, arial, sans-serif;
+  overflow: hidden;
+}
+
+div.svodki_info_news span > a, div.svodki_info_twitter span > a, div.svodki_info_instagram span > a, div.svodki_info_vk span > a, div.svodki_info_youtube span > a {
+  margin: 10px 20px 0 0;
+  padding: 6px 0 8px 20px;
+  display: block;
+  float: left;
+}
+div.svodki_info_news span img, div.svodki_info_twitter span img, div.svodki_info_instagram span img, div.svodki_info_vk span img, div.svodki_info_youtube span img {
+	width:18px;height:18px;
+}
+
+div.svodki_info_news span > a {
+  background: url(/i/news-bg.png) no-repeat;
+}
+
+div.svodki_info_twitter span > a {
+  background: url(/i/twi-bg.png) no-repeat;
+}
+div.svodki_info_instagram span > a {
+  background: url(/i/instagram-bg.png) no-repeat;
+}
+
+div.svodki_info_vk span > a {
+  padding-right: 20px;
+  background: url(/i/vk-bg.png) no-repeat;
+}
+
+div.svodki_info_youtube span > a {
+  background: url(/i/youtube-bg.png) no-repeat;
+}
+
+div.svodki_info_news span b, div.svodki_info_twitter span b, div.svodki_info_instagram span b, div.svodki_twitter p.eng, div.svodki_instagram p.eng,  div.svodki_info_vk span b, div.svodki_info_yuotube span b, div.svodki_vk p.eng, div.vdesc span, div.idesc span, div.ydesc span, div.question ul li,
+div.m__a p, div.m__a strong, div.svodki_info_youtube span b, div.more_questions p, div.more_questions ul {
+  color: #7f7f7f;
+  font-weight: normal;
+  display: block;
+}
+
+div.svodki_info_news span b {
+  padding-top: 16px;
+}
+
+div.svodki_info_twitter span b, div.svodki_info_instagram span b, div.svodki_info_vk span b, div.svodki_info_youtube span b {
+  padding-top: 15px;
+}
+
+div.svodki_info_news span b a {
+  color: #91dd27
+}
+
+div.svodki_info_news span > a, div.svodki_news_tags span, div.svodki_info_twitter span > a, div.svodki_info_instagram span > a, div.svodki_info_vk span > a {
+  text-transform: lowercase;
+}
+
+/*@-moz-document url-prefix() {*/
+  /*div.svodki_info_news span > a, div.svodki_info_twitter span > a, div.svodki_info_vk span > a {*/
+    /*padding: 5px 0 9px 20px;*/
+  /*}*/
+  /*div.svodki_info_vk span > a {*/
+    /*padding-right: 20px;*/
+  /*}*/
+/*}*/
+
+div.svodki_twitter, div.svodki_instagram, div.svodki_vk, div.svodki_youtube {
+  padding-bottom: 23px;
+}
+
+div.svodki_twitter p.ru, div.svodki_instagram p.ru, div.svodki_vk p.ru {
+  margin-top: 17px;
+  margin-bottom: 4px;
+}
+
+div.svodki_twitter p.eng, div.svodki_instagram p.eng, div.svodki_vk p.eng {
+  margin-top: 13px;
+  margin-bottom: 4px;
+}
+
+div.svodki_twitter p.eng a, div.svodki_instagram p.eng a, div.svodki_vk p.eng a {
+  color: #ccc
+}
+
+div.svodki_twitter img, div.svodki_instagram img, div.svodki_vk img, div.svodki_vk iframe, div.svodki_youtube iframe {
+  margin: 20px 20px 5px 20px;
+  max-width: 93%
+}
+
+div.svodki_twitter a.single {
+  margin: 20px 0 -6px 20px;
+  font-size: 1.3em;
+  display: block;
+}
+
+div.svodki_info_twitter span a {
+  color: #55acee;
+  text-decoration: none;
+}
+
+div.svodki_info_instagram span a {
+  color: #f99739;
+  text-decoration: none;
+}
+
+div.svodki_info_youtube span a, div.ydesc a {
+  color: #e94e53;
+  text-decoration: none;
+}
+
+div.svodki_info_vk span a, div.vdesc a {
+  color: #507296;
+  text-decoration: none;
+}
+
+div.svodki_info_twitter span img, div.svodki_info_instagram span img, div.svodki_info_vk span img, div.svodki_info_youtube span img {
+  margin: -1px 5px 0 6px;
+  vertical-align: middle;
+}
+
+div.svodki_info_twitter em, div.svodki_info_instagram em, div.svodki_info_vk em {
+  font-style: normal;
+  font-family: dinpro-l, verdana, arial, sans-serif;
+}
+
+div.svodki_info_twitter div.anchor, div.svodki_info_instagram div.anchor, div.svodki_info_vk div.anchor, div.svodki_info_youtube div.anchor {
+  margin: -13px 19px 0 0;
+  float: right;
+}
+
+div.svodki_info_twitter div.anchor a, div.svodki_info_instagram div.anchor a, div.svodki_info_vk div.anchor a, div.svodki_info_youtube div.anchor a {
+  width: 10px;
+  height: 10px;
+  display: block;
+  background: url(/i/anchor.png) no-repeat;
+}
+
+div.svodki_info_twitter div.anchor a:hover, div.svodki_info_instagram div.anchor a:hover, div.svodki_info_vk div.anchor a:hover, div.svodki_info_youtube div.anchor a:hover {
+  background-position: 0 -10px;
+}
+
+div.vdesc, div.ydesc, div.idesc {
+  margin: 9px 20px 5px 20px;
+  overflow: hidden;
+}
+
+div.vdesc a, div.ydesc a {
+  float: left;
+}
+
+div.vdesc span, div.ydesc span {
+  float: right;
+}
+
+div.svodki_nonews {
+  margin-bottom: 10px;
+  padding: 25px 0 27px 0;
+  overflow: hidden;
+  background: #161410;
+  border: 1px solid #000;
+}
+
+div.svodki_nonews p {
+  text-align: center;
+  color: #7f7f7f;
+  font: normal 1.3em helios, verdana, arial, sans-serif;
+}
+
+div.svodki_nonews p a {
+  color: #91dd27
+}
+
+/* pagination
+----------------------------------------------- */
+div.loadmore {
+  margin-bottom: 67px;
+  text-align: center;
+}
+
+div.loadmore a {
+  margin: 50px 0 0 0;
+  padding: 16px 0 17px 0;
+  overflow: hidden;
+  display: block;
+  text-decoration: none;
+  font: normal 1.3em dinpro-b, verdana, arial, sans-serif;
+  clear: both;
+  text-transform: uppercase;
+  color: #5b7181;
+  background: #0c1013;
+}
+
+div.loadmore a:hover {
+  cursor: pointer;
+  background: #11161a;
+}
+
+div.loadmore img {
+  margin-top: -10px
+}
+
+ul.pagination {
+  margin: 64px 0 76px 0;
+  text-align: center;
+  text-transform: uppercase;
+  font: normal 1.5em dinpro-b, verdana, arial, sans-serif
+}
+
+ul.pagination li {
+  margin-right: 45px;
+  display: inline;
+  color: #7f7f7f
+}
+
+ul.pagination li:last-child {
+  margin-right: 0 !important
+}
+
+ul.pagination li a {
+}
+
+ul.pagination li strong {
+  font: normal 1em dinpro-bb, verdana, arial, sans-serif
+}
+
+
+div.svodki_news h3 {
+  margin: 18px 0 19px 20px;
+  font: normal 2.5em helios, verdana, arial, sans-serif;
+  clear: both;
+}
+
+div.svodki_news_tags {
+  margin: 0 20px 19px 20px;
+  overflow: hidden;
+}
+
+div.svodki_news_tags span {
+  margin: 0 2px 4px 0;
+  padding: 3px 10px 4px 9px;
+  border: 1px solid #423314;
+  float: left;
+  display: block;
+  color: #7f7f7f
+}
+
+div.svodki_news_preview {
+  padding: 0 20px 0 20px;
+  clear: both;
+}
+
+div.svodki_news_preview:hover, div.streams figure:hover {
+  opacity: .95
+}
+
+div.svodki_news_preview img {
+  margin-top: 7px;
+  margin-bottom: 16px;
+}
+
+div.svodki_news > p, div.svodki_twitter > p, div.svodki_instagram > p, div.svodki_vk > p {
+  margin: 0 20px;
+  color: #eaeaea;
+  font: normal 1.3em helios, verdana, arial, sans-serif;
+  line-height: 1.6;
+  clear: both;
+}
+
+div.svodki_news_summary {
+  margin: 19px 0 0 20px;
+  overflow: hidden;
+}
+
+div.svodki_news_summary strong {
+  margin-right: 16px;
+  color: #fff;
+  font: normal 1.2em dinpro-m, arial, verdana, sans-serif;
+  float: left;
+  cursor: crosshair
+}
+
+div.svodki_news_summary a {
+  font: normal 1.3em helios, verdana, arial, sans-serif;
+  float: left;
+}
+
+a.last_comment {
+  margin: 3px 0 0 8px;
+  display: block;
+  width: 10px;
+  height: 10px;
+  background: url(/i/last-comment.png) no-repeat
+}
+
+a.last_comment:hover {
+  background-position: 0 -9px;
+}
+
+
+div.all {
+  margin: -9px 1px 0 1px;
+  padding: 6px 20px 8px 19px;
+  background: #0c1013;
+}
+span.all {margin:0 -10px!important;padding: 6px 20px 8px 19px!important;display: block;background: #0c1013;clear: both;}
+
+div.all a, span.all a {
+  text-decoration: none;
+  text-transform: lowercase;
+  color: #5b7181
+}
+
+div.grid4, div.grid2 div.pop-cat {overflow: hidden;margin-bottom: 60px;}
+div.grid4 div *, div.grid2 div.pop-cat div *	{margin: 0 20px;}
+div.grid4 div h3, div.grid2 div.pop-cat div h5 {margin-left:0!important}
+div.grid4 div, div.grid2 div.pop-cat div 		{margin:0 20px 40px 0 ;padding:13px 0 38px 0;float: left;width:27.8em;background: #161410 url(/i/light.png) no-repeat;border: 1px solid #000;}
+div.grid4 div:nth-child(5n) {margin-right:0!important;}
+div.grid4 span, div.grid2 div.pop-cat div span {padding:10px 0 19px 0;display: block;line-height: 1.6;}
+div.grid4 p, div.grid2 div.pop-cat p 		{font: normal 1.1em helios, verdana, arial, sans-serif;color:#fff;line-height: 1.6;}
+div.grid2 div.pop-cat div 		{margin-bottom: 10px;}
+div.grid2 div.pop-cat div:last-child 		{}
+div.grid2 div.pop-cat h5		{font: normal 1.5em dinpro-b, verdana, arial, sans-serif;}
+
+div.grid2 {margin: -33px 0 80px 0;overflow: hidden;padding-top: 33px;}
+div.grid2 div.pop-cat {margin-top: -47px;}
+div.grid2 div.pop-cat div {margin:0;margin: 0 0 10px -10px;}
+div.grid2 div.pop-cat div:last-of-type {margin-bottom: 0!important;}
+div.grid2 div.left_column {width:74.4%;float: left;}
+div.grid2 div.right_column {margin-bottom: 80px;float: right;}
+div.grid2 div.right_column h4 {margin-left:10px!important;}
+
+/* content
+----------------------------------------------- */
+div.content {}
+div.content figure.author {padding:20px;overflow: hidden;color:#797978;font:normal 1.3em helios, verdana, arial, sans-serif;}
+			figure.author img {float: left;width:40px;height:40px}
+			figure.author a {	}
+			figure.author p {margin:5px 0 0 20px;float: left;}
+div.content article		{margin:-22px 80px 0 80px}
+div.content article p	{margin:0 0 14px 0;color:#fff;font:normal 1.6em helios, verdana, arial, sans-serif;line-height: 1.6;}
+div.content article p img	{margin-top:9px}
+
+div.content	ul.after_article 	{margin:38px 0 30px 80px;overflow: hidden;}
+			ul.after_article li	{margin:0 40px 0 0;float: left;font:normal 1.3em helios, verdana, arial, sans-serif;color:#7f7f7f;}
+			ul.after_article li	a.last_comment {float:right;}
+			ul.after_article li	strong {font:normal 1em dinpro-b, verdana, arial, sans-serif;cursor:crosshair}
+			
+div.content div.edited {margin:0 0 0 80px;color:#292724;font:normal 1.3em helios, verdana, arial, sans-serif;}
+
+div.content div.more_questions 		{margin:52px 0 0 80px;overflow: hidden;}
+			div.more_questions div	{float: left;width:48%}
+			div.more_questions h4	{margin-left:0;margin-bottom: 22px;}
+			div.more_questions div h5 {margin: 10px 50px 10px 0;font:normal 1.5em helios, verdana, arial, sans-serif;line-height: 1.5;}
+			div.more_questions div ul {overflow: hidden;}
+			div.more_questions div ul li {margin: 0 30px 0 0;float:left}
+			div.more_questions div ul li strong {font:normal 1em dinpro-b, verdana, arial, sans-serif;cursor:crosshair}
+			div.more_questions div ul li a.last_comment {float:right}
+			div.more_questions h4 a:hover {background-image: url(/i/green_u_hover.png)}
+			
+div.content	div.best_comment {}
+			div.best_comment h4 {margin:71px 0 20px 80px;}
+			
+			table.comment {margin:2px 20px 34px 80px;padding:0!important;}
+			table.comment.secondlevel td.left img, table.comment.thirdlevel td.left img {margin:-40px 0 0 60px!important;}
+			@-moz-document url-prefix() {
+				 table.comment.secondlevel td.left img, table.comment.thirdlevel td.left img {
+					margin:-40px -20px 0 60px!important;padding-right:20px;
+				  }
+				}
+			table.comment.thirdlevel td.left {padding-left:60px;}
+			table.comment td.left {overflow: hidden;}
+			table.comment td.left * {display: inline;}
+			table.comment td.left img {margin-top:2px;opacity:.9;float: left;width:40px;height:40px;display: block;}
+			
+			table.comment td.left img:hover {opacity:1}
+			table.comment td.left span {padding:13px 18px 13px 17px;float: left;font:normal 1.1em helios, verdana, arial, sans-serif;color:#4b4a48; }
+			table.comment td.right   {overflow: hidden; background: url(/i/line.jpg) repeat-x left 6px;width:100%;}
+			table.comment td.right b {padding:0 10px 0 20px;float:left;display: block;font:normal 1.1em helios, verdana, arial, sans-serif;color:#7f7f7f;background: #161410;}
+			
+			table.comment td.right span.plus_minus {margin:-1px 0 0 0;padding:0 10px;float:right;display: block; font:normal 1.1em dinpro-b, verdana, arial, sans-serif;cursor:crosshair;background: #161410;}
+			table.comment td.right span.plus_minus a {margin-top:3px;}
+			table.comment td.right div {margin:27px 0 0 20px;clear: both;width:88%;}
+			table.comment td.right div p {margin-bottom: 11px;color:#fff;font:normal 1.5em helios, verdana, arial, sans-serif;line-height: 1.5;}
+			table.comment td.right div p img {margin:3px 0 5px 0}
+			table.comment td.right ul {margin:15px 0 0 19px;}
+			table.comment td.right ul li {margin-right:27px;display: inline;}
+			table.comment td.right ul li a {font:normal 1.1em helios, verdana, arial, sans-serif;color:#7f7f7f;text-decoration: none!important;background: url(/i/dotted_u.png) repeat-x left 11px}
+			table.comment td.right ul li a:hover {background-image: url(/i/dotted_g_hover.png)}
+			@-moz-document url-prefix() {
+				 table.comment td.right ul li a {
+					background-position: left 12px
+				  }
+				}
+			table.comment td.right ul li a.delete {color:#4f0202;background:none}
+			
+			div.loginforcomment {margin:78px 25px -2px 25px;padding:15px 0 17px 0;border:1px solid #423314;text-align: center;}
+			div.loginforcomment p {font:normal 1.3em helios, verdana, arial, sans-serif;color:#7f7f7f;}
+			
+			form.comment 			{margin: 80px 0 -28px 0;padding:0 0 30px 80px;background: #222;overflow: hidden;background:#222 url(/i/bgdotted.png)}
+			form.comment img		{margin:58px 20px 0 0;padding-bottom: 60px;float:left}
+			form.comment label, form.comment p 	{margin:24px 0 17px 0;display: block;font:normal 1.5em helios, verdana, arial, sans-serif;color:#fff;text-decoration: none;}
+			form.comment p 			{margin:22px 0 25px 60px;}
+			form.comment p select 	{margin:0 0 0 5px;padding:0 0 3px 3px;background: #424242;border:none;font-size:1em;}
+			form.comment textarea, form.comment input 	{padding:10px 15px;width:84.5%;border:none;color:#fff;font-size:1.8em;background:#424242}
+			form.comment button 	{margin:18px 0 0 60px;padding: 9px 60px!important;display: block;font: normal 1.2em dinpro-b, verdana, arial, sans-serif;cursor:pointer}
+			@-moz-document url-prefix() {
+				 form.comment label  {
+					margin:24px 0 14px 0
+				  }
+				  form.comment button {
+					 padding: 7px 60px 9px 60px!important; 
+				  }
+				}
+			form#question {margin-top:-1px;margin-left:-60px!important;}
+			
+		a.minus, a.plus, a.minuss, a.pluss {margin-top:5px;width:9px;height:9px;display: block;}
+		a.minus {background: url(/i/minus.png);margin-right: 8px;float: left;}
+		a.minus:hover, a.plus:hover {background-position: left -9px;cursor:crosshair}
+		a.plus 	{background: url(/i/plus.png);margin-left: 8px;float: right;}
+		a.minuss{background: url(/i/minuss.png);margin-right: 8px;float: left;cursor:crosshair}
+		a.pluss{background: url(/i/pluss.png);margin-left: 8px;float: right;cursor:crosshair}
+
+
+
+/* right-side
+----------------------------------------------- */
+main.index div.right_side, main.qa div.right_side {
+  margin: 0 0 0 21px;
+  float: left;
+  width: 48.9%;
+  overflow: hidden;
+}
+
+div.right_side h2 {
+}
+
+div.question {padding-bottom: 0;overflow: hidden;}
+div.question:last-child {margin-bottom:0!important;}
+
+div.question img, div.sticked img {
+  margin: 10px 10px 0 0;
+  float: right;
+}
+
+div.question table {
+  margin-top: -2px
+}
+
+div.question .patrons {
+  font: normal 1.3em dinpro-b, verdana, arial, sans-serif;
+}
+
+div.question h4 {
+  margin: 12px 0 13px 0;
+}
+
+div.question h4 a {
+  font: normal 1.5em helios, verdana, arial, sans-serif;
+}
+
+div.question ul {
+  margin-bottom: 15px;
+  overflow: hidden;
+}
+
+div.question ul li {
+  margin: 0 30px 0 0;
+  float: left;
+  display: inline;
+  overflow: hidden;
+}
+
+div.question ul li a {float: left;}
+
+div.question ul li a.svodki_comment_link {
+  float: left;
+  color: #fffdb3
+}
+
+div.b__matches {
+  margin: 0 20px 0 0;
+  width: 48%;
+  float: left;
+  clear: both;
+}
+
+div.b__matches h2 {
+  margin: 46px 0 15px 20px;
+}
+
+div.m__a {
+  padding-bottom: 0;
+  display: block;
+  overflow: hidden;
+}
+
+div.m__a p {
+  margin: 16px 0 3px 19px;
+  float: left
+}
+
+/*@-moz-document url-prefix() {*/
+  /*div.m__a p {*/
+    /*margin: 16px 0 1px 19px;*/
+  /*}*/
+/*}*/
+
+div.m__a strong {
+  margin: 16px 20px 0 0;
+  float: right;
+}
+
+div.m__a a {
+  text-decoration: none;
+}
+
+div.m__a a table {
+  margin: 0 17px 7px 17px;
+  clear: both;
+  color: #fff;
+  width: 87%;
+  font: normal 1.3em helios, verdana, arial, sans-serif;
+}
+
+div.m__a a table td {
+  max-width: 30px;
+}
+
+div.t_a {
+  padding-bottom: 15px !important;
+}
+
+div.t_a a {
+  margin: 16px 0 -1px 19px;
+  display: block;
+}
+
+/*@-moz-document url-prefix() {*/
+  /*div.t_a a {*/
+    /*margin: 16px 0 -3px 19px;*/
+    /*display: block;*/
+  /*}*/
+/*}*/
+
+div.b__matches td.vstd {
+  background: url(/i/vs.png) no-repeat;
+  width: 31px;
+  height: 31px
+}
+
+div.b__matches table:hover td.vstd {
+  background-position: left -31px;
+}
+
+div.b__matches td:first-child, div.main__matches td:last-child {
+  width: 43%
+}
+
+div.b__matches td img {
+  margin: 0 5px 2px 5px
+}
+
+div.b__matches div.m__live {
+  background-image: url(/i/live_bg.png);
+}
+
+span.team {
+  display: inline-block;
+  max-width: 70px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+div.m__live strong {
+  font: bold 1.1em dinpro-b, verdana, arial, sans-serif;
+  color: #91dd27
+}
+
+div.b__tourneys {
+  margin: 46px 0 0 0;
+  overflow: hidden;
+}
+
+div.a240400 {
+  margin-top: 20px;
+  padding: 18px;
+  background: #161410 url(/i/light.png) no-repeat;
+  border: 1px solid #000;
+  float: left;
+}
+
+div.random_team {
+  padding: 12px 20px 0 20px
+}
+
+div.random_team h5 {
+  margin-bottom: -3px;
+  padding: 2px 0 20px 46px;
+  overflow: hidden;
+  font: normal 1.5em helios, verdana, sans-serif;
+}
+
+div.random_team h5 a {
+  float: left;
+}
+
+div.random_team h5 span {
+  float: right;
+  color: #7f7f7f
+}
+
+div.random_team ul {
+}
+
+div.random_team ul li {
+  margin-right: 0;
+  display: inline;
+}
+
+div.random_team ul li:last-child {
+  margin-right: 0 !important
+}
+
+div.random_team ul li a:hover {
+  opacity: .95
+}
+
+div.random_team table {
+  margin: 17px 0 11px 0;
+  padding: 0;
+  width: 99%;
+  font: normal 1.1em helios, verdana, arial, sans-serif;
+  color: #fff;
+}
+
+div.random_team table td {
+  padding: 7px 0;
+  width: 50%
+}
+div.random_team table td img {
+  margin-bottom: -2px;
+}
+
+div.random_team table span {
+  color: #7f7f7f
+}
+
+/* breadcrumbs
+----------------------------------------------- */
+div.breadcrumbs {
+  margin: 0 auto;
+  margin-left: 4px;
+  padding: 16px 0 18px 0;
+  background-color: rgba(249, 204, 79, 0.1);
+  text-align: center;
+  width: 117.8em
+}
+
+div.breadcrumbs ul, div.grid4 span, div.grid2 div.pop-cat span {
+  color: #7f7f7f;
+  font: normal 1.1em helios, verdana, sans-serif;
+}
+
+div.breadcrumbs ul li {
+  margin: 0 17px 0 0;
+  display: inline;
+}
+
+div.breadcrumbs ul li img {
+  margin-bottom: 3px
+}
+
+/* svodki_nav
+----------------------------------------------- */
+main nav {
+  margin: 10px 0 0 0;
+  overflow: hidden;
+  font: normal 1.2em dinpro-b, verdana, arial, sans-serif;
+}
+
+main nav ul, main nav div {
+  border: 1px solid #000;
+  background: #161410;
+}
+
+main nav ul {
+  padding: 16px 20px 17px 20px;
+  color: #7f7f7f;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+
+
+main nav.svodki ul {
+  margin-left: 3px;
+  margin-bottom: -1px;
+  width: 70.8%;
+  float: left;
+  text-align: left;
+}
+
+main nav ul li {
+  margin-right: 36px;
+  display: inline;
+}
+
+main nav ul li:last-child {
+  margin-right: 0 !important
+}
+
+main nav ul li sup, div.multi-menu div sup {
+  padding-left: 3px;
+  color: #91dd27;
+  font: normal .7em helios, verdana, arial, sans-serif
+}
+
+main nav div, div.pop-cat {
+  margin: 0;
+  padding: 9px;
+  float: right;
+  width: 260px
+}
+
+main nav div a, main nav div p, form.comment button {
+  padding: 8px 59px 9px 62px;
+  background: linear-gradient(to top, #218015, #36af26);
+  display: block;
+  border: none;
+  border-radius: 2px;
+  background: linear-gradient(to top, #218015, #36af26);
+  border: none;
+  border-radius: 2px;
+  text-decoration: none;
+  text-transform: uppercase;
+  text-align: center;
+}
+main nav div.here {font: normal 1em dinpro-b, verdana, arial, sans-serif;background:#222 url(/i/bgdotted.png)}
+main nav div.here p {background:none;color:#333;text-shadow:none;cursor:text}
+
+
+main nav div a, form.comment button {
+  color: #fff;
+  text-shadow: #166d0b 0 -1px 0
+}
+
+main nav div a:hover, form.comment button:hover {
+  color: #fff !important;
+  background: linear-gradient(to top, #268b1a, #3fbf2e);
+}
+
+main nav div p {
+  color: #0f7c01;
+  text-shadow: #68a962 0 1px 0;
+  cursor: pointer
+}
+
+h1 select {border:none;background:none;color:#7fdd27;font-size:1em}
+h1.left {padding:0 0 0 20px;width:70%;}
+h1.center, h1.left {
+  margin: 41px 0 43px 0;
+  font: normal 3em dinpro-r, verdana, arial, sans-serif;
+  color: #fff;
+}
+
+h1.center, div.today_date {
+  text-align: center;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+div.today_date {
+  margin: -5px 0 26px 0 !important;
+  font: normal 1.5em dinpro-l, verdana, arial, sans-serif
+}
+
+div.today_date strong {
+  font: normal 1em dinpro-bb, verdana, arial, sans-serif
+}
+
+main.svodki div.svodki_news, main.svodki div.svodki_twitter, main.svodki div.svodki_instagram, main.svodki div.svodki_vk, main.svodki div.svodki_youtube, div.svodki_nonews {
+  width: 580px;
+  float: left;
+}
+div.svodki_nonews {
+  width: 1160px;
+}
+
+
+/* prefooter
+----------------------------------------------- */
+div.prefooter {
+  margin-top: 100px;
+  overflow: hidden;
+}
+
+div.prefooter div.uncover {
+  margin-right: 60px;
+  float: left;
+  width: 23em;
+}
+
+div.uncover p {
+  margin: -2px 0 0 20px;
+  color: #7f7f7f;
+  line-height: 1.6 !important;
+}
+
+div.uncover ul {
+  margin: 32px 0 60px 20px
+}
+
+div.uncover ul li {
+  margin-bottom: 12px;
+  color: #2d2716
+}
+
+div.uncover ul li, div.uncover p {
+  font: normal 1.3em helios, verdana, arial, sans-serif;
+}
+
+
+
+/* footer
+----------------------------------------------- */
+footer {
+  margin-top: 100px;
+  padding: 50px 0 64px 0;
+}
+
+footer div.f_ring {
+  border-top: 1px solid #3a3935;
+}
+
+footer div.f_rring {
+  margin-top: -50px;
+  padding: 75px 20px 0 20px;
+  background: url(/i/ct-ring.png) no-repeat top center;
+  overflow: hidden;
+}
+
+div.f_rring div {
+  float: left;
+  font: normal 1.3em helios, verdana, arial, sans-serif;
+  color: #fff
+}
+
+div.f_rring ul {
+  margin-bottom: 16px;
+}
+
+div.f_rring ul li {
+  margin-right: 27px;
+  display: inline;
+}
+
+div.f_rring div a {
+  background-position: left 14px;
+}
+
+div.f_rring img {
+  margin-top: 14px;
+}
+
+div.f_rring div.copyright {
+  width: 33%;
+  float: right;
+  line-height: 1.6;
+}
+
+div.copyright form {
+  margin: 11px 0 0 -10px
+}
+
+div.copyright form input {
+  padding: 5px 0 7px 9px;
+  border: none;
+  background: #000;
+  color: #fff
+}
+
+::-webkit-input-placeholder {
+  color: #c0392b;
+}
+
+::-moz-placeholder {
+  color: #c0392b;
+}
+
+/* Firefox 19+ */
+:-moz-placeholder {
+  color: #c0392b;
+}
+
+/* Firefox 18- */
+:-ms-input-placeholder {
+  color: #c0392b;
+}
+
+:focus::-webkit-input-placeholder {
+  color: transparent
+}
+
+:focus::-moz-placeholder {
+  color: transparent
+}
+
+:focus:-moz-placeholder {
+  color: transparent
+}
+
+:focus:-ms-input-placeholder {
+  color: transparent
+}
+
+/* 	Scroll top top */
+#back-top {
+  position: fixed;
+  top: 0;
+  float: left:
+}
+
+#back-top span {
+  padding-top: 20px;
+  width: 60px;
+  height: 10000px;
+  display: block;
+  text-align: center;
+  background: rgba(255, 255, 155, 0.07);
+}
+
+#back-top span img {
+  margin-left: -3px;
+}
+
+#back-top a:hover span {
+  opacity: .8
+}
+
+
+.jspHorizontalBar {
+  height: 2px;
+}
+
+.jspTrack {
+  background: #000;
+  height: 2px;
+}
+
+.jspDrag {
+  background: #373f46;
+  height: 2px;
+}
