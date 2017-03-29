@@ -1,8 +1,7 @@
 ﻿<?php include_once ("../div0/utils/DateUtil.php") ?>
 <h1 class="left"><? echo $Q["question_title"] ?></h1>
 		<div class="grid2">
-				
-			<!-- left_column -->		
+			
 			<div class="left_column">
 						<div class="content">
 							<figure class="author">
@@ -65,7 +64,7 @@ foreach ($AnotherQuestions as $i=>$aq)
 							</div> 
 <?
 $answers=$qa->getAnswers($QuestionID, 0, (isset($_SESSION['steam_user']['user_id']) ? $_SESSION['steam_user']['user_id'] : 0));
-#echo "<pre>"; print_r($answers); echo "</pre>"; exit;
+
 ob_start();
 $best_comment=array("votes" => 0);
 foreach ($answers as $a)
@@ -102,7 +101,6 @@ $commentsContent=ob_get_contents(); ob_end_clean();
 if ($best_comment["votes"])
 {
 ?>
-							<!-- best_comment-->
 							<div class="best_comment">
 								<h4>Самый полезный ответ</h4>
 								
@@ -154,7 +152,6 @@ td.right div.send form.comment {
 	padding-bottom: 30px;
 }
 </style>
-							<!-- answers-->
 							<div class="best_comment" id="all_comments">
 <?
 if ($commentsContent)

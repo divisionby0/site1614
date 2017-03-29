@@ -2,15 +2,12 @@
 		<h1 class="left">Новый вопрос от имени 
 			<select name="name" form="question">
 				<option><? echo $_SESSION['steam_user']['name'] ?></option>
-<? /*				<option disabled>BOTEliot</option> */ ?>
 			</select>
 			</h1>
 		
 			<div class="grid2">
 				
-			<!-- left_column -->		
 			<div class="left_column">
-						<!-- content -->
 						<div class="content">
 						
 								<form class="comment" id="question" method="post">
@@ -31,20 +28,9 @@ foreach ($sections as $section)
 												</select>	</p>
 									<button>Задать вопрос</button>
 								</form>
-								
-							
-
 						</div>
-						
-						
-								
-			<!-- /left_column -->						
 			</div>
-		
-			<!-- right_column -->
 			<div class="right_column">
-			
-					<!-- razdels -->	
 					<div class="pop-cat">	
 						<h4>Советы</h4>
 							<div>	
@@ -56,11 +42,6 @@ foreach ($sections as $section)
 							
 							
 					</div>
-					
-					<!-- razdels -->
-					
-					
-			<!-- /right_column -->		
 			</div>		
 		
 		</div>

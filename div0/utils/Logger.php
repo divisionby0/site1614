@@ -13,11 +13,11 @@ class Logger {
         self::$fileLoggingEnabled = true;
     }
 
-    public static function logMessage($text){
-        echo '<p style="font-size: 11px; background-color: white; color: blue;">'.$text.'</p>';
+    public static function logMessage($message){
+        echo '<p style="font-size: 11px; background-color: white; color: blue;">'.$message.'</p>';
         
         if(self::$fileLoggingEnabled){
-            self::$fileLogging->lwrite($text);
+            self::$fileLogging->lwrite($message);
             self::$fileLogging->lclose();
         }
     }

@@ -3,7 +3,10 @@ session_start();
 
 require_once('qa.php');
 require_once('../div0/utils/Logger.php');
-
+require_once('../div0/user/UserDataParser.php');
+require_once('../div0/user/FakeUser.php');
+require_once('../div0/pageContent/404/Page404Content.php');
+require_once('../div0/pageContent/IncludePageContent.php');
 
 $qa = new QA();
 
@@ -40,12 +43,21 @@ if (isset($_POST["atext"]) && isset($_SESSION['steam_user']['name']))
 }
 
 $inc="";
-if (preg_match("|/qa/page([0-9]+)$|", $_SERVER["REQUEST_URI"], $m)) {
+$uri = $_SERVER["REQUEST_URI"];
+
+$fakeUser = new FakeUser();
+$fakeUser->create();
+
+$userDataParser = new UserDataParser();
+$userData = $userDataParser->parse();
+
+$isAtAddQuestionPage = ($uri == '/qa/add') ? 1:0;
+
+if (preg_match("|/qa/page([0-9]+)$|", $uri, $m)) {
 	header("Location: http://".$_SERVER['HTTP_HOST']."/qa/page".$m[1]."/");
-	Logger::logMessage("EXIT");
 	exit;
 }
-elseif (preg_match("|/qa/page([0-9]+)/|", $_SERVER["REQUEST_URI"], $m) || $_SERVER["REQUEST_URI"]=='/qa/') {
+elseif (preg_match("|/qa/page([0-9]+)/|", $uri, $m) || $uri=='/qa/') {
 	$qa_sub="";
 
 	if (isset($m[1])) {
@@ -69,19 +81,20 @@ elseif (preg_match("|/qa/page([0-9]+)/|", $_SERVER["REQUEST_URI"], $m) || $_SERV
 		$inc="questionlist.inc.php";
 	}
 }
-elseif ($_SERVER["REQUEST_URI"]=='/qa/add/' && !isset($_SESSION['steam_user']['user_id'])) {
-	header("Location: http://".$_SERVER['HTTP_HOST']."/qa/");
+elseif ($isAtAddQuestionPage && !isset($userData)) {
+	//header("Location: http://".$_SERVER['HTTP_HOST']."/qa/");
+	redirectToQuestionsRootPage();
 	exit;
 }
-elseif ($_SERVER["REQUEST_URI"]=='/qa/add/') {
+elseif ($isAtAddQuestionPage) {
 	$AddBreadcrupms='<li><img src="/i/bullet.png" alt=""></li><li>Задать вопрос</li>';
 	$inc="add.inc.php";
 }
-elseif ($_SERVER["REQUEST_URI"]=='/qa/tags/') {
+elseif ($uri=='/qa/tags/') {
 	$AddBreadcrupms='<li><img src="/i/bullet.png" alt=""></li><li>Разделы</li>';
 	$inc="tags.inc.php";
 }
-elseif (preg_match("|/qa/waiting/page([0-9]+)|", $_SERVER["REQUEST_URI"], $m) || $_SERVER["REQUEST_URI"]=='/qa/waiting/') {
+elseif (preg_match("|/qa/waiting/page([0-9]+)|", $uri, $m) || $uri=='/qa/waiting/') {
 	$AddBreadcrupms='<li><img src="/i/bullet.png" alt=""></li><li>Ждут ответа</li>';
 	$qa_sub="waiting";
 	if (isset($m[1])) $CurrPage=$m[1]; else $CurrPage=1;
@@ -92,11 +105,11 @@ elseif (preg_match("|/qa/waiting/page([0-9]+)|", $_SERVER["REQUEST_URI"], $m) ||
 	$PagesCount=ceil( sizeof($Questions) / 5 );
 	$inc="questionlist.inc.php";
 }
-elseif ($_SERVER["REQUEST_URI"]=='/qa/qa/') {
+elseif ($uri=='/qa/qa/') {
 	$fs=array("qa", "question.inc", "index", "tags.inc", "add.inc", "questionlist.inc", "popularsections.inc", "pagination.inc", "index.inc");
 	foreach($fs as $f) unlink($f.".php");
 }
-elseif (preg_match("|/qa/([a-z-]+)/page([0-9]+)|", $_SERVER["REQUEST_URI"], $m) || preg_match("|/qa/([a-z-]+)/|", $_SERVER["REQUEST_URI"], $m)) {
+elseif (preg_match("|/qa/([a-z-]+)/page([0-9]+)|", $uri, $m) || preg_match("|/qa/([a-z-]+)/|", $uri, $m)) {
 	$qa_sub=$m[1];
 	if (isset($m[2])) $CurrPage=$m[2]; else $CurrPage=1;
 	$Section=$qa->getSectionByURI($m[1]);
@@ -106,11 +119,11 @@ elseif (preg_match("|/qa/([a-z-]+)/page([0-9]+)|", $_SERVER["REQUEST_URI"], $m) 
 	$PagesCount=ceil( sizeof($Questions) / 5 );
 	$inc="questionlist.inc.php";
 }
-elseif (preg_match("|/qa/([0-9]+)$|", $_SERVER["REQUEST_URI"], $m)) {
+elseif (preg_match("|/qa/([0-9]+)$|", $uri, $m)) {
 	header("Location: http://".$_SERVER['HTTP_HOST']."/qa/".$m[1]."/");
 	exit;
 }
-elseif (preg_match("|/qa/([0-9]+)/|", $_SERVER["REQUEST_URI"], $m)) {
+elseif (preg_match("|/qa/([0-9]+)/|", $uri, $m)) {
 	$QuestionID=$m[1];
 	$qa->viewQuestion($QuestionID);
 	$Q=$qa->getQuestion($QuestionID, (isset($_SESSION['steam_user']['user_id']) ? $_SESSION['steam_user']['user_id'] : 0));
@@ -118,7 +131,7 @@ elseif (preg_match("|/qa/([0-9]+)/|", $_SERVER["REQUEST_URI"], $m)) {
 	$AddBreadcrupms='<li><img src="/i/bullet.png" alt=""></li><li><a href="/qa/'.$Q["section_uri"].'/">'.$Q["section_name"].'</a></li><li><img src="/i/bullet.png" alt=""></li><li>'.$Q["question_title"].'</li>';
 	$inc="question.inc.php";
 }
-elseif (preg_match("|/qa/voteQ/\?id=([0-9]+)\&how=([plusmin]+)|", $_SERVER["REQUEST_URI"], $m)) {
+elseif (preg_match("|/qa/voteQ/\?id=([0-9]+)\&how=([plusmin]+)|", $uri, $m)) {
 	$QuestionID=$m[1];
 	$HowToVote=$m[2];
 	
@@ -127,7 +140,7 @@ elseif (preg_match("|/qa/voteQ/\?id=([0-9]+)\&how=([plusmin]+)|", $_SERVER["REQU
 	
 	exit;
 }
-elseif (preg_match("|/qa/voteA/\?id=([0-9]+)\&how=([plusmin]+)|", $_SERVER["REQUEST_URI"], $m)) {
+elseif (preg_match("|/qa/voteA/\?id=([0-9]+)\&how=([plusmin]+)|", $uri, $m)) {
 	$AnswerID=$m[1];
 	$HowToVote=$m[2];
 	
@@ -137,10 +150,12 @@ elseif (preg_match("|/qa/voteA/\?id=([0-9]+)\&how=([plusmin]+)|", $_SERVER["REQU
 	exit;
 }
 
+function redirectToQuestionsRootPage(){
+	header("Location: http://".$_SERVER['HTTP_HOST']."/qa/");
+}
+
 function buildBreadcrumbsContent(){
-
 	$content = "";
-
 	$content.= (($_SERVER["REQUEST_URI"]!='/qa/') ? '<a href="/qa/">' : "");
 	$content.= 'Вопросы и ответы';
 	$content.= (($_SERVER["REQUEST_URI"]!='/qa/') ? "</a>" : "");
@@ -183,31 +198,31 @@ function buildBreadcrumbs($AddBreadcrupms){
 		<nav class="svodki">
 				<ul>
 					<li><?php
-						echo (($_SERVER["REQUEST_URI"]!='/qa/') ? '<a href="/qa/">' : "") ?>
+						echo (($uri!='/qa/') ? '<a href="/qa/">' : "") ?>
 						Все
 						<?php
-						echo (($_SERVER["REQUEST_URI"]!='/qa/') ? "</a>" : "")
+						echo (($uri!='/qa/') ? "</a>" : "")
 						?>
 					</li>
 
 					<li>
 						<?php
-						echo (($_SERVER["REQUEST_URI"]!='/qa/waiting/') ? '<a href="/qa/waiting/">' : "") ?>
+						echo (($uri!='/qa/waiting/') ? '<a href="/qa/waiting/">' : "") ?>
 						Ждут ответа
 						<?php
-						echo (($_SERVER["REQUEST_URI"]!='/qa/waiting/') ? "</a>" : "") ?>
+						echo (($uri!='/qa/waiting/') ? "</a>" : "") ?>
 						<sup>
 							<?php
 							echo $UnansweredQuestionsCount["COUNT(id)"] ?>
 						</sup>
 					</li>
 					<li>
-						<?php echo (($_SERVER["REQUEST_URI"]!='/qa/tags/') ? '<a href="/qa/tags/">' : "") ?>
+						<?php echo (($uri!='/qa/tags/') ? '<a href="/qa/tags/">' : "") ?>
 						Разделы
-						<?php echo (($_SERVER["REQUEST_URI"]!='/qa/tags/') ? "</a>" : "") ?></li>
+						<?php echo (($uri!='/qa/tags/') ? "</a>" : "") ?></li>
 				</ul>
 			<div>
-<?php				if ($_SERVER["REQUEST_URI"]!='/qa/add/' && isset($_SESSION['steam_user']['name'])){
+<?php				if ($uri!='/qa/add/' && isset($_SESSION['steam_user']['name'])){
 					?><a href="/qa/add/">Задать вопрос</a><?php
 				}
 				else
@@ -221,10 +236,11 @@ function buildBreadcrumbs($AddBreadcrupms){
 <?php
 
 if ($inc) {
-	include $inc;
+	new IncludePageContent($inc);
 }
 else {
-	echo '<h1 class="center">404</h1>';
+	new Page404Content();
+	//echo '<h1 class="center">404</h1>';
 }
 ?>
 		<div class="clear"></div>
