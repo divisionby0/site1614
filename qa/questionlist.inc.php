@@ -1,4 +1,5 @@
-﻿		<h1 class="center"><? echo $h1 ?></h1>
+﻿<?php include_once ("../div0/utils/DateUtil.php") ?>
+<h1 class="center"><? echo $h1 ?></h1>
 		<div class="grid2">
 			<h2><? echo $h2 ?></h2>
 				
@@ -17,7 +18,16 @@ foreach ($Questions as $i=>$q)
 									<tr>
 									  <td valign="middle" align="center" width="50"><span class="patrons" style="color:#f9cc4f" title="Кол-во патронов"><? echo ($q["votes"]<1000 ? $q["votes"] : round($q["votes"]/1000)."k") ?></span></td>
 									  <td>
-										<div class="svodki_info_news"><span><b><? echo rdate(strtotime($q["when_added"]), $true) ?> от <a href="#" title="Профиль пользователя <? echo $q["user_name"] ?>"><? echo $q["user_name"] ?></a></b></span></div>
+										<div class="svodki_info_news">
+											<span>
+												<b>
+													<?
+														$creationTime = strtotime($q["when_added"]);
+														$text = DateUtil::format($creationTime, false);
+														echo $text
+													?>
+													от
+													<a href="#" title="Профиль пользователя <? echo $q["user_name"] ?>"><? echo $q["user_name"] ?></a></b></span></div>
 										<h4><a href="/qa/<? echo $q["question_id"] ?>/"><? echo $q["question_title"] ?></a></h4>
 										<ul>
 										  <li><a href="/qa/<? echo $q["section_uri"] ?>/"><? echo $q["section_name"] ?></a></li>

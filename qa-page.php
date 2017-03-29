@@ -10,8 +10,7 @@
 	<body>
 	<?php require_once("+/header.php");?>
 
-
-
+	
 	<!-- content -->
 	<main class="qa">
 

@@ -1,24 +1,38 @@
-﻿		<h1 class="left"><? echo $Q["question_title"] ?></h1>
+﻿<?php include_once ("../div0/utils/DateUtil.php") ?>
+<h1 class="left"><? echo $Q["question_title"] ?></h1>
 		<div class="grid2">
 				
 			<!-- left_column -->		
 			<div class="left_column">
-						<!-- content -->
 						<div class="content">
-						
 							<figure class="author">
 								<a href="#"><img src="<? echo $Q['user_avatar'] ?>" alt=""></a>
-								<p><a href="#" class="green"><? echo $Q["user_name"] ?></a> <? echo rdate(strtotime($Q["when_added"]), $true) ?> в <a href="/qa/<? echo $Q["section_uri"] ?>/"><? echo $Q["section_name"] ?></a></p>
+								<p><a href="#" class="green">
+										<? echo $Q["user_name"] ?>
+									</a>
+									<?
+									$timePastSincePostCreated = DateUtil::showDate($Q["when_added"]);
+									echo $timePastSincePostCreated;
+									?>
+									в
+									<a href="/qa/<? echo $Q["section_uri"] ?>/"><? echo $Q["section_name"] ?></a>
+								</p>
 							</figure>
-							<?/*<div class="vk-like" id="float-block" style="background:blue;width:40px; height:40px;margin-left:20px;float: left;">&nbsp;</div>*/?>
-							<article><p><? echo $Q["question_text"] ?></article>
+
+
+							<article>
+								<p><? echo $Q["question_text"] ?>
+							</article>
 							<ul class="after_article">
 									<li><a id="voteQminus" href="#" class="minus<? echo (isset($Q["user_vote"]) && $Q["user_vote"]==-1 ? "s" : "") ?>" onclick="voteQ(<? echo $QuestionID ?>, 'minus');return false;"></a><strong style="color:#f9cc4f" title="Кол-во патронов" id="qvotes"><? echo $Q["votes"] ?></strong><a id="voteQplus" href="#" class="plus<? echo (isset($Q["user_vote"]) && $Q["user_vote"]==1 ? "s" : "") ?>" title="Подсыпать патронов" onclick="voteQ(<? echo $QuestionID ?>, 'plus');return false;"></a></li>
 									<li><? echo $Q["views"] ?> просмотров</li>
 									<li><? echo $Q["answers"] ?> ответов <a href="#all_comments" title="Перейти к последнему комментарию" class="last_comment"></a></li>
 									<? if ($Q["f_approved"]) { ?><li>Одобрено модератором <a href="#" class="green">skvsk</a></li><? } ?>
 							</ul>
-							<? if ($Q["when_added"] != $Q["when_edited"] && $Q["when_edited"]!='0000-00-00 00:00:00') { ?><div class="edited">Последний раз редактировалось 13 сентября в 15:00</div><? } ?>
+							<?
+							if ($Q["when_added"] != $Q["when_edited"] && $Q["when_edited"]!='0000-00-00 00:00:00') {
+								?>
+								<div class="edited">Последний раз редактировалось 13 сентября в 15:00</div><? } ?>
 							
 							<div class="more_questions">
 							
