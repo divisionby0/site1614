@@ -12,6 +12,11 @@ class Remote
             PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
         );
-        $this->db = new PDO($dsn, DBConfig::$DBUSER, DBConfig::$DBPASS, $options);
+        try{
+            $this->db = new PDO($dsn, DBConfig::$DBUSER, DBConfig::$DBPASS, $options);
+        }
+        catch(Exception $exception){
+            echo '<h1 style="color: red;">Error connecting to data base</h1>';
+        }
     }
 }

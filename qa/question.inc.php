@@ -90,8 +90,8 @@ foreach ($answers as $a)
 														echo DateUtil::showDate($a["when_added"]);
 													?>
 												</b> <span class="plus_minus"><a id="voteA<? echo $a["answer_id"] ?>minus" href="#" class="minus<? echo (isset($a["user_vote"]) && $a["user_vote"]==-1 ? "s" : "") ?>" onclick="voteA(<? echo $a["answer_id"] ?>, 'minus');return false;"></a><strong style="color:#f9cc4f" title="Кол-во патронов" id="avotes<? echo $a["answer_id"] ?>"><? echo $a["votes"] ?></strong><a id="voteA<? echo $a["answer_id"] ?>plus" href="#" class="plus<? echo (isset($a["user_vote"]) && $a["user_vote"]==1 ? "s" : "") ?>" title="Подсыпать патронов" onclick="voteA(<? echo $a["answer_id"] ?>, 'plus');return false;"></a></span>
-												<div>
-													<p><? echo $a["answer_text"] ?>
+												<div style="margin:27px 0 0 20px;clear: both;">
+													<p style="margin:27px 0 0 20px;clear: both;"><? echo $a["answer_text"] ?>
 												</div>
 												<ul>
 													<li><a href="#loginforcomment" class="otvet">Ответить</a></li>
@@ -120,7 +120,7 @@ if ($best_comment["votes"])
 													?>
 												</b>  
 											<span class="plus_minus"><a id="voteA<? echo $best_comment["answer_id"] ?>minus" href="#" class="minus<? echo (isset($best_comment["user_vote"]) && $best_comment["user_vote"]==-1 ? "s" : "") ?>" onclick="voteA(<? echo $best_comment["answer_id"] ?>, 'minus');return false;"></a><strong style="color:#f9cc4f" title="Кол-во патронов"><? echo $best_comment["user_name"] ?></strong><a id="voteA<? echo $best_comment["answer_id"] ?>plus" href="#" class="plus<? echo (isset($best_comment["user_vote"]) && $best_comment["user_vote"]==1 ? "s" : "") ?>" title="Подсыпать патронов" onclick="voteA(<? echo $best_comment["answer_id"] ?>, 'plus');return false;"></a></span>
-												<div>
+												<div style="margin:27px 0 0 20px;clear: both;">
 													<p><? echo $best_comment["answer_text"] ?>
 												</div>
 												<ul>

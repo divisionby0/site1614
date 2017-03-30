@@ -16,19 +16,13 @@ $(document).ready(function ($){
         parentQuestionContainer.find('form').find('.cancel').show();
         parentQuestionContainer.find('form').prepend(parentQuestionContainer.find('.pid').clone(true));
 
-        console.log(clonedForm);
         var clonedFormTextArea = clonedForm.find("#answerTextArea");
-        console.log("clonedFormTextArea=",clonedFormTextArea);
-
         var clonedFormTextAreaId = clonedFormTextArea.attr("id");
 
         var clonedTextAreaId = clonedFormTextAreaId + "_"+Math.round(Math.random()*10000);
         clonedFormTextArea.attr("id", clonedTextAreaId);
 
         clonedFormTextArea = clonedForm.find("#"+clonedTextAreaId);
-
-        console.log("clonedTextAreaId",clonedTextAreaId, "clonedTextArea", clonedFormTextArea);
-        //clonedFormTextArea.show();
 
         createBaseTextAreaEditor();
         createSubAnswerTextAreaEditor(clonedTextAreaId);
