@@ -1,17 +1,53 @@
 $(document).ready(function ($){
 
+    var subAnswerForm;
+
     $('.otvet').click(function (evt){
         evt.preventDefault();
-        
-        $(this).hide();
 
-        /*
-        var o = $(this.parentNode.parentNode.parentNode);
-        o.append($('#respond > .send').clone(true));						// копируем форму под ответ
-        o.find('form').find('.cancel').show();								// добавляем кнопку для возможности скрыть форму
-        o.find('form').prepend(o.find('.pid').clone(true));					// копируем скрытое поле для определения принадлежности ответа другому ответу
-        */
+        $(this).hide();
+        var parentQuestionContainer = $(this.parentNode.parentNode);
+
+        removeEditorFromBaseTextInput();
+
+        var clonedForm = $('#respond > .send').clone(true);
+
+        parentQuestionContainer.append(clonedForm);
+        parentQuestionContainer.find('form').find('.cancel').show();
+        parentQuestionContainer.find('form').prepend(parentQuestionContainer.find('.pid').clone(true));
+
+        console.log(clonedForm);
+        var clonedFormTextArea = clonedForm.find("#answerTextArea");
+        console.log("clonedFormTextArea=",clonedFormTextArea);
+
+        var clonedFormTextAreaId = clonedFormTextArea.attr("id");
+
+        var clonedTextAreaId = clonedFormTextAreaId + "_"+Math.round(Math.random()*10000);
+        clonedFormTextArea.attr("id", clonedTextAreaId);
+
+        clonedFormTextArea = clonedForm.find("#"+clonedTextAreaId);
+
+        console.log("clonedTextAreaId",clonedTextAreaId, "clonedTextArea", clonedFormTextArea);
+        //clonedFormTextArea.show();
+
+        createBaseTextAreaEditor();
+        createSubAnswerTextAreaEditor(clonedTextAreaId);
+
+        clonedForm.find("#formContainer").addClass("subAnswerFormContainer");
     });
+
+    function removeEditorFromBaseTextInput(){
+        tinymce.EditorManager.execCommand('mceRemoveEditor',true, "answerTextArea");
+    }
+    function createBaseTextAreaEditor(){
+        var wysiwygEditor = new WYSIWYGEditor();
+        wysiwygEditor.init("answerTextArea");
+    }
+
+    function createSubAnswerTextAreaEditor(textAreaId){
+        var wysiwygEditor = new WYSIWYGEditor();
+        wysiwygEditor.init(textAreaId);
+    }
 
     $('.send_button').click(function (){
         var o=$(this).parents('.right');

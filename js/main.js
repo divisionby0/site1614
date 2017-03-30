@@ -7,9 +7,7 @@
     
     var pageContentType = $("#contentType").text();
     console.log("pageContentType="+pageContentType);
-    
-    //TODO если будет больше 2х то нужо сделать фабрику
-    
+
     var wysiwygEditor;
     if(pageContentType == "addQuestionPageContent"){
         var textAreaId = "newQuestionTextArea";

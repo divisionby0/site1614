@@ -175,15 +175,15 @@ if (isset($_SESSION['steam_user']['user_id']))
 ?>
 								<div id="respond">
 									<div class="send">
-										<form action="/qa/<? echo $QuestionID ?>/" method="post" class="comment">
-											<a href="#"><img src="<? echo $_SESSION['steam_user']['avatar'] ?>" alt=""></a>
-											<label for="answer">Напиши ответ тс'y <a href="#" class="green"><? echo $Q["user_name"] ?></a>:</label>
+										<form action="/qa/<? echo $QuestionID ?>/" method="post" class="comment" id="answerForm">
+											<a href="#"><img id="avatarImage" src="<? echo $_SESSION['steam_user']['avatar'] ?>" alt=""></a>
+											<label for="answer">Напиши ответ тс'y <a href="#" class="green" id="nodeAuthorLink"><? echo $Q["user_name"] ?></a>:</label>
 											
-											<div style="padding-left: 6em; padding-right: 4em;">
+											<div style="padding-left: 6em; padding-right: 4em;" id="formContainer">
 												<textarea name="atext" id="answerTextArea" cols="30" rows="8"></textarea>
 											</div>
 
-											<input type="hidden" name="qid" value="<? echo $QuestionID ?>">
+											<input type="hidden" name="qid" value="<? echo $QuestionID ?>" id="questionIdInput">
 											<button type="submit" class="formCommentButton" onclick='send_form(this)'>Ответить</button>
 											<a href="#loginforcomment" class="cancel" style="display:none;">Отменить</a>
 										</form>

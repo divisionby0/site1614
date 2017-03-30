@@ -872,11 +872,15 @@ div.content	div.best_comment {}
 			table.comment td.right span.plus_minus a {
               margin-top:3px;
             }
+
+            /*
 			table.comment td.right div {
               margin:27px 0 0 20px;
               clear: both;
               width:88%;
             }
+            */
+
 			table.comment td.right div p {
               margin-bottom: 11px;
               color:#fff;
@@ -1513,4 +1517,10 @@ div.copyright form input {
 .jspDrag {
   background: #373f46;
   height: 2px;
+}
+
+.subAnswerFormContainer{
+  margin: 0 !important;
+  clear: none !important;
+  width: inherit;
 }

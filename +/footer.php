@@ -28,4 +28,5 @@
 	<script src="/js/answerCreation.js"></script>
 	<script src="/js/voting.js"></script>
 	<script src="/js/scrolltotop.js"></script>
+	<script src="/js/div0/view/AnswerForm.js"></script>
 	<script src="/js/search.js"></script>
