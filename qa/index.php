@@ -21,11 +21,9 @@ if (isset($_POST["text"]) && isset($_SESSION['steam_user']['name']))
 		"text" => $_POST["text"],
 		"user_id" => $_SESSION['steam_user']['user_id']
 	);
-
-	var_dump($question);
-	$question_id=$qa->addQuestion($question);
 	
-	//header("Location: http://".$_SERVER['HTTP_HOST']."/qa/".$question_id."/");
+	$question_id=$qa->addQuestion($question);
+	header("Location: http://".$_SERVER['HTTP_HOST']."/qa/".$question_id."/");
 }
 
 // Добавление ответа
@@ -53,7 +51,15 @@ $fakeUser->create();
 $userDataParser = new UserDataParser();
 $userData = $userDataParser->parse();
 
-$isAtAddQuestionPage = ($uri == '/qa/add') ? 1:0;
+$isAtAddQuestionPage;
+if($uri == '/qa/add' || $uri == '/qa/add/'){
+	$isAtAddQuestionPage = 1;
+}
+else{
+	$isAtAddQuestionPage = 0;
+}
+//$isAtAddQuestionPage = ($uri == '/qa/add/') ? 1:0;
+//Logger::logMessage("is at add question page: ".$isAtAddQuestionPage);
 
 if (preg_match("|/qa/page([0-9]+)$|", $uri, $m)) {
 	header("Location: http://".$_SERVER['HTTP_HOST']."/qa/page".$m[1]."/");
@@ -189,7 +195,6 @@ function buildBreadcrumbs($AddBreadcrupms){
 
 		<script src="../js/lib/tinymce/tinymce.min.js"></script>
 		<script src="../js/div0/view/wysiwygEditor/WYSIWYGEditor.js"></script>
-
 		<script src="../js/div0/pageContent/AddQuestionPageContent.js"></script>
 
 	</head>

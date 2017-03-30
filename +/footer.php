@@ -1,4 +1,3 @@
-<!-- footer -->
 	<footer>
 		<div class="f_ring">
 			<div class="f_rring">
@@ -25,13 +24,9 @@
 
 
 	</footer>
-	<!-- /footer -->
-
-	<!-- scroll to top -->
 	<p id="back-top"><a href="#top"><span><img src="/i/up.png"/></span></a></p>
 	<script src="/js/jquery.jscrollpane.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"></script>
-	<!-- <script src="js/jquery.mCustomScrollbar.concat.min.js"></script> -->
 	<script src="/js/main.js"></script>
 	<script src="/js/scrolltotop.js"></script>
 	<script src="/js/search.js"></script>

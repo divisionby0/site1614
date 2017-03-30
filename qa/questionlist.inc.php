@@ -37,9 +37,7 @@ foreach ($Questions as $i=>$q)
 								  </table>
 								</div>
 <?
-} ?>
-								
-			<!-- /left_column -->						
+} ?>					
 			</div>
 		
 <? include "popularsections.inc.php" ?>

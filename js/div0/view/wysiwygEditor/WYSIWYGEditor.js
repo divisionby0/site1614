@@ -50,7 +50,6 @@ var WYSIWYGEditor = function(){
 
                         console.log("blobInfo.blobUri()",blobInfo.blobUri());
 
-
                         // call the callback and populate the Title field with the file name
                         cb(blobInfo.blobUri(), { title: file.name });
                     };
@@ -58,8 +57,6 @@ var WYSIWYGEditor = function(){
                     input.click();
                 }
             });
-            console.log("editor:",editor);
-
         },
         destroy:function(){
             //$("#"+_elementId).summernote("destroy");

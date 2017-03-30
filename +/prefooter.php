@@ -1,4 +1,3 @@
-<!-- prefooter -->
 			<div class="prefooter">
 		
 				<div class="uncover"  style="margin-bottom:30px">
@@ -52,4 +51,3 @@
 					</ul>
 				</div>				
 			</div>
-			<!-- prefooter -->

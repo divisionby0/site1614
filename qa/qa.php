@@ -111,9 +111,6 @@ class QA extends Remote{
     function addQuestion($question){
         $stmt = $this->db->prepare("INSERT INTO qa_questions SET section_id=:section_id, title=:title, text=:text, when_added=NOW(), user_id=:user_id");
 
-		Logger::logMessage("Statement:");
-		var_dump($stmt);
-
         $stmt->execute(
 			array(
 				":section_id" => $question["section_id"],
@@ -122,9 +119,7 @@ class QA extends Remote{
 				":user_id" => $question["user_id"]
 			)
 		);
-		Logger::logMessage(" ::  Statement:");
-		var_dump($stmt);
-		
+
 		if ($LastInsertID=$this->db->lastInsertId())
 		{
 			$stmt = $this->db->prepare("UPDATE qa_sections SET questions_number=(SELECT COUNT(id) FROM qa_questions WHERE section_id=:section_id) WHERE id=:section_id LIMIT 1");

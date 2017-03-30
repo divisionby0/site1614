@@ -10,11 +10,8 @@
 	<body>
 	<?php require_once("+/header.php");?>
 
-	
-	<!-- content -->
 	<main class="qa">
 
-		<!-- breadcrumbs -->
 		<div class="breadcrumbs">
 			<ul>
 				<li><a href="/">CS:GO</a></li>
@@ -28,9 +25,7 @@
 				<li>Ошибка(Pure server: file [GAME]\pak01_001.vpk does not match the enemy</li>
 			</ul>
 		</div>
-		<!-- /breadcrumbs -->
 
-		<!-- nav -->
 		<nav class="svodki">
 				<ul>
 					<li><a href="#">Все</a></li>
@@ -41,15 +36,11 @@
 				<a href="#">Задать вопрос</a>
 			</div>
 		</nav>
-		<!-- /nav -->
-
 
 		<h1 class="left">Ошибка(Pure server: file [GAME]\pak01_001.vpk does not match the enemy</h1>
 		<div class="grid2">
-				
-			<!-- left_column -->		
+	
 			<div class="left_column">
-						<!-- content -->
 						<div class="content">
 						
 							<figure class="author">
@@ -91,9 +82,7 @@
 										<li><a href="#">Ответить</a></li>
 									</ul>
 								</div>
-							</div> 
-							
-							<!-- best_comment-->
+							</div>
 							<div class="best_comment">
 								<h4>Самый полезный ответ</h4>
 								
@@ -117,9 +106,6 @@
 								
 								
 							</div>
-							<!-- /best_comment-->
-							
-							<!-- answers-->
 							<div class="best_comment">
 								<h4>Ответы</h4>
 								
@@ -215,25 +201,12 @@
 									<textarea name="answer" id="" cols="30" rows="8"></textarea>
 									<button>Ответить</button>
 								</form>
-								<!-- loginforcomment 
-								<div class="loginforcomment">
-									<p>Чтобы оставить комментарий, <a href="#" class="green">зайдите на сайт через Steam</a>. Это быстро и безопасно.</p>
-								</div>
-								 /loginforcomment -->
 							</div>
-							<!-- /answers-->
 
 						</div>
-						
-						
-								
-			<!-- /left_column -->						
+					
 			</div>
-		
-			<!-- right_column -->
 			<div class="right_column">
-			
-					<!-- razdels -->	
 					<div class="pop-cat">	
 						<h4>Популярные разделы</h4>
 							<div>
@@ -255,19 +228,11 @@
 							</div>	
 							<span class="all"><a href="#">Все разделы</a></span>	
 					</div>
-					
-					<!-- razdels -->
-					
-					
-			<!-- /right_column -->		
 			</div>		
 		
 		</div>
 		
 		<div class="clear"></div>
-
-
-		<!-- breadcrumbs -->
 		<div class="breadcrumbs">
 			<ul>
 				<li><a href="#">CS:GO</a></li>
@@ -281,10 +246,7 @@
 				<li>Ошибка(Pure server: file [GAME]\pak01_001.vpk does not match the enemy</li>
 			</ul>
 		</div>
-		<!-- /breadcrumbs -->
-
 	</main>
-	<!-- /content -->
 
 
 	<?php require_once("+/prefooter.php");?>

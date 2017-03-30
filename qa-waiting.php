@@ -10,11 +10,8 @@
 	<?php require_once("+/header.php");?>
 
 
-
-	<!-- content -->
 	<main class="qa">
 
-		<!-- breadcrumbs -->
 		<div class="breadcrumbs">
 			<ul>
 				<li><a href="#">CS:GO</a></li>
@@ -24,9 +21,7 @@
 				<li>Разделы</li>
 			</ul>
 		</div>
-		<!-- /breadcrumbs -->
 
-		<!-- nav -->
 		<nav class="svodki">
 				<ul>
 					<li><a href="#">Все</a></li>
@@ -37,14 +32,9 @@
 				<p>Задать вопрос</p>
 			</div>
 		</nav>
-		<!-- /nav -->
-
-
 		<h1 class="center">Дайте ответ</h1>
 		<div class="grid2">
 			<h2>Без ответов</h2>
-				
-			<!-- left_column -->		
 			<div class="left_column">
 					
 						<div class="question sticked">
@@ -206,15 +196,9 @@
 									  </td>
 									</tr>
 								  </table>
-								</div>
-								
-			<!-- /left_column -->						
+								</div>					
 			</div>
-		
-			<!-- right_column -->
 			<div class="right_column">
-			
-					<!-- razdels -->	
 					<div class="pop-cat">	
 						<h4>Популярные разделы</h4>
 							<div>
@@ -236,10 +220,6 @@
 							</div>	
 							<span class="all"><a href="#">Все разделы</a></span>	
 					</div>
-					<!-- razdels -->
-					
-					
-			<!-- /right_column -->		
 			</div>		
 		
 		</div>
@@ -254,7 +234,6 @@
 			<li><a href="#">1</a></li>
 		</ul>
 
-		<!-- breadcrumbs -->
 		<div class="breadcrumbs">
 			<ul>
 				<li><a href="#">CS:GO</a></li>
@@ -264,12 +243,9 @@
 				<li>Разделы</li>
 			</ul>
 		</div>
-		<!-- /breadcrumbs -->
 
 	</main>
-	<!-- /content -->
-
-
+	
 	<?php require_once("+/prefooter.php");?>
 	<?php require_once("+/footer.php");?>
 	</body>

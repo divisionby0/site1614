@@ -10,12 +10,9 @@
 	<body>
 	<?php require_once("+/header.php");?>
 
-
-
-	<!-- content -->
+	
 	<main class="qa">
 
-		<!-- breadcrumbs -->
 		<div class="breadcrumbs">
 			<ul>
 				<li><a href="#">CS:GO</a></li>
@@ -25,9 +22,7 @@
 				<li>Задать вопрос</li>
 			</ul>
 		</div>
-		<!-- /breadcrumbs -->
 
-		<!-- nav -->
 		<nav class="svodki">
 				<ul>
 					<li><a href="#">Все</a></li>
@@ -38,9 +33,7 @@
 				<p>Задать вопрос</p>
 			</div>
 		</nav>
-		<!-- /nav -->
 
-		
 		<h1 class="left">Новый вопрос от имени <select name="name" form="question">
 													<option >skvsk</option>
 													<option disabled>BOTEliot</option>
@@ -48,10 +41,8 @@
 		</h1>
 		
 			<div class="grid2">
-				
-			<!-- left_column -->		
+
 			<div class="left_column">
-						<!-- content -->
 						<div class="content">
 						
 								<form class="comment" id="question">
@@ -72,16 +63,9 @@
 							
 
 						</div>
-						
-						
-								
-			<!-- /left_column -->						
 			</div>
-		
-			<!-- right_column -->
+
 			<div class="right_column">
-			
-					<!-- razdels -->	
 					<div class="pop-cat">	
 						<h4>Советы</h4>
 							<div>	
@@ -93,19 +77,12 @@
 							
 							
 					</div>
-					
-					<!-- razdels -->
-					
-					
-			<!-- /right_column -->		
 			</div>		
 		
 		</div>
 		
 		<div class="clear"></div>
 
-
-		<!-- breadcrumbs -->
 		<div class="breadcrumbs">
 			<ul>
 				<li><a href="#">CS:GO</a></li>
@@ -115,11 +92,8 @@
 				<li>Задать вопрос</li>
 			</ul>
 		</div>
-		<!-- /breadcrumbs -->
 
 	</main>
-	<!-- /content -->
-
 
 	<?php require_once("+/prefooter.php");?>
 	<?php require_once("+/footer.php");?>

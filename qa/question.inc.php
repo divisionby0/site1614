@@ -252,22 +252,16 @@ function voteA(id, how) {
 }
 else
 {
-?>								<!-- loginforcomment -->
+?>
 								<div class="loginforcomment" id="loginforcomment">
 									<p>Чтобы оставить комментарий, <a href="<? echo SteamSignIn::genUrl() ?>" class="green">зайдите на сайт через Steam</a>. Это быстро и безопасно.</p>
 								</div>
-								<!-- /loginforcomment --><?
+	<?
 }
 ?>
 								</div>
 							</div>
-							<!-- /answers-->
-
-						</div>
-						
-						
-								
-			<!-- /left_column -->						
+						</div>					
 			</div>
 		
 <? include "popularsections.inc.php" ?>
