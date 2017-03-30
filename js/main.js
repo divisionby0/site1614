@@ -1,6 +1,19 @@
-(function () {
-  $(document).ready(function () {
 
+(function () {
+
+  //var $ = jQuery.noConflict();
+
+  $(document).ready(function ($) {
+    
+    var pageContentType = $("#contentType").text();
+    console.log("pageContentType="+pageContentType);
+    
+    //TODO если будет больше 2х то нужо сделать фабрику
+    if(pageContentType == "addQuestionPageContent"){
+      new AddQuestionPageContent();
+    }
+    
+    
     $('#streams__area')
       .jScrollPane({
         horizontalDragMinWidth: 302,
@@ -62,7 +75,7 @@
         itemSelector: '.grid-item',
         gutter: 15
       });
-    })
+    });
 
     var svodkiPage = 0;
     var svodkiLoading = false;

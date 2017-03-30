@@ -43,14 +43,14 @@ function RenderQList($questions, $limit=5, $page=1)
 <?php
 	}
 }
-
+$Questions=$qa->getQuestions("qq.when_added>'".date("Y-m-d H:i:s", time()-7*24*60*60)."'", "qq.votes");
 RenderQList($Questions, 5, $CurrPage);
 ?>
 		</div>
 		<div class="right_side">
 			<h2>Популярные за неделю</h2>
 <?php
-$Questions=$qa->getQuestions("qq.when_added>'".date("Y-m-d H:i:s", time()-7*24*60*60)."'", "qq.votes");
+
 RenderQList($Questions, 4);
 ?>
 			</div>

@@ -845,7 +845,31 @@ div.content	div.best_comment {}
 			form.comment p 			{margin:22px 0 25px 60px;}
 			form.comment p select 	{margin:0 0 0 5px;padding:0 0 3px 3px;background: #424242;border:none;font-size:1em;}
 			form.comment textarea, form.comment input 	{padding:10px 15px;width:84.5%;border:none;color:#fff;font-size:1.8em;background:#424242}
-			form.comment button 	{margin:18px 0 0 60px;padding: 9px 60px!important;display: block;font: normal 1.2em dinpro-b, verdana, arial, sans-serif;cursor:pointer}
+.formCommentButton{
+  margin:18px 0 0 60px;
+  padding: 9px 60px!important;
+  display: block;
+  font: normal 1.2em dinpro-b, verdana, arial, sans-serif;
+  cursor:pointer;
+
+  background: linear-gradient(to top, #218015, #36af26);
+  border: none;
+  border-radius: 2px;
+  background: linear-gradient(to top, #218015, #36af26);
+  border: none;
+  border-radius: 2px;
+  text-decoration: none;
+  text-transform: uppercase;
+  text-align: center;
+
+}
+
+.formCommentButton:hover{
+  color: #fff !important;
+  background: linear-gradient(to top, #268b1a, #3fbf2e);
+}
+
+
 			@-moz-document url-prefix() {
 				 form.comment label  {
 					margin:24px 0 14px 0
@@ -1166,7 +1190,7 @@ main nav div, div.pop-cat {
   width: 260px
 }
 
-main nav div a, main nav div p, form.comment button {
+main nav div a, main nav div p{
   padding: 8px 59px 9px 62px;
   background: linear-gradient(to top, #218015, #36af26);
   display: block;

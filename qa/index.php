@@ -21,9 +21,11 @@ if (isset($_POST["text"]) && isset($_SESSION['steam_user']['name']))
 		"text" => $_POST["text"],
 		"user_id" => $_SESSION['steam_user']['user_id']
 	);
+
+	var_dump($question);
 	$question_id=$qa->addQuestion($question);
 	
-	header("Location: http://".$_SERVER['HTTP_HOST']."/qa/".$question_id."/");
+	//header("Location: http://".$_SERVER['HTTP_HOST']."/qa/".$question_id."/");
 }
 
 // Добавление ответа
@@ -179,11 +181,17 @@ function buildBreadcrumbs($AddBreadcrupms){
 ?>
 <!doctype HTML>
 <html>
-	<head>
+	<link>
 		<title>Вопросы по CS:GO и ответы</title>
 		<meta name="description" content="?" />
 		<meta name="keywords" content="?" />
 		<?php require_once("../+/meta.php");?>
+
+		<script src="../js/lib/tinymce/tinymce.min.js"></script>
+		<script src="../js/div0/view/wysiwygEditor/WYSIWYGEditor.js"></script>
+
+		<script src="../js/div0/pageContent/AddQuestionPageContent.js"></script>
+
 	</head>
 	<body>
 	<?php require_once("../+/header.php");?>
@@ -236,7 +244,7 @@ function buildBreadcrumbs($AddBreadcrupms){
 <?php
 
 if ($inc) {
-	new IncludePageContent($inc);
+	include $inc;
 }
 else {
 	new Page404Content();
