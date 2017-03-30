@@ -1,7 +1,7 @@
-﻿<?php include_once ("../div0/utils/DateUtil.php") ?>
+<?php include_once ("../div0/utils/DateUtil.php") ?>
+<div id="contentType" style="display: none;">questionPageContent</div>
 <h1 class="left"><? echo $Q["question_title"] ?></h1>
 		<div class="grid2">
-			
 			<div class="left_column">
 						<div class="content">
 							<figure class="author">
@@ -18,8 +18,7 @@
 								</p>
 							</figure>
 
-
-							<article>
+							<article class="questionView">
 								<p><? echo $Q["question_text"] ?>
 							</article>
 							<ul class="after_article">
@@ -56,7 +55,6 @@ foreach ($AnotherQuestions as $i=>$aq)
 										<? if ($aq["votes"]) { ?><li><strong style="color:#f9cc4f" title="Кол-во патронов"><? echo $aq["votes"] ?></strong></li><? } ?>
 										<li><? echo $aq["views"] ?> просмотров</li>
 										<li><? if ($aq["answers"]) {  echo $aq["answers"] ?> ответов<a href="/qa/<? echo $aq["question_id"] ?>/#all_comments" title="Перейти к последнему комментарию" class="last_comment"></a> <? } else { ?>Ждёт ответа<? } ?></li>
-										<?/*<li><a href="#loginforcomment">Ответить</a></li>*/?>
 									</ul>
 								</div>
 <?
@@ -76,10 +74,20 @@ foreach ($answers as $a)
 									<tr>
 										<td	valign="top" class="left"><? echo ($a["level"] ? "<span>".($a["level"]+1)."</span>" : "") ?><a href="#"><img src="<? echo $a["user_avatar_url"] ?>" alt=""></a></td>
 										<td valign="top" class="right">
-												<b><a href="#" class="green"><? echo $a["user_name"] ?></a> ответил(а) <? echo ($a["parent_id"] ? "" : "тс'у&nbsp;") ?><a href="#" class="green"><? echo ($a["to_whom"] ? $a["to_whom"] : $Q["user_name"]) ?></a> 
-													<? 
-														echo DateUtil::format(strtotime($a["when_added"]), $true);
-														//echo rdate(strtotime($a["when_added"]), $true) 
+												<b>
+													<a href="#" class="green">
+														<?
+														echo $a["user_name"]
+														?>
+													</a> ответил(а)
+													<?
+													if(isset($a["parent_id"])){
+														echo ($a["parent_id"] ? "" : "тс'у&nbsp;");
+													}
+													?>
+													<a href="#" class="green"><? echo ($a["to_whom"] ? $a["to_whom"] : $Q["user_name"]) ?></a>
+													<?
+														echo DateUtil::showDate($a["when_added"]);
 													?>
 												</b> <span class="plus_minus"><a id="voteA<? echo $a["answer_id"] ?>minus" href="#" class="minus<? echo (isset($a["user_vote"]) && $a["user_vote"]==-1 ? "s" : "") ?>" onclick="voteA(<? echo $a["answer_id"] ?>, 'minus');return false;"></a><strong style="color:#f9cc4f" title="Кол-во патронов" id="avotes<? echo $a["answer_id"] ?>"><? echo $a["votes"] ?></strong><a id="voteA<? echo $a["answer_id"] ?>plus" href="#" class="plus<? echo (isset($a["user_vote"]) && $a["user_vote"]==1 ? "s" : "") ?>" title="Подсыпать патронов" onclick="voteA(<? echo $a["answer_id"] ?>, 'plus');return false;"></a></span>
 												<div>
@@ -87,8 +95,6 @@ foreach ($answers as $a)
 												</div>
 												<ul>
 													<li><a href="#loginforcomment" class="otvet">Ответить</a></li>
-													<?/*<li><a href="#">Редактировать</a></li>
-													<li><a href="#" class="delete">Удалить</a></li>*/?>
 												</ul>
 												<input type="hidden" name="pid" value="<? echo $a["answer_id"] ?>" class="pid">
 											</td>
@@ -172,82 +178,17 @@ if (isset($_SESSION['steam_user']['user_id']))
 										<form action="/qa/<? echo $QuestionID ?>/" method="post" class="comment">
 											<a href="#"><img src="<? echo $_SESSION['steam_user']['avatar'] ?>" alt=""></a>
 											<label for="answer">Напиши ответ тс'y <a href="#" class="green"><? echo $Q["user_name"] ?></a>:</label>
-											<textarea name="atext" id="" cols="30" rows="8"></textarea>
+											
+											<div style="padding-left: 6em; padding-right: 4em;">
+												<textarea name="atext" id="answerTextArea" cols="30" rows="8"></textarea>
+											</div>
+
 											<input type="hidden" name="qid" value="<? echo $QuestionID ?>">
-											<button type="submit" class="sendbutton" onclick='send_form(this)'>Ответить</button>
+											<button type="submit" class="formCommentButton" onclick='send_form(this)'>Ответить</button>
 											<a href="#loginforcomment" class="cancel" style="display:none;">Отменить</a>
 										</form>
 									</div>
 								</div>
-<script>
-$(document).ready(function (){
-		$('.otvet').click(function (evt){
-			evt.preventDefault(); 
-			
-			$(this).hide();
-			//$('#respond').hide();												// скрываем основной блок формы ответа на вопрос
-			o=$(this.parentNode.parentNode.parentNode);
-			o.append($('#respond > .send').clone(true));						// копируем форму под ответ
-			o.find('form').find('.cancel').show();								// добавляем кнопку для возможности скрыть форму
-			o.find('form').prepend(o.find('.pid').clone(true));					// копируем скрытое поле для определения принадлежности ответа другому ответу
-		});
-		$('.send_button').click(function (){
-			var o=$(this).parents('.right');
-			o.find('form').submit();
-			o.find('.send').remove();
-			o.find('.otvet').show();
-			$('#respond').show();
-		});
-		function send_form(obj) {
-			var o=obj.parents('.right');
-			o.find('form').submit();
-			o.find('.send').remove();
-			o.find('.otvet').show();
-			$('#respond').show();
-		};
-		$('.cancel').click(function (evt){
-			evt.preventDefault();
-			
-			var o=$(this).parents('.right');
-			o.find('.send').remove();
-			o.find('.otvet').show();
-			$('#respond').show();
-		});
-	});
-	
-function voteQ(id, how) {
-	$.get('/qa/voteQ/?id='+id+'&how='+how, function (data) {
-	  $('#qvotes').text(data);
-	});
-	
-	if (how=="plus") {
-		$('#voteQplus').removeClass(); $('#voteQplus').addClass('pluss');
-		$('#voteQminus').removeClass(); $('#voteQminus').addClass('minus');
-	}
-	if (how=="minus") {
-		$('#voteQplus').removeClass(); $('#voteQplus').addClass('plus');
-		$('#voteQminus').removeClass(); $('#voteQminus').addClass('minuss');
-	}
-	
-	return false;
-}
-function voteA(id, how) {
-	$.get('/qa/voteA/?id='+id+'&how='+how, function (data) {
-      $('#avotes'+id).text(data);
-	});
-	
-	if (how=="plus") {
-		$('#voteA'+id+'plus').removeClass(); $('#voteA'+id+'plus').addClass('pluss');
-		$('#voteA'+id+'minus').removeClass(); $('#voteA'+id+'minus').addClass('minus');
-	}
-	if (how=="minus") {
-		$('#voteA'+id+'plus').removeClass(); $('#voteA'+id+'plus').addClass('plus');
-		$('#voteA'+id+'minus').removeClass(); $('#voteA'+id+'minus').addClass('minuss');
-	}
-	
-	return false;
-}
-</script>
 <?
 }
 else

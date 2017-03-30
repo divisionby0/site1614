@@ -801,40 +801,118 @@ div.content div.more_questions 		{margin:52px 0 0 80px;overflow: hidden;}
 			div.more_questions h4 a:hover {background-image: url(/i/green_u_hover.png)}
 			
 div.content	div.best_comment {}
-			div.best_comment h4 {margin:71px 0 20px 80px;}
+			div.best_comment h4 {
+              margin:71px 0 20px 80px;
+            }
 			
-			table.comment {margin:2px 20px 34px 80px;padding:0!important;}
-			table.comment.secondlevel td.left img, table.comment.thirdlevel td.left img {margin:-40px 0 0 60px!important;}
+			table.comment {
+              margin:2px 20px 34px 80px;
+              padding:0!important;
+            }
+			table.comment.secondlevel td.left img, table.comment.thirdlevel td.left img {
+              margin:-40px 0 0 60px!important;
+            }
 			@-moz-document url-prefix() {
 				 table.comment.secondlevel td.left img, table.comment.thirdlevel td.left img {
-					margin:-40px -20px 0 60px!important;padding-right:20px;
+					margin:-40px -20px 0 60px!important;
+                   padding-right:20px;
 				  }
 				}
-			table.comment.thirdlevel td.left {padding-left:60px;}
-			table.comment td.left {overflow: hidden;}
-			table.comment td.left * {display: inline;}
-			table.comment td.left img {margin-top:2px;opacity:.9;float: left;width:40px;height:40px;display: block;}
+			table.comment.thirdlevel td.left {
+              padding-left:60px;
+            }
+			table.comment td.left {
+              overflow: hidden;
+            }
+			table.comment td.left * {
+              display: inline;
+            }
+			table.comment td.left img {
+              margin-top:2px;
+              opacity:.9;
+              float: left;
+              width:40px;
+              height:40px;
+              display: block;
+            }
 			
-			table.comment td.left img:hover {opacity:1}
-			table.comment td.left span {padding:13px 18px 13px 17px;float: left;font:normal 1.1em helios, verdana, arial, sans-serif;color:#4b4a48; }
-			table.comment td.right   {overflow: hidden; background: url(/i/line.jpg) repeat-x left 6px;width:100%;}
-			table.comment td.right b {padding:0 10px 0 20px;float:left;display: block;font:normal 1.1em helios, verdana, arial, sans-serif;color:#7f7f7f;background: #161410;}
+			table.comment td.left img:hover {
+              opacity:1
+            }
+			table.comment td.left span {
+              padding:13px 18px 13px 17px;
+              float: left;
+              font:normal 1.1em helios, verdana, arial, sans-serif !important;
+              color:#4b4a48;
+            }
+			table.comment td.right   {
+              overflow: hidden;
+              background: url(/i/line.jpg) repeat-x left 6px;
+              width:100%;
+            }
+			table.comment td.right b {
+              padding:0 10px 0 20px;
+              float:left;
+              display: block;
+              /*font:normal 1.1em helios, verdana, arial, sans-serif !important;*/
+              font:normal 0.7em helios, verdana, arial, sans-serif !important;
+              color:#7f7f7f;
+              background: #161410;
+            }
 			
-			table.comment td.right span.plus_minus {margin:-1px 0 0 0;padding:0 10px;float:right;display: block; font:normal 1.1em dinpro-b, verdana, arial, sans-serif;cursor:crosshair;background: #161410;}
-			table.comment td.right span.plus_minus a {margin-top:3px;}
-			table.comment td.right div {margin:27px 0 0 20px;clear: both;width:88%;}
-			table.comment td.right div p {margin-bottom: 11px;color:#fff;font:normal 1.5em helios, verdana, arial, sans-serif;line-height: 1.5;}
-			table.comment td.right div p img {margin:3px 0 5px 0}
-			table.comment td.right ul {margin:15px 0 0 19px;}
-			table.comment td.right ul li {margin-right:27px;display: inline;}
-			table.comment td.right ul li a {font:normal 1.1em helios, verdana, arial, sans-serif;color:#7f7f7f;text-decoration: none!important;background: url(/i/dotted_u.png) repeat-x left 11px}
-			table.comment td.right ul li a:hover {background-image: url(/i/dotted_g_hover.png)}
+			table.comment td.right span.plus_minus {
+              margin:-1px 0 0 0;
+              padding:0 10px;
+              float:right;
+              display: block;
+              font:normal 1.1em dinpro-b, verdana, arial, sans-serif !important;
+              cursor:crosshair;
+              background: #161410;
+            }
+			table.comment td.right span.plus_minus a {
+              margin-top:3px;
+            }
+			table.comment td.right div {
+              margin:27px 0 0 20px;
+              clear: both;
+              width:88%;
+            }
+			table.comment td.right div p {
+              margin-bottom: 11px;
+              color:#fff;
+              /*font:normal 1.5em helios, verdana, arial, sans-serif !important;*/
+              font:normal 0.9em helios, verdana, arial, sans-serif !important;
+              line-height: 1.5;
+            }
+			table.comment td.right div p img {
+              margin:3px 0 5px 0
+            }
+			table.comment td.right ul {
+              margin:15px 0 0 19px;
+            }
+			table.comment td.right ul li {
+              margin-right:27px;
+              display: inline;
+            }
+			table.comment td.right ul li a {
+              /*font:normal 1.1em helios, verdana, arial, sans-serif !important;*/
+              font:normal 0.7em helios, verdana, arial, sans-serif !important;
+              color:#7f7f7f;
+              text-decoration: none!important;
+              background: url(/i/dotted_u.png) repeat-x left 11px
+            }
+			table.comment td.right ul li a:hover {
+              background-image: url(/i/dotted_g_hover.png)
+            }
 			@-moz-document url-prefix() {
 				 table.comment td.right ul li a {
 					background-position: left 12px
 				  }
 				}
-			table.comment td.right ul li a.delete {color:#4f0202;background:none}
+			table.comment td.right ul li a.delete {
+              color:#4f0202;
+              background:none
+            }
 			
 			div.loginforcomment {margin:78px 25px -2px 25px;padding:15px 0 17px 0;border:1px solid #423314;text-align: center;}
 			div.loginforcomment p {font:normal 1.3em helios, verdana, arial, sans-serif;color:#7f7f7f;}
@@ -851,7 +929,6 @@ div.content	div.best_comment {}
   display: block;
   font: normal 1.2em dinpro-b, verdana, arial, sans-serif;
   cursor:pointer;
-
   background: linear-gradient(to top, #218015, #36af26);
   border: none;
   border-radius: 2px;
@@ -861,7 +938,25 @@ div.content	div.best_comment {}
   text-decoration: none;
   text-transform: uppercase;
   text-align: center;
+}
 
+.questionView{
+  margin: 0 0 14px 0;
+  color: #fff !important;
+  font: normal 1em helios, verdana, arial, sans-serif;
+}
+
+.questionView table, tbody, td, tr{
+  color: #fff !important;
+}
+
+.questionView p{
+  margin: 0 !important;
+  line-height: 1.5em !important;
+}
+.questionView li{
+  font-size: 1.6em !important;
+  list-style-type: inherit !important;
 }
 
 .formCommentButton:hover{

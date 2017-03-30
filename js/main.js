@@ -9,8 +9,17 @@
     console.log("pageContentType="+pageContentType);
     
     //TODO если будет больше 2х то нужо сделать фабрику
+    
+    var wysiwygEditor;
     if(pageContentType == "addQuestionPageContent"){
-      new AddQuestionPageContent();
+        var textAreaId = "newQuestionTextArea";
+        wysiwygEditor = new WYSIWYGEditor();
+        wysiwygEditor.init(textAreaId);
+    }
+    else if(pageContentType == "questionPageContent"){
+        var textAreaId = "answerTextArea";
+        wysiwygEditor = new WYSIWYGEditor();
+        wysiwygEditor.init(textAreaId);
     }
     
     

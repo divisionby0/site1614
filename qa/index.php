@@ -9,7 +9,6 @@ require_once('../div0/pageContent/404/Page404Content.php');
 require_once('../div0/pageContent/IncludePageContent.php');
 
 $qa = new QA();
-
 $UnansweredQuestionsCount=$qa->getUnansweredQuestionsCount();
 
 // Добавление вопроса
@@ -58,8 +57,6 @@ if($uri == '/qa/add' || $uri == '/qa/add/'){
 else{
 	$isAtAddQuestionPage = 0;
 }
-//$isAtAddQuestionPage = ($uri == '/qa/add/') ? 1:0;
-//Logger::logMessage("is at add question page: ".$isAtAddQuestionPage);
 
 if (preg_match("|/qa/page([0-9]+)$|", $uri, $m)) {
 	header("Location: http://".$_SERVER['HTTP_HOST']."/qa/page".$m[1]."/");
@@ -183,26 +180,20 @@ function buildBreadcrumbs($AddBreadcrupms){
 	}
 	echo '</ul></div>';
 }
-
 ?>
-<!doctype HTML>
+
+<!DOCTYPE html>
 <html>
-	<link>
+	<head>
 		<title>Вопросы по CS:GO и ответы</title>
-		<meta name="description" content="?" />
-		<meta name="keywords" content="?" />
 		<?php require_once("../+/meta.php");?>
-
-		<script src="../js/lib/tinymce/tinymce.min.js"></script>
-		<script src="../js/div0/view/wysiwygEditor/WYSIWYGEditor.js"></script>
-		<script src="../js/div0/pageContent/AddQuestionPageContent.js"></script>
-
+		<script src="/js/lib/tinymce/tinymce.min.js"></script>
+		<script src="/js/div0/view/wysiwygEditor/WYSIWYGEditor.js"></script>
 	</head>
 	<body>
 	<?php require_once("../+/header.php");?>
 
 	<main class="qa">
-
 		<?php
 		$breadcrumbsHtml = buildBreadcrumbs($AddBreadcrupms);
 		echo $breadcrumbsHtml;
@@ -236,7 +227,7 @@ function buildBreadcrumbs($AddBreadcrupms){
 				</ul>
 			<div>
 <?php				if ($uri!='/qa/add/' && isset($_SESSION['steam_user']['name'])){
-					?><a href="/qa/add/">Задать вопрос</a><?php
+					?><a href="/qa/add">Задать вопрос</a><?php
 				}
 				else
 				{

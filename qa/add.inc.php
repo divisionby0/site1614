@@ -1,4 +1,4 @@
-﻿		<div id="contentType" style="display: none;">addQuestionPageContent</div>
+		<div id="contentType" style="display: none;">addQuestionPageContent</div>
 		<h1 class="left">Новый вопрос от имени 
 			<select name="name" form="question">
 				<option><? echo $_SESSION['steam_user']['name'] ?></option>
@@ -15,12 +15,9 @@
 									<label for="headline">Вопрос в короткой форме:</label>
 									<input type="text" name="headline">
 									<label for="text">Расширенное описание проблемы или вопроса:</label>
-									
-									<textarea name="text" id="newQuestionTextArea"></textarea>
-									
-									<p>Опубликовать в разделе <select name="razdel" form="question">
 
-											<!--<textarea name="textArea" id="textArea"></textarea>-->
+									<div style="padding-left: 6em; padding-right: 4em;"><textarea name="text" cols="30" rows="18" id="newQuestionTextArea" style="font-size: 1.8em;"></textarea></div>
+									<p>Опубликовать в разделе <select name="razdel" form="question">
 <?
 $sections=$qa->getSections();
 foreach ($sections as $section)

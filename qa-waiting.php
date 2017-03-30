@@ -1,4 +1,4 @@
-﻿<!doctype HTML>
+<!doctype HTML>
 <html>
 	<head>
 		<title>Вопросы по CS:GO и ответы</title>

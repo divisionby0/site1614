@@ -8,7 +8,6 @@
 					</ul>
 					<ul>
 						<li><a href="#">Мы Вконтакте</a></li>
-						<!--<li>Реклама на сайте</li>-->
 					</ul>
 						<img src="/i/temp_li.jpg" alt="">
 				</div>
@@ -20,13 +19,13 @@
 				</div>
 			</div>
 		</div>
-
-
-
 	</footer>
+	
 	<p id="back-top"><a href="#top"><span><img src="/i/up.png"/></span></a></p>
 	<script src="/js/jquery.jscrollpane.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"></script>
 	<script src="/js/main.js"></script>
+	<script src="/js/answerCreation.js"></script>
+	<script src="/js/voting.js"></script>
 	<script src="/js/scrolltotop.js"></script>
 	<script src="/js/search.js"></script>

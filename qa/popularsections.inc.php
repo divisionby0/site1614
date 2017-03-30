@@ -1,7 +1,4 @@
-			<!-- right_column -->
 			<div class="right_column">
-			
-					<!-- razdels -->	
 					<div class="pop-cat">	
 						<h4>Популярные разделы</h4>
 <?
@@ -16,8 +13,4 @@ foreach ($sections as $section) {	?>
 }	?>
 							<span class="all"><a href="/qa/tags/">Все разделы</a></span>	
 					</div>
-					<!-- razdels -->
-					
-					
-			<!-- /right_column -->		
 			</div>		

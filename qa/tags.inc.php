@@ -1,4 +1,4 @@
-﻿<?
+<?
 $sections=$qa->getSections();
 #echo "<pre>"; print_r($sections); echo "</pre>"; exit;
 ?>

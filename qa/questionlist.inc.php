@@ -1,4 +1,4 @@
-﻿<?php include_once ("../div0/utils/DateUtil.php") ?>
+<?php include_once ("../div0/utils/DateUtil.php") ?>
 <h1 class="center"><? echo $h1 ?></h1>
 		<div class="grid2">
 			<h2></h2>

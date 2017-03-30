@@ -1,4 +1,4 @@
-﻿<!doctype HTML>
+<!doctype HTML>
 <html>
 	<head>
 		<title>Вопросы по CS:GO и ответы</title>
@@ -39,7 +39,6 @@
 
 		<h1 class="left">Ошибка(Pure server: file [GAME]\pak01_001.vpk does not match the enemy</h1>
 		<div class="grid2">
-	
 			<div class="left_column">
 						<div class="content">
 						
@@ -198,7 +197,9 @@
 								<form class="comment">
 									<a href="#"><img src="/i/temp_ava.jpg" alt=""></a>
 									<label for="answer">Напиши ответ тс'y <a href="#" class="green">Jokes</a>:</label>
+
 									<textarea name="answer" id="" cols="30" rows="8"></textarea>
+
 									<button>Ответить</button>
 								</form>
 							</div>

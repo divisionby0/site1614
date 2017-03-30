@@ -5,7 +5,12 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/remote/steam/steamsignin.php');
 		<p>BOT Eliot: Comeback Israel</p>
 	<?php if(isset($_SESSION['steam_user'])): ?>
 		<ul class="auth" style="background:url(<?= $_SESSION['steam_user']['avatar']?>) no-repeat;">
-			<li><a href="http://steamcommunity.com/profiles/<?=$_SESSION['steam_user']['id']?>/" class="green" title="Перейти в свой профиль на этом сайте"><?= $_SESSION['steam_user']['name']?></a></li>
+			<li>
+				<a href="http://steamcommunity.com/profiles/<?php
+				$_SESSION['steam_user']['id']
+				?>/" class="green" title="Перейти в свой профиль на этом сайте"><?php $_SESSION['steam_user']['name']?>
+				</a>
+			</li>
 			<li><a href="/remote/steam/login.php?a=logout" title="Разлогиниться [выйти]">&#215;</a></li>
 		</ul>
 	<?php else: ?>
