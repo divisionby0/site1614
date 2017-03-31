@@ -4,9 +4,12 @@ session_start();
 require_once('qa.php');
 require_once('../div0/utils/Logger.php');
 require_once('../div0/user/UserDataParser.php');
-require_once('../div0/user/FakeUser.php');
+require_once('../div0/user/FakeUserIlya.php');
+require_once('../div0/user/FakeUserBoris.php');
 require_once('../div0/pageContent/404/Page404Content.php');
 require_once('../div0/pageContent/IncludePageContent.php');
+require_once('../div0/voting/AnswerVoting.php');
+require_once('../div0/voting/QuestionVoting.php');
 
 $qa = new QA();
 $UnansweredQuestionsCount=$qa->getUnansweredQuestionsCount();
@@ -44,7 +47,7 @@ if (isset($_POST["atext"]) && isset($_SESSION['steam_user']['name']))
 $inc="";
 $uri = $_SERVER["REQUEST_URI"];
 
-$fakeUser = new FakeUser();
+$fakeUser = new FakeUserBoris();
 $fakeUser->create();
 
 $userDataParser = new UserDataParser();
@@ -136,24 +139,18 @@ elseif (preg_match("|/qa/([0-9]+)/|", $uri, $m)) {
 	$AddBreadcrupms='<li><img src="/i/bullet.png" alt=""></li><li><a href="/qa/'.$Q["section_uri"].'/">'.$Q["section_name"].'</a></li><li><img src="/i/bullet.png" alt=""></li><li>'.$Q["question_title"].'</li>';
 	$inc="question.inc.php";
 }
+
+// voting questions
 elseif (preg_match("|/qa/voteQ/\?id=([0-9]+)\&how=([plusmin]+)|", $uri, $m)) {
-	$QuestionID=$m[1];
-	$HowToVote=$m[2];
-	
-	if (isset($_SESSION['steam_user']['user_id']))
-		echo $qa->voteQuestion($_SESSION['steam_user']['user_id'], $QuestionID, $HowToVote);
-	
+	new QuestionVoting($m, $qa);
 	exit;
 }
+// voting answers
 elseif (preg_match("|/qa/voteA/\?id=([0-9]+)\&how=([plusmin]+)|", $uri, $m)) {
-	$AnswerID=$m[1];
-	$HowToVote=$m[2];
-	
-	if (isset($_SESSION['steam_user']['user_id']))
-		echo $qa->voteAnswer($_SESSION['steam_user']['user_id'], $AnswerID, $HowToVote);
-	
+	new AnswerVoting($m, $qa);
 	exit;
 }
+
 
 function redirectToQuestionsRootPage(){
 	header("Location: http://".$_SERVER['HTTP_HOST']."/qa/");

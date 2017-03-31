@@ -1,4 +1,5 @@
-	<footer>
+
+<footer>
 		<div class="f_ring">
 			<div class="f_rring">
 				<div>
@@ -28,5 +29,11 @@
 	<script src="/js/answerCreation.js"></script>
 	<script src="/js/voting.js"></script>
 	<script src="/js/scrolltotop.js"></script>
+
+<?php
+echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/voting/QuestionVoting.js"></script>';
+?>
+
 	<script src="/js/div0/view/AnswerForm.js"></script>
+	<!--<script src="/js/div0/voting/QuestionVoting.js"></script>-->
 	<script src="/js/search.js"></script>

@@ -855,7 +855,7 @@ div.content	div.best_comment {}
               float:left;
               display: block;
               /*font:normal 1.1em helios, verdana, arial, sans-serif !important;*/
-              font:normal 0.7em helios, verdana, arial, sans-serif !important;
+              font:normal 1.1em helios, verdana, arial, sans-serif !important;
               color:#7f7f7f;
               background: #161410;
             }
@@ -885,7 +885,7 @@ div.content	div.best_comment {}
               margin-bottom: 11px;
               color:#fff;
               /*font:normal 1.5em helios, verdana, arial, sans-serif !important;*/
-              font:normal 0.9em helios, verdana, arial, sans-serif !important;
+              font:normal 1.5em helios, verdana, arial, sans-serif !important;
               line-height: 1.5;
             }
 			table.comment td.right div p img {
@@ -900,7 +900,7 @@ div.content	div.best_comment {}
             }
 			table.comment td.right ul li a {
               /*font:normal 1.1em helios, verdana, arial, sans-serif !important;*/
-              font:normal 0.7em helios, verdana, arial, sans-serif !important;
+              font:normal 1.1em helios, verdana, arial, sans-serif !important;
               color:#7f7f7f;
               text-decoration: none!important;
               background: url(/i/dotted_u.png) repeat-x left 11px
@@ -967,8 +967,6 @@ div.content	div.best_comment {}
   color: #fff !important;
   background: linear-gradient(to top, #268b1a, #3fbf2e);
 }
-
-
 			@-moz-document url-prefix() {
 				 form.comment label  {
 					margin:24px 0 14px 0
@@ -979,14 +977,37 @@ div.content	div.best_comment {}
 				}
 			form#question {margin-top:-1px;margin-left:-60px!important;}
 			
-		a.minus, a.plus, a.minuss, a.pluss {margin-top:5px;width:9px;height:9px;display: block;}
-		a.minus {background: url(/i/minus.png);margin-right: 8px;float: left;}
-		a.minus:hover, a.plus:hover {background-position: left -9px;cursor:crosshair}
-		a.plus 	{background: url(/i/plus.png);margin-left: 8px;float: right;}
-		a.minuss{background: url(/i/minuss.png);margin-right: 8px;float: left;cursor:crosshair}
-		a.pluss{background: url(/i/pluss.png);margin-left: 8px;float: right;cursor:crosshair}
-
-
+		a.minus, a.plus, a.minuss, a.pluss {
+          margin-top:5px;
+          width:9px;
+          height:9px;
+          display: block;
+        }
+		a.minus {
+          background: url(/i/minus.png);
+          margin-right: 8px;
+          float: left;
+        }
+		a.minus:hover, a.plus:hover {
+          background-position: left -9px;
+          cursor:crosshair
+        }
+		a.plus 	{
+          background: url(/i/plus.png);
+          margin-left: 8px;float: right;
+        }
+		a.minuss{
+          background: url(/i/minuss.png);
+          margin-right: 8px;
+          float: left;
+          cursor:crosshair
+        }
+		a.pluss{
+          background: url(/i/pluss.png);
+          margin-left: 8px;
+          float: right;
+          cursor:crosshair
+        }
 
 /* right-side
 ----------------------------------------------- */
@@ -1484,7 +1505,7 @@ div.copyright form input {
 #back-top {
   position: fixed;
   top: 0;
-  float: left:
+  float: left;
 }
 
 #back-top span {
@@ -1523,4 +1544,8 @@ div.copyright form input {
   margin: 0 !important;
   clear: none !important;
   width: inherit;
+}
+.disabled{
+  pointer-events: none;
+  cursor: default;
 }

@@ -105,5 +105,6 @@
         }
     );
 
+    new QuestionVoting();
   });
 })(jQuery);
