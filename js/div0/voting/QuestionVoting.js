@@ -76,7 +76,7 @@ var QuestionVoting = (function () {
         this.onCurrentValueChanged();
     };
     QuestionVoting.prototype.calculateColor = function () {
-        if (this.currentValue == 0) {
+        if (this.currentValue > -1 && this.currentValue < 3) {
             this.currentColor = COLORS[0];
         }
         else if (this.currentValue > 3 && this.currentValue < 6) {

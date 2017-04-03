@@ -16,7 +16,9 @@
 									<input type="text" name="headline">
 									<label for="text">Расширенное описание проблемы или вопроса:</label>
 
-									<div style="padding-left: 6em; padding-right: 4em;"><textarea name="text" cols="30" rows="18" id="newQuestionTextArea" style="font-size: 1.8em;"></textarea></div>
+									<div style="padding-left: 6em; padding-right: 4em;">
+										<textarea name="text" cols="30" rows="18" id="newQuestionTextArea" style="font-size: 1.8em;"></textarea>
+									</div>
 									<p>Опубликовать в разделе <select name="razdel" form="question">
 <?
 $sections=$qa->getSections();

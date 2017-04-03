@@ -24,6 +24,12 @@ function RenderQList($questions, $limit=5, $page=1)
 
                   <?php
                   $totalVotes = ($q["votes"]<1000 ? $q["votes"] : round($q["votes"]/1000));
+                  if(!isset($totalVotes)){
+                      $totalVotes = 0;
+                  }
+                  else if($totalVotes < 0){
+                      $totalVotes = 0;
+                  }
                   $color = VotesElementColor::calculate($totalVotes);
                   echo '<span class="patrons" style="color:'.$color.';" title="Кол-во патронов">'.$totalVotes.'</span>';
                   ?>

@@ -4,7 +4,7 @@ class VotesElementColor
 {
     private static $colors = array("#91860b", "#a39d58", "#d6cf7c", "#ffea47", "#ffbf2a");
     public static function calculate($total){
-        if($total == 0){
+        if($total >-1 && $total < 3){
             return self::$colors[0];
         }
         else if($total > 3 && $total < 6){

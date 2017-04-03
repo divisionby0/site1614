@@ -109,14 +109,28 @@ class QA extends Remote{
     }
 
     function addQuestion($question){
-        $stmt = $this->db->prepare("INSERT INTO qa_questions SET section_id=:section_id, title=:title, text=:text, when_added=NOW(), user_id=:user_id");
+
+		$hasImage = "0";
+		//preg_match('/(\.jpg|\.png|\.bmp)$/', $question["text"], $matches);
+		//if(sizeof($matches) > 0){
+			//$hasImage = "1";
+		//}
+
+		$pos = strpos($question["text"], "<img src=");
+		if(isset($pos) && $pos!==false){
+			$hasImage = "1";
+		}
+
+        $stmt = $this->db->prepare("INSERT INTO qa_questions SET section_id=:section_id, title=:title, text=:text, when_added=NOW(), user_id=:user_id, f_imaged=:imaged");
+
 
         $stmt->execute(
 			array(
 				":section_id" => $question["section_id"],
 				":title" => $question["title"],
 				":text" => $question["text"],
-				":user_id" => $question["user_id"]
+				":user_id" => $question["user_id"],
+				":imaged" => $hasImage
 			)
 		);
 

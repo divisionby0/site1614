@@ -12,6 +12,7 @@ foreach ($Questions as $i=>$q)
 ?>
 								<div class="question<? if ($q["f_sticked"]) echo " sticked" ?>">
 								<? if ($q["f_sticked"]) { ?><img src="/i/img-sticked.png" alt="" title="Закреплено" /><? } ?>
+									
 								<? if ($q["f_imaged"]) { ?><img src="/i/img-inside.png" alt="" title="Вопрос подкреплён изображением или скриншотом" /><? } ?>
 								  <table>
 									<tr>
