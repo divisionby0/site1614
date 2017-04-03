@@ -11,10 +11,8 @@
 
 
 
-	<!-- content -->
 	<main class="qa">
 
-		<!-- breadcrumbs -->
 		<div class="breadcrumbs">
 			<ul>
 				<li><a href="#">CS:GO</a></li>
@@ -22,9 +20,7 @@
 				<li>Вопросы и ответы</li>
 			</ul>
 		</div>
-		<!-- /breadcrumbs -->
 
-		<!-- nav -->
 		<nav class="svodki">
 				<ul>
 					<li>Все</li>
@@ -35,7 +31,6 @@
 				<p>Задать вопрос</p>
 			</div>
 		</nav>
-		<!-- /nav -->
 
 
 		<h1 class="center">Вопросы и ответы</h1>
@@ -65,7 +60,8 @@
           <img src="/i/img-inside.png" alt="" title="Вопрос подкреплён изображением или скриншотом" />
           <table>
             <tr>
-              <td valign="middle" align="center" width="50"><span class="patrons" style="color:#f9cc4f" title="Кол-во патронов">5k</span></td>
+              <td valign="middle" align="center" width="50">
+                  <span class="patrons" style="color:#f9cc4f" title="Кол-во патронов">5k</span></td>
               <td>
                 <div class="svodki_info_news"><span><b>Сегодня от <a href="#" title="Профиль пользователя Ugin">Ugin</a></b></span></div>
                 <h4><a href="#">Ошибка(Pure server: file [GAME]\pak01_001.vpk does not match the...</a></h4>

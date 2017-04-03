@@ -15,7 +15,9 @@ foreach ($Questions as $i=>$q)
 								<? if ($q["f_imaged"]) { ?><img src="/i/img-inside.png" alt="" title="Вопрос подкреплён изображением или скриншотом" /><? } ?>
 								  <table>
 									<tr>
-									  <td valign="middle" align="center" width="50"><span class="patrons" style="color:#f9cc4f" title="Кол-во патронов"><? echo ($q["votes"]<1000 ? $q["votes"] : round($q["votes"]/1000)."k") ?></span></td>
+									  <td valign="middle" align="center" width="50">
+										  <span class="patrons" style="color:#f9cc4f" title="Кол-во патронов"><? echo ($q["votes"]<1000 ? $q["votes"] : round($q["votes"]/1000)."k") ?></span>
+									  </td>
 									  <td>
 										<div class="svodki_info_news">
 											<span>

@@ -1,4 +1,8 @@
-<?php include_once ("../div0/utils/DateUtil.php") ?>
+<?php
+include_once ("../div0/utils/DateUtil.php");
+include_once ("../div0/voting/VotesElementColor.php");
+
+?>
 <h1 class="center">Вопросы и ответы</h1>
 		
 		<div class="news__row">
@@ -16,7 +20,14 @@ function RenderQList($questions, $limit=5, $page=1)
 			<?php if ($q["f_imaged"]) { ?><img src="/i/img-inside.png" alt="" title="Вопрос подкреплён изображением или скриншотом" /><?php } ?>
           <table>
             <tr>
-              <td valign="middle" align="center" width="50"><span class="patrons" style="color:#f9cc4f" title="Кол-во патронов"><?php echo ($q["votes"]<1000 ? $q["votes"] : round($q["votes"]/1000)) ?></span></td>
+              <td valign="middle" align="center" width="50">
+
+                  <?php
+                  $totalVotes = ($q["votes"]<1000 ? $q["votes"] : round($q["votes"]/1000));
+                  $color = VotesElementColor::calculate($totalVotes);
+                  echo '<span class="patrons" style="color:'.$color.';" title="Кол-во патронов">'.$totalVotes.'</span>';
+                  ?>
+              </td>
               <td>
                 <div class="svodki_info_news">
                     <span>

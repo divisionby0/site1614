@@ -1,6 +1,12 @@
-<?php include_once ("../div0/utils/DateUtil.php") ?>
+<?php 
+include_once ("../div0/utils/DateUtil.php") 
+?>
 <div id="contentType" style="display: none;">questionPageContent</div>
-<h1 class="left"><? echo $Q["question_title"] ?></h1>
+<h1 class="left">
+	<?
+	echo $Q["question_title"] ;
+	?>
+</h1>
 		<div class="grid2">
 			<div class="left_column">
 						<div class="content">
@@ -21,8 +27,9 @@
 							<article class="questionView">
 								<p><? echo $Q["question_text"] ?>
 							</article>
+							
 							<ul class="after_article">
-									<li><a id="voteQminus" href="#" class="minus<? echo (isset($Q["user_vote"]) && $Q["user_vote"]==-1 ? "s" : "") ?>" onclick="voteQ(<? echo $QuestionID ?>, 'minus');return false;"></a><strong style="color:#f9cc4f" title="Кол-во патронов" id="qvotes"><? echo $Q["votes"] ?></strong><a id="voteQplus" href="#" class="plus<? echo (isset($Q["user_vote"]) && $Q["user_vote"]==1 ? "s" : "") ?>" title="Подсыпать патронов" onclick="voteQ(<? echo $QuestionID ?>, 'plus');return false;"></a></li>
+									<li><a id="voteQminus" href="#" class="minus<? echo (isset($Q["user_vote"]) && $Q["user_vote"]==-1 ? "s" : "") ?>" onclick="voteQ(<? echo $QuestionID ?>, 'minus');return false;"></a><strong style="color:#f9cc4f; display: none;" title="Кол-во патронов" id="qvotes"><? echo $Q["votes"] ?></strong><a id="voteQplus" href="#" class="plus<? echo (isset($Q["user_vote"]) && $Q["user_vote"]==1 ? "s" : "") ?>" title="Подсыпать патронов" onclick="voteQ(<? echo $QuestionID ?>, 'plus');return false;"></a></li>
 									<li><? echo $Q["views"] ?> просмотров</li>
 									<li><? echo $Q["answers"] ?> ответов <a href="#all_comments" title="Перейти к последнему комментарию" class="last_comment"></a></li>
 									<? if ($Q["f_approved"]) { ?><li>Одобрено модератором <a href="#" class="green">skvsk</a></li><? } ?>
@@ -119,7 +126,11 @@ if ($best_comment["votes"])
 														echo DateUtil::format(strtotime($best_comment["when_added"]), $true);
 													?>
 												</b>  
-											<span class="plus_minus"><a id="voteA<? echo $best_comment["answer_id"] ?>minus" href="#" class="minus<? echo (isset($best_comment["user_vote"]) && $best_comment["user_vote"]==-1 ? "s" : "") ?>" onclick="voteA(<? echo $best_comment["answer_id"] ?>, 'minus');return false;"></a><strong style="color:#f9cc4f" title="Кол-во патронов"><? echo $best_comment["user_name"] ?></strong><a id="voteA<? echo $best_comment["answer_id"] ?>plus" href="#" class="plus<? echo (isset($best_comment["user_vote"]) && $best_comment["user_vote"]==1 ? "s" : "") ?>" title="Подсыпать патронов" onclick="voteA(<? echo $best_comment["answer_id"] ?>, 'plus');return false;"></a></span>
+											<span class="plus_minus">
+												<a id="voteA<? echo $best_comment["answer_id"] ?>minus" href="#" class="minus<? echo (isset($best_comment["user_vote"]) && $best_comment["user_vote"]==-1 ? "s" : "") ?>" onclick="voteA(<? echo $best_comment["answer_id"] ?>, 'minus');return false;"></a>
+												<strong style="color:#f9cc4f" title="Кол-во патронов"><? echo $best_comment["user_name"] ?></strong>
+												<a id="voteA<? echo $best_comment["answer_id"] ?>plus" href="#" class="plus<? echo (isset($best_comment["user_vote"]) && $best_comment["user_vote"]==1 ? "s" : "") ?>" title="Подсыпать патронов" onclick="voteA(<? echo $best_comment["answer_id"] ?>, 'plus');return false;"></a>
+											</span>
 												<div style="margin:27px 0 0 20px;clear: both;">
 													<p><? echo $best_comment["answer_text"] ?>
 												</div>

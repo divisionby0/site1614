@@ -6,10 +6,9 @@ function voteQ(id, how) {
     var $ = jQuery.noConflict();
 
     $.get('/qa/voteQ/?id='+id+'&how='+how, function (data) {
-        $('#qvotes').text(data);
+        //$('#qvotes').text(data);
     });
-
-    /*
+    
     if (how=="plus") {
         $('#voteQplus').removeClass(); 
         $('#voteQplus').addClass('pluss');
@@ -22,7 +21,7 @@ function voteQ(id, how) {
         $('#voteQminus').removeClass(); 
         $('#voteQminus').addClass('minuss');
     }
-    */
+
     return false;
 }
 
