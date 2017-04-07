@@ -48,10 +48,7 @@
         </div>
       </div>
 <?php endif; ?>
-
-
-
-      <!-- svodki -->
+      
       <div class="news__row">
         <h2><a href="#">Сводки с фронта</a></h2>
 		
@@ -185,15 +182,8 @@
         <div class="all"><a href="#">Все сводки</a></div>
 
       </div>
-      <!-- /svodki -->
 
-      <!-- right_side -->
       <div class="right_side">
-
-		
-		 
-		 
-        <!-- questions -->
         <h2><a href="#">Новые вопросы</a></h2>
 		
 		<div class="question sticked">
@@ -231,8 +221,6 @@
             </tr>
           </table>
         </div>
-		
-        
 
         <div class="question">
           <table>
@@ -292,9 +280,7 @@
         </div>
 
         <div class="all"><a href="#">Все вопросы</a></div>
-        <!-- /questions -->
-		
-		<!-- blogs -->
+
         <h2 style="margin-top:45px"><a href="#">Новое в блогах</a></h2>
 		
 		<div class="question">
@@ -356,9 +342,7 @@
         </div>
 		
 		<div class="all"><a href="#">Все блоги</a></div>
-		 <!-- /blogs -->
 
-        <!-- matches -->
         <div class="b__matches">
           <h2><a href="#">Ближайшие матчи</a></h2>
 
@@ -430,9 +414,7 @@
 
           <div class="all"><a href="#">Все матчи</a></div>
         </div>
-        <!-- /matches -->
 
-        <!-- tourneys -->
         <div class="b__tourneys">
           <h2><a href="#">Турниры</a></h2>
 
@@ -459,10 +441,7 @@
 
           <div class="all"><a href="#">Все турниры</a></div>
         </div>
-        <!-- /tourneys -->
 
-
-        <!-- random_team -->
         <div class="b__matches" style="margin:-85px 0 0 20px!important;float: right;">
           <h2>Случайная <a href="#">команда</a></h2>
           <div class="random_team">
@@ -502,22 +481,13 @@
           </div>
           <div class="all"><a href="#">Все команды</a></div>
         </div>
-        <!-- /random_team -->
 
-
-        <!-- 240400 -->
         <div class="a240400">
           <a href="#"><img src="/i/temp_240400.jpg" alt=""></a>
         </div>
-        <!-- /240400 -->
-
-
       </div>
-      <!-- /right_side -->
 
     </main>
-    <!-- /content -->
-
 
     <?php require_once("+/prefooter.php");?>
       <?php require_once("+/footer.php");?>

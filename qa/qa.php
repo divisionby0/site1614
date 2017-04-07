@@ -111,10 +111,6 @@ class QA extends Remote{
     function addQuestion($question){
 
 		$hasImage = "0";
-		//preg_match('/(\.jpg|\.png|\.bmp)$/', $question["text"], $matches);
-		//if(sizeof($matches) > 0){
-			//$hasImage = "1";
-		//}
 
 		$pos = strpos($question["text"], "<img src=");
 		if(isset($pos) && $pos!==false){

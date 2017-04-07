@@ -3,9 +3,6 @@ session_start();
 
 require_once('qa.php');
 require_once('../div0/utils/Logger.php');
-require_once('../div0/user/UserDataParser.php');
-require_once('../div0/user/FakeUserIlya.php');
-require_once('../div0/user/FakeUserBoris.php');
 require_once('../div0/pageContent/404/Page404Content.php');
 require_once('../div0/pageContent/IncludePageContent.php');
 require_once('../div0/voting/AnswerVoting.php');
@@ -47,11 +44,6 @@ if (isset($_POST["atext"]) && isset($_SESSION['steam_user']['name']))
 $inc="";
 $uri = $_SERVER["REQUEST_URI"];
 
-$fakeUser = new FakeUserBoris();
-$fakeUser->create();
-
-$userDataParser = new UserDataParser();
-$userData = $userDataParser->parse();
 
 $isAtAddQuestionPage;
 if($uri == '/qa/add' || $uri == '/qa/add/'){

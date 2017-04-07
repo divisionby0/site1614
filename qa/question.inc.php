@@ -1,5 +1,5 @@
 <?php 
-include_once ("../div0/utils/DateUtil.php") 
+include_once ("../div0/utils/DateUtil.php");
 ?>
 <div id="contentType" style="display: none;">questionPageContent</div>
 <h1 class="left">
@@ -25,7 +25,7 @@ include_once ("../div0/utils/DateUtil.php")
 							</figure>
 
 							<article class="questionView">
-								<p><? echo $Q["question_text"] ?>
+								<p><? echo $Q["question_text"]; ?>
 							</article>
 							
 							<ul class="after_article">
@@ -35,6 +35,17 @@ include_once ("../div0/utils/DateUtil.php")
 									<? if ($Q["f_approved"]) { ?><li>Одобрено модератором <a href="#" class="green">skvsk</a></li><? } ?>
 							</ul>
 							<?
+
+							Logger::logMessage("USER");
+							$userAccess = $_SESSION['steam_user']['access'];
+
+							if($userAccess === "1" || $userAccess === "2" || $userAccess === "3"){
+								// decorate with FIX select element
+								echo '<div><p style="color: #fff;">Закрепить на</p>';
+								echo '<p><select id="fixQuestionSelect"><option>1 день</option><option>2 дня</option><option>1 неделю</option><option>2 недели</option><option>1 месяц</option></select></p>';
+								echo '</div>';
+							}
+
 							if ($Q["when_added"] != $Q["when_edited"] && $Q["when_edited"]!='0000-00-00 00:00:00') {
 								?>
 								<div class="edited">Последний раз редактировалось 13 сентября в 15:00</div><? } ?>
