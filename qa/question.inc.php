@@ -1,7 +1,21 @@
 <?php 
 include_once ("../div0/utils/DateUtil.php");
+include_once ("../div0/utils/StringUtil.php");
 ?>
 <div id="contentType" style="display: none;">questionPageContent</div>
+
+<?php
+$questionId = StringUtil::parseQuestionId($_SERVER['REQUEST_URI']);
+if(isset($_SESSION['steam_user'])){
+	$userId = $_SESSION['steam_user']['user_id'];
+}
+else{
+	$userId = - 1;
+}
+echo '<div style="display: none;" id="questionId">'.$questionId.'</div>';
+echo '<div style="display: none;" id="userId">'.$userId.'</div>';
+?>
+
 <h1 class="left">
 	<?
 	echo $Q["question_title"] ;
@@ -29,14 +43,18 @@ include_once ("../div0/utils/DateUtil.php");
 							</article>
 							
 							<ul class="after_article">
-									<li><a id="voteQminus" href="#" class="minus<? echo (isset($Q["user_vote"]) && $Q["user_vote"]==-1 ? "s" : "") ?>" onclick="voteQ(<? echo $QuestionID ?>, 'minus');return false;"></a><strong style="color:#f9cc4f; display: none;" title="Кол-во патронов" id="qvotes"><? echo $Q["votes"] ?></strong><a id="voteQplus" href="#" class="plus<? echo (isset($Q["user_vote"]) && $Q["user_vote"]==1 ? "s" : "") ?>" title="Подсыпать патронов" onclick="voteQ(<? echo $QuestionID ?>, 'plus');return false;"></a></li>
+									<li>
+										<a id="voteQminus" class="minus<? echo (isset($Q["user_vote"]) && $Q["user_vote"]==-1 ? "s" : "") ?>"></a>
+										<strong style="color:#f9cc4f; display: none;" title="Кол-во патронов" id="qvotes"><? echo $Q["votes"] ?></strong>
+										<a id="voteQplus" class="plus<? echo (isset($Q["user_vote"]) && $Q["user_vote"]==1 ? "s" : "") ?>" title="Подсыпать патронов"></a>
+									</li>
 									<li><? echo $Q["views"] ?> просмотров</li>
 									<li><? echo $Q["answers"] ?> ответов <a href="#all_comments" title="Перейти к последнему комментарию" class="last_comment"></a></li>
 									<? if ($Q["f_approved"]) { ?><li>Одобрено модератором <a href="#" class="green">skvsk</a></li><? } ?>
 							</ul>
 							<?
 
-							Logger::logMessage("USER");
+							//Logger::logMessage("USER");
 							$userAccess = $_SESSION['steam_user']['access'];
 
 							if($userAccess === "1" || $userAccess === "2" || $userAccess === "3"){

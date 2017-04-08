@@ -6,14 +6,14 @@ var QuestionVoting = (function () {
         this.$j = jQuery.noConflict();
         this.positiveVoteButton = this.getPositiveVoteButton();
         this.negativeVoteButton = this.getNegativeVoteButton();
-        this.currentValueElement = this.getValueElement();
+        this.currentRatingElement = this.getValueElement();
         this.currentValue = this.getCurrentValue();
-        console.log("currentValue:", this.currentValue);
         this.negativeVoteButton.click(function () { return _this.onNegativeButtonClicked(); });
         this.positiveVoteButton.click(function () { return _this.onPositiveButtonClicked(); });
-        this.currentValueElement.change(function () { return _this.onCurrentValueElementChanged(); });
-        this.onCurrentValueChanged();
-        this.currentValueElement.show();
+        this.onRatingChanged();
+        this.currentRatingElement.show();
+        this.userId = this.$j("#userId").text();
+        this.questionId = this.$j("#questionId").text();
     }
     QuestionVoting.prototype.getValueElement = function () {
         return this.$j("#qvotes");
@@ -25,23 +25,23 @@ var QuestionVoting = (function () {
         return this.$j("#voteQminus");
     };
     QuestionVoting.prototype.getCurrentValue = function () {
-        return parseInt(this.currentValueElement.text());
+        return parseInt(this.currentRatingElement.text());
     };
-    QuestionVoting.prototype.onCurrentValueChanged = function () {
-        if (this.currentValue > 0) {
+    QuestionVoting.prototype.onRatingChanged = function () {
+        if (this.rating > 0) {
             this.enableNegativeButton();
         }
         else {
             this.disableNegativeButton();
-            this.currentValue = 0;
-            this.updateCurrentValueElement();
+            this.rating = 0;
+            this.updateRatingElement();
         }
         this.calculateColor();
-        this.updateCurrentValueElement();
+        this.updateRatingElement();
     };
-    QuestionVoting.prototype.updateCurrentValueElement = function () {
-        this.currentValueElement.text(this.currentValue);
-        this.currentValueElement.css('color', this.currentColor);
+    QuestionVoting.prototype.updateRatingElement = function () {
+        this.currentRatingElement.text(this.currentValue);
+        this.currentRatingElement.css('color', this.currentColor);
     };
     QuestionVoting.prototype.disableNegativeButton = function () {
         this.negativeVoteButton.addClass("disabled");
@@ -56,24 +56,13 @@ var QuestionVoting = (function () {
     QuestionVoting.prototype.enablePositiveButton = function () {
         this.positiveVoteButton.removeClass("disabled");
     };
-    QuestionVoting.prototype.onCurrentValueElementChanged = function () {
-        this.currentValue = this.getCurrentValue();
-        this.onCurrentValueChanged();
-    };
     QuestionVoting.prototype.onNegativeButtonClicked = function () {
-        this.disableNegativeButton();
-        this.enablePositiveButton();
-        this.currentValue -= 1;
-        if (this.currentValue == 1) {
-            this.currentValue = 0;
-        }
-        this.onCurrentValueChanged();
+        this.rating = parseInt(ChangeQuestionRatingAjaxRequest.create(this.userId, this.questionId, -1));
+        this.onRatingChanged();
     };
     QuestionVoting.prototype.onPositiveButtonClicked = function () {
-        this.disablePositiveButton();
-        this.enableNegativeButton();
-        this.currentValue += 1;
-        this.onCurrentValueChanged();
+        this.rating = parseInt(ChangeQuestionRatingAjaxRequest.create(this.userId, this.questionId, 1));
+        this.onRatingChanged();
     };
     QuestionVoting.prototype.calculateColor = function () {
         if (this.currentValue > -1 && this.currentValue < 3) {

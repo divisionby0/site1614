@@ -32,6 +32,7 @@
 
 <?php
 echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/voting/QuestionVoting.js"></script>';
+echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/voting/ajax/ChangeQuestionRatingAjaxRequest.js"></script>';
 echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/voting/colors.js"></script>';
 ?>
 

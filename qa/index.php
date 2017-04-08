@@ -134,7 +134,9 @@ elseif (preg_match("|/qa/([0-9]+)/|", $uri, $m)) {
 
 // voting questions
 elseif (preg_match("|/qa/voteQ/\?id=([0-9]+)\&how=([plusmin]+)|", $uri, $m)) {
-	new QuestionVoting($m, $qa);
+	$questionVoting = new QuestionVoting($qa);
+	$questionRating = $questionVoting->vote($m);
+	echo $questionRating;
 	exit;
 }
 // voting answers

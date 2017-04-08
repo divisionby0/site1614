@@ -227,9 +227,11 @@ class QA extends Remote{
 		$VotesSum=0;
         $stmt = $this->db->prepare("SELECT vote FROM qa_question_votes WHERE question_id=:question_id");
         $stmt->execute(array("question_id" => $QuestionID));
+
 		foreach($stmt->fetchAll() as $v) {
 			$VotesSum+=$v["vote"];
 		}
+		
         $stmt = $this->db->prepare("UPDATE qa_questions SET votes=:votes WHERE id=:question_id");
         $stmt->execute(array("votes" => $VotesSum, "question_id" => $QuestionID));
 		

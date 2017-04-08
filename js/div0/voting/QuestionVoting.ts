@@ -1,33 +1,39 @@
 ///<reference path="../../lib/jqueryTS/jquery.d.ts"/>
 declare var COLORS:any;
+declare var ChangeQuestionRatingAjaxRequest:any;
 class QuestionVoting{
 
     private $j:any;
 
     private negativeVoteButton:any;
     private positiveVoteButton:any;
-    private currentValueElement:any;
+    private currentRatingElement:any;
 
     private currentValue:number;
     private currentColor:string = "";
+
+    private userId:string;
+    private questionId:string;
+
+    private rating:number;
 
     constructor(){
         this.$j = jQuery.noConflict();
 
         this.positiveVoteButton = this.getPositiveVoteButton();
         this.negativeVoteButton = this.getNegativeVoteButton();
-        this.currentValueElement = this.getValueElement();
+        this.currentRatingElement = this.getValueElement();
 
         this.currentValue = this.getCurrentValue();
-        console.log("currentValue:",this.currentValue);
 
         this.negativeVoteButton.click(()=>this.onNegativeButtonClicked());
         this.positiveVoteButton.click(()=>this.onPositiveButtonClicked());
 
-        this.currentValueElement.change(()=>this.onCurrentValueElementChanged());
+        this.onRatingChanged();
+        this.currentRatingElement.show();
 
-        this.onCurrentValueChanged();
-        this.currentValueElement.show();
+        this.userId = this.$j("#userId").text();
+        this.questionId = this.$j("#questionId").text();
     }
 
     private getValueElement() {
@@ -43,26 +49,25 @@ class QuestionVoting{
     }
 
     private getCurrentValue():number {
-        return parseInt(this.currentValueElement.text());
+        return parseInt(this.currentRatingElement.text());
     }
 
-    private onCurrentValueChanged():void {
-
-        if(this.currentValue > 0){
+    private onRatingChanged():void{
+        if(this.rating > 0){
             this.enableNegativeButton();
         }
         else{
             this.disableNegativeButton();
-            this.currentValue = 0;
-            this.updateCurrentValueElement();
+            this.rating = 0;
+            this.updateRatingElement();
         }
         this.calculateColor();
-        this.updateCurrentValueElement();
+        this.updateRatingElement();
     }
 
-    private updateCurrentValueElement():void{
-        this.currentValueElement.text(this.currentValue);
-        this.currentValueElement.css('color', this.currentColor);
+    private updateRatingElement():void{
+        this.currentRatingElement.text(this.currentValue);
+        this.currentRatingElement.css('color', this.currentColor);
     }
 
     private disableNegativeButton():void{
@@ -82,27 +87,14 @@ class QuestionVoting{
         this.positiveVoteButton.removeClass("disabled");
     }
 
-    private onCurrentValueElementChanged():void {
-        this.currentValue = this.getCurrentValue();
-        this.onCurrentValueChanged();
-    }
-
     private onNegativeButtonClicked():void {
-        this.disableNegativeButton();
-        this.enablePositiveButton();
-        this.currentValue-=1;
-
-        if(this.currentValue == 1){
-            this.currentValue = 0;
-        }
-        this.onCurrentValueChanged();
+        this.rating = parseInt(ChangeQuestionRatingAjaxRequest.create(this.userId, this.questionId, -1));
+        this.onRatingChanged();
     }
 
     private onPositiveButtonClicked():void {
-        this.disablePositiveButton();
-        this.enableNegativeButton();
-        this.currentValue+=1;
-        this.onCurrentValueChanged();
+        this.rating = parseInt(ChangeQuestionRatingAjaxRequest.create(this.userId, this.questionId, 1));
+        this.onRatingChanged();
     }
 
     private calculateColor():void{
