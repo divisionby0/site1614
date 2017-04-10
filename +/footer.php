@@ -31,8 +31,23 @@
 	<script src="/js/scrolltotop.js"></script>
 
 <?php
+
+echo "<script type='application/javascript' src='http://".$_SERVER['HTTP_HOST']."/js/div0/collections//iterators/ListIterator.js'></script>";
+echo "<script type='application/javascript' src='http://".$_SERVER['HTTP_HOST']."/js/div0/collections//iterators/MapIterator.js'></script>";
+echo "<script type='application/javascript' src='http://".$_SERVER['HTTP_HOST']."/js/div0/collections//json/MapJsonDecoder.js'></script>";
+echo "<script type='application/javascript' src='http://".$_SERVER['HTTP_HOST']."/js/div0/collections//json/MapJsonEncoder.js'></script>";
+echo "<script type='application/javascript' src='http://".$_SERVER['HTTP_HOST']."/js/div0/collections//List.js'></script>";
+echo "<script type='application/javascript' src='http://".$_SERVER['HTTP_HOST']."/js/div0/collections//Map.js'></script>";
+
+echo "<script type='application/javascript' src='http://".$_SERVER['HTTP_HOST']."/js/div0/events/EventBus.js'></script>";
+
 echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/voting/QuestionVoting.js"></script>';
+echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/voting/RatingControlsUpdate.js"></script>';
+echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/voting/QuestionNegativeDisabledRatingControlsUpdate.js"></script>';
+echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/voting/QuestionNegativeEnabledRatingControlsUpdate.js"></script>';
 echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/voting/ajax/ChangeQuestionRatingAjaxRequest.js"></script>';
+echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/voting/ajax/GetQuestionRatingAjaxRequest.js"></script>';
+echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/voting/ajax/GetQuestionUserLastRatingValueAjaxRequest.js"></script>';
 echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/voting/colors.js"></script>';
 ?>
 

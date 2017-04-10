@@ -1,6 +1,5 @@
 <?php
-include_once("../../DBConfig.php");
-include_once("../ChangeQuestionRatingRequest.php");
+include_once("../requests/question/ChangeQuestionRatingRequest.php");
 
 $changeQuestionRatingRequest = new ChangeQuestionRatingRequest();
 
