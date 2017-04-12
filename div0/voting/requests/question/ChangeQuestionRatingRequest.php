@@ -1,5 +1,6 @@
 <?php
-include_once("/../ChangeRatingRequest.php");
+include_once($_SERVER['DOCUMENT_ROOT'].'div0/voting/requests/ChangeRatingRequest.php');
+
 class ChangeQuestionRatingRequest extends ChangeRatingRequest
 {
     public function __construct()
@@ -12,5 +13,9 @@ class ChangeQuestionRatingRequest extends ChangeRatingRequest
     }
     protected function getTableName(){
         return "qa_question_votes";
+    }
+
+    protected function getEntityAggregationTableName(){
+        return "qa_questions";
     }
 }

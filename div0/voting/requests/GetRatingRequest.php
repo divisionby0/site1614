@@ -1,6 +1,5 @@
 <?php
-
-include_once ("../../../remote/Remote.php");
+include_once($_SERVER['DOCUMENT_ROOT'].'remote/Remote.php');
 class GetRatingRequest extends Remote
 {
     public function __construct()

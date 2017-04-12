@@ -1,6 +1,6 @@
 <?php
 
-include_once ("../../../remote/Remote.php");
+include_once($_SERVER['DOCUMENT_ROOT'].'div0/voting/requests/GetRatingRequest.php');
 class ChangeRatingRequest extends Remote
 {
     public function __construct()
@@ -12,6 +12,7 @@ class ChangeRatingRequest extends Remote
         $entityId = $this->getEntityId();
         $tableName = $this->getTableName();
 
+        // update user values table
         $stmt = $this->db->prepare('SELECT id FROM '.$tableName.' WHERE '.$entityId.'=:'.$entityId.' AND user_id=:user_id LIMIT 1');
         $stmt->execute(array($entityId => $entityCurrentId, "user_id" => $userId));
         if ($res = $stmt->fetch())
@@ -25,10 +26,10 @@ class ChangeRatingRequest extends Remote
             $stmt->execute(array($entityId => $entityCurrentId, "user_id" => $userId, "vote" => $value));
         }
         
-        // update question rating
+        // update rating
         $rating=0;
         $stmt = $this->db->prepare("SELECT vote FROM ".$tableName." WHERE ".$entityId."=:".$entityId);
-        $stmt->execute(array("question_id" => $entityCurrentId));
+        $stmt->execute(array($entityId => $entityCurrentId));
 
         foreach($stmt->fetchAll() as $v) {
             $rating+=$v["vote"];
@@ -40,15 +41,16 @@ class ChangeRatingRequest extends Remote
     }
 
     protected function updateEntityAggregationTable($rating, $entityId, $entityCurrentId){
-        $stmt = $this->db->prepare("UPDATE qa_questions SET votes=:votes WHERE id=:".$entityId);
+        $stmt = $this->db->prepare("UPDATE ".$this->getEntityAggregationTableName()." SET votes=:votes WHERE id=:".$entityId);
         $stmt->execute(array("votes" => $rating, $entityId => $entityCurrentId));
     }
 
 
     protected function getEntityId(){
-        return "question_id";
+
     }
     protected function getTableName(){
-        return "qa_question_votes";
+    }
+    protected function getEntityAggregationTableName(){
     }
 }

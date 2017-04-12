@@ -44,9 +44,9 @@ echo '<div style="display: none;" id="userId">'.$userId.'</div>';
 							
 							<ul class="after_article">
 									<li>
-										<a id="voteQminus" class="minus<? echo (isset($Q["user_vote"]) && $Q["user_vote"]==-1 ? "s" : "") ?>"></a>
-										<strong style="color:#f9cc4f; display: none;" title="Кол-во патронов" id="qvotes"><? echo $Q["votes"] ?></strong>
-										<a id="voteQplus" class="plus<? echo (isset($Q["user_vote"]) && $Q["user_vote"]==1 ? "s" : "") ?>" title="Подсыпать патронов"></a>
+										<a id="voteQminus" class="minuss"></a>
+										<strong style="color:#f9cc4f; display: none;" title="Кол-во патронов" id="qvotes">0</strong>
+										<a id="voteQplus" class="pluss" title="Подсыпать патронов"></a>
 									</li>
 									<li><? echo $Q["views"] ?> просмотров</li>
 									<li><? echo $Q["answers"] ?> ответов <a href="#all_comments" title="Перейти к последнему комментарию" class="last_comment"></a></li>

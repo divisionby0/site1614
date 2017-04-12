@@ -11,7 +11,7 @@ var ChangeQuestionRatingAjaxRequest = (function(){
                 url: '../../div0/voting/ajax/ChangeQuestionRatingAjax.php',
                 data: 'value='+value+'&userId='+userId+'&questionId='+questionId,
                 success: function(data){
-                    //console.log("vote response: "+data);
+                    console.log("vote response: "+data);
                     EventBus.dispatchEvent("QUESTION_RATING_CHANGE_REQUEST_RESULT", data);
                 },
                 error: function (jqXHR, exception) {
@@ -19,7 +19,6 @@ var ChangeQuestionRatingAjaxRequest = (function(){
                     EventBus.dispatchEvent("QUESTION_RATING_CHANGE_REQUEST_ERROR", {error:exception, jqXHR:jqXHR});
                 }
             });
-
         }
     }
 })();

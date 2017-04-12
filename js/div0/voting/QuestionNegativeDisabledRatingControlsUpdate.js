@@ -10,7 +10,6 @@ var QuestionNegativeDisabledRatingControlsUpdate = (function (_super) {
         _super.call(this, userLastValue);
     }
     QuestionNegativeDisabledRatingControlsUpdate.prototype.updateChildren = function () {
-        console.log("QuestionNegativeDisabled");
         this.disableNegativeButton();
         if (this.userLastValue == 1) {
             this.disablePositiveButton();

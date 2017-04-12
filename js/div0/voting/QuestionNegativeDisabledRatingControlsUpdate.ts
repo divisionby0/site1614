@@ -5,7 +5,6 @@ class QuestionNegativeDisabledRatingControlsUpdate extends RatingControlsUpdate{
     }
 
     protected updateChildren():void {
-        console.log("QuestionNegativeDisabled");
         this.disableNegativeButton();
         
         if(this.userLastValue == 1){

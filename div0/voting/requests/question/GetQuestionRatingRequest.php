@@ -1,6 +1,6 @@
 <?php
 
-include_once("/../GetRatingRequest.php");
+include_once($_SERVER['DOCUMENT_ROOT'].'div0/voting/requests/GetRatingRequest.php');
 class GetQuestionRatingRequest extends GetRatingRequest
 {
     public function __construct()

@@ -41,6 +41,7 @@ echo "<script type='application/javascript' src='http://".$_SERVER['HTTP_HOST'].
 
 echo "<script type='application/javascript' src='http://".$_SERVER['HTTP_HOST']."/js/div0/events/EventBus.js'></script>";
 
+echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/voting/Voting.js"></script>';
 echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/voting/QuestionVoting.js"></script>';
 echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/voting/RatingControlsUpdate.js"></script>';
 echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/voting/QuestionNegativeDisabledRatingControlsUpdate.js"></script>';
