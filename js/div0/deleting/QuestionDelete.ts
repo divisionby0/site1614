@@ -26,8 +26,11 @@ class QuestionDelete{
     }
 
     private onDeleteButtonClicked():void {
-        console.log("delete question "+this.questionId);
-        DeleteQuestionAjaxRequest.create(this.questionId);
+        if (confirm('Удалить вопрос ?')) {
+            DeleteQuestionAjaxRequest.create(this.questionId);
+        } else {
+            // Do nothing!
+        }
     }
 
     private onDeleteRequestComplete(response:string):void {

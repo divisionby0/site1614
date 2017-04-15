@@ -18,8 +18,11 @@ var QuestionDelete = (function () {
         this.deleteButton.click(function () { return _this.onDeleteButtonClicked(); });
     };
     QuestionDelete.prototype.onDeleteButtonClicked = function () {
-        console.log("delete question " + this.questionId);
-        DeleteQuestionAjaxRequest.create(this.questionId);
+        if (confirm('Удалить вопрос ?')) {
+            DeleteQuestionAjaxRequest.create(this.questionId);
+        }
+        else {
+        }
     };
     QuestionDelete.prototype.onDeleteRequestComplete = function (response) {
         GetQuestionsPageUrlAjaxRequest.create();
