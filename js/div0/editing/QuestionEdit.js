@@ -1,21 +1,25 @@
 var QuestionEdit = (function () {
     function QuestionEdit() {
         this.$j = jQuery.noConflict();
-        this.getEditButton();
-        this.getUpdateButton();
-        this.getQuestionView();
+        this.getChildren();
         this.questionId = this.editButton.data("questionid");
-        this.createButtonsListener();
+        this.currentSection = this.$j("#questionSectionInput").val();
+        this.createListeners();
         this.state = QuestionEdit.NORMAL;
         this.onStateChanged();
     }
-    QuestionEdit.prototype.getEditButton = function () {
+    QuestionEdit.prototype.getChildren = function () {
         this.editButton = this.$j("#editQuestionButton");
+        this.updateButton = this.$j("#updateEditedQuestionButton");
+        this.questionView = this.$j(".questionView");
+        this.sectionsSelect = this.$j("#editQuestionSectionsSelect");
+        this.questionTitleElement = this.$j("#questionTitleInput");
     };
-    QuestionEdit.prototype.createButtonsListener = function () {
+    QuestionEdit.prototype.createListeners = function () {
         var _this = this;
         this.editButton.click(function () { return _this.onEditButtonClicked(); });
         this.updateButton.click(function () { return _this.onSaveButtonClicked(); });
+        this.sectionsSelect.change(function () { return _this.onSectionChanged(); });
     };
     QuestionEdit.prototype.onEditButtonClicked = function () {
         this.state = QuestionEdit.EDITING;
@@ -30,22 +34,35 @@ var QuestionEdit = (function () {
         this.saveQuestion();
     };
     QuestionEdit.prototype.saveQuestion = function () {
-        UpdateQuestionAjaxRequest.create(this.questionId, this.questionContent);
-    };
-    QuestionEdit.prototype.getUpdateButton = function () {
-        this.updateButton = this.$j("#updateEditedQuestionButton");
+        UpdateQuestionAjaxRequest.create(this.questionId, this.questionContent, this.currentSection, this.questionTitleElement.val());
     };
     QuestionEdit.prototype.onStateChanged = function () {
         if (this.state == QuestionEdit.NORMAL) {
             this.showEditButton();
             this.hideSaveButton();
             this.hideEditor();
+            this.hideSectionsSelect();
+            this.hideQuestionTitleElement();
         }
         else if (this.state == QuestionEdit.EDITING) {
             this.hideEditButton();
             this.showSaveButton();
             this.showEditor();
+            this.showSectionsSelect();
+            this.showQuestionTitleElement();
         }
+    };
+    QuestionEdit.prototype.hideQuestionTitleElement = function () {
+        this.questionTitleElement.hide();
+    };
+    QuestionEdit.prototype.showQuestionTitleElement = function () {
+        this.questionTitleElement.show();
+    };
+    QuestionEdit.prototype.showSectionsSelect = function () {
+        this.$j("#editQuestionSectionsContainer").show();
+    };
+    QuestionEdit.prototype.hideSectionsSelect = function () {
+        this.$j("#editQuestionSectionsContainer").hide();
     };
     QuestionEdit.prototype.showEditor = function () {
         var wysiwygEditor = new WYSIWYGEditor();
@@ -70,8 +87,9 @@ var QuestionEdit = (function () {
     QuestionEdit.prototype.hideSaveButton = function () {
         this.updateButton.hide();
     };
-    QuestionEdit.prototype.getQuestionView = function () {
-        this.questionView = this.$j(".questionView");
+    QuestionEdit.prototype.onSectionChanged = function () {
+        this.currentSection = this.sectionsSelect.val();
+        //console.log("section changed to "+this.currentSection);
     };
     QuestionEdit.NORMAL = "normal";
     QuestionEdit.EDITING = "editing";

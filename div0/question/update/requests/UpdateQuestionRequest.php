@@ -8,10 +8,10 @@ class UpdateQuestionRequest  extends Remote
         parent::__construct();
     }
 
-    public function execute($questionId, $questionContent){
+    public function execute($questionId, $questionContent, $section, $title){
         if(isset($questionId) && isset($questionContent)){
-            $stmt = $this->db->prepare("UPDATE qa_questions SET text=:text WHERE id=:id LIMIT 1");
-            $stmt->execute(array("text"=>$questionContent,"id" => $questionId));
+            $stmt = $this->db->prepare("UPDATE qa_questions SET text=:text, section_id=:section_id,title=:title WHERE id=:id LIMIT 1");
+            $stmt->execute(array("text"=>$questionContent,"section_id"=>$section,"title"=>$title,"id" => $questionId));
             
             $result = array("result"=>"complete");
             echo json_encode($result);

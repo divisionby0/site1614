@@ -13,28 +13,34 @@ class QuestionEdit{
     private state:string;
 
     private questionView:any;
+    private questionTitleElement:any;
     private questionContent:string;
+    private currentSection:string;
+    private sectionsSelect:any;
 
     constructor(){
         this.$j = jQuery.noConflict();
+        this.getChildren();
 
-        this.getEditButton();
-        this.getUpdateButton();
-        this.getQuestionView();
         this.questionId = this.editButton.data("questionid");
-        this.createButtonsListener();
+        this.currentSection = this.$j("#questionSectionInput").val();
+        this.createListeners();
 
         this.state = QuestionEdit.NORMAL;
         this.onStateChanged();
     }
 
-    private getEditButton():void {
+    private getChildren():void {
         this.editButton = this.$j("#editQuestionButton");
+        this.updateButton = this.$j("#updateEditedQuestionButton");
+        this.questionView = this.$j(".questionView");
+        this.sectionsSelect = this.$j("#editQuestionSectionsSelect");
+        this.questionTitleElement = this.$j("#questionTitleInput");
     }
-
-    private createButtonsListener():void {
+    private createListeners():void {
         this.editButton.click(()=>this.onEditButtonClicked());
         this.updateButton.click(()=>this.onSaveButtonClicked());
+        this.sectionsSelect.change(()=>this.onSectionChanged());
     }
 
     private onEditButtonClicked():void {
@@ -53,11 +59,7 @@ class QuestionEdit{
     }
 
     private saveQuestion():void {
-        UpdateQuestionAjaxRequest.create(this.questionId, this.questionContent);
-    }
-
-    private getUpdateButton():void {
-        this.updateButton = this.$j("#updateEditedQuestionButton");
+        UpdateQuestionAjaxRequest.create(this.questionId, this.questionContent, this.currentSection, this.questionTitleElement.val());
     }
 
     private onStateChanged():void {
@@ -65,12 +67,31 @@ class QuestionEdit{
             this.showEditButton();
             this.hideSaveButton();
             this.hideEditor();
+            this.hideSectionsSelect();
+            this.hideQuestionTitleElement();
         }
         else if(this.state == QuestionEdit.EDITING){
             this.hideEditButton();
             this.showSaveButton();
             this.showEditor();
+            this.showSectionsSelect();
+            this.showQuestionTitleElement();
         }
+    }
+
+    private hideQuestionTitleElement():void {
+        this.questionTitleElement.hide();
+    }
+    private showQuestionTitleElement():void {
+        this.questionTitleElement.show();
+    }
+
+
+    private showSectionsSelect():void{
+        this.$j("#editQuestionSectionsContainer").show();
+    }
+    private hideSectionsSelect():void{
+        this.$j("#editQuestionSectionsContainer").hide();
     }
 
     private showEditor():void{
@@ -99,7 +120,8 @@ class QuestionEdit{
         this.updateButton.hide();
     }
 
-    private getQuestionView():void {
-        this.questionView = this.$j(".questionView");
+    private onSectionChanged():void {
+        this.currentSection = this.sectionsSelect.val();
+        //console.log("section changed to "+this.currentSection);
     }
 }

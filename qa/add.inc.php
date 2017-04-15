@@ -24,8 +24,7 @@
 $sections=$qa->getSections();
 foreach ($sections as $section)
 {
-?>													<option value="<? echo $section["id"]; ?>"><? echo $section["name"]; ?></option>
-<?
+	echo "<option value='".$section["id"]."'>".$section["name"]."</option>";
 }
 ?>
 												</select>	</p>

@@ -927,8 +927,12 @@ div.content	div.best_comment {}
 			form.comment img		{margin:58px 20px 0 0;padding-bottom: 60px;float:left}
 			form.comment label, form.comment p 	{margin:24px 0 17px 0;display: block;font:normal 1.5em helios, verdana, arial, sans-serif;color:#fff;text-decoration: none;}
 			form.comment p 			{margin:22px 0 25px 60px;}
-			form.comment p select 	{margin:0 0 0 5px;padding:0 0 3px 3px;background: #424242;border:none;font-size:1em;}
-			form.comment textarea, form.comment input 	{padding:10px 15px;width:84.5%;border:none;color:#fff;font-size:1.8em;background:#424242}
+			form.comment p select 	{
+              margin:0 0 0 5px;padding:0 0 3px 3px;background: #424242;border:none;font-size:1em;
+            }
+			form.comment textarea, form.comment input 	{
+              padding:10px 15px;width:84.5%;border:none;color:#fff;font-size:1.8em;background:#424242
+            }
 .formCommentButton{
   margin:18px 0 0 60px;
   padding: 9px 60px!important;
@@ -1554,4 +1558,22 @@ div.copyright form input {
 
 #answerRating strong {
   font:normal 1em dinpro-b, verdana, arial, sans-serif;cursor:crosshair !important;
+}
+
+.editQuestionSectionsSelect{
+  margin:0 0 0 5px;
+  padding:0 0 3px 3px;
+  background: #424242;
+  border:none;
+  font-size:1em;
+  color:#f9cc4f;
+  font-size: 2em !important;
+}
+.editQuestionTitleInput{
+  margin: 10px;
+  width:84.5%;
+  border:none;
+  color:#fff;
+  font-size:1.8em;
+  background:#424242;
 }
