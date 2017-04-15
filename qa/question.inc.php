@@ -3,6 +3,7 @@ include_once ("../div0/utils/DateUtil.php");
 include_once ("../div0/utils/StringUtil.php");
 include_once ("../div0/question/pining/view/QuestionPinView.php");
 include_once ("../div0/question/delete/view/QuestionDeleteView.php");
+include_once ("../div0/question/edit/view/QuestionEditView.php");
 ?>
 <div id="contentType" style="display: none;">questionPageContent</div>
 
@@ -55,8 +56,6 @@ echo '<div style="display: none;" id="userId">'.$userId.'</div>';
 									<? if ($Q["f_approved"]) { ?><li>Одобрено модератором <a href="#" class="green">skvsk</a></li><? } ?>
 							</ul>
 							<?
-
-
 							$userAccess = $_SESSION['steam_user']['access'];
 
 							Logger::logMessage("useraccess: ".$userAccess);
@@ -67,6 +66,10 @@ echo '<div style="display: none;" id="userId">'.$userId.'</div>';
 
 								echo "<table id='editQuestionContainer' style='width: 100%;'><tbody><tr>";
 								new QuestionPinView($questionPinedDate);
+								
+								echo "<div id='editQuestionHeader' style='width: 100% text-align:center; color:red; display: none;'><h1>редактирование вопроса</h1></div><textarea id='editQuestionTextArea' style='display: none; height: 500px;' cols='30' rows='8'>".$Q["question_text"]."</textarea>";
+								
+								new QuestionEditView($questionId);
 								new QuestionDeleteView($questionId);
 								echo "</tr></tbody></table>";
 							}

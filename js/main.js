@@ -108,5 +108,6 @@
     new QuestionVoting();
     new RecordPining();
     new QuestionDelete();
+    new QuestionEdit();
   });
 })(jQuery);

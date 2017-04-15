@@ -28,8 +28,6 @@ class QuestionDelete{
     private onDeleteButtonClicked():void {
         if (confirm('Удалить вопрос ?')) {
             DeleteQuestionAjaxRequest.create(this.questionId);
-        } else {
-            // Do nothing!
         }
     }
 

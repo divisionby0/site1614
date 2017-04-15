@@ -21,8 +21,6 @@ var QuestionDelete = (function () {
         if (confirm('Удалить вопрос ?')) {
             DeleteQuestionAjaxRequest.create(this.questionId);
         }
-        else {
-        }
     };
     QuestionDelete.prototype.onDeleteRequestComplete = function (response) {
         GetQuestionsPageUrlAjaxRequest.create();
