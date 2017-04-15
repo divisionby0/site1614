@@ -1,6 +1,7 @@
 // was originally outside document ready handler
 //var $ = jQuery.noConflict();
 
+/*
 // vote for question
 function voteQ(id, how) {
     var $ = jQuery.noConflict();
@@ -24,10 +25,15 @@ function voteQ(id, how) {
 
     return false;
 }
+*/
 
 // vote for answer
 function voteA(id, how) {
     var $ = jQuery.noConflict();
+
+    var currentRating = parseInt($("#avotes"+id).text());
+    console.log("currentRating="+currentRating);
+
     $.get('/qa/voteA/?id='+id+'&how='+how, function (data) {
         $('#avotes'+id).text(data);
     });

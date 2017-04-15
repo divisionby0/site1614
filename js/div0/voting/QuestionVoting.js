@@ -10,7 +10,6 @@ var QuestionVoting = (function (_super) {
         _super.call(this);
     }
     QuestionVoting.prototype.getRating = function () {
-        console.log("this.entityId=" + this.entityId);
         GetQuestionRatingAjaxRequest.create(this.entityId);
     };
     QuestionVoting.prototype.getValueElement = function () {

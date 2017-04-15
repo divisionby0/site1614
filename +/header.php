@@ -1,14 +1,5 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/remote/steam/steamsignin.php');
-
-include_once($_SERVER['DOCUMENT_ROOT'].'div0/voting/requests/BaseRequest.php');
-//include_once($_SERVER['DOCUMENT_ROOT'].'div0/voting/requests/ChangeRatingRequest.php');
-//include_once($_SERVER['DOCUMENT_ROOT'].'div0/voting/requests/GetUserLastRatingRequest.php');
-
-include_once($_SERVER['DOCUMENT_ROOT'].'div0/voting/ajax/GetQuestionUserLastRatingValueAjax.php');
-include_once($_SERVER['DOCUMENT_ROOT']."div0/voting/ajax/ChangeQuestionRatingAjax.php");
-include_once($_SERVER['DOCUMENT_ROOT'].'div0/voting/ajax/GetQuestionRatingAjax.php');
-
 ?>
 <header>
 		<p>BOT Eliot: Comeback Israel</p>

@@ -5,7 +5,6 @@ class QuestionVoting extends  Voting{
     }
 
     protected getRating():void {
-        console.log("this.entityId="+this.entityId);
         GetQuestionRatingAjaxRequest.create(this.entityId);
     }
 

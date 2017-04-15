@@ -54,7 +54,6 @@ echo '<div style="display: none;" id="userId">'.$userId.'</div>';
 							</ul>
 							<?
 
-							//Logger::logMessage("USER");
 							$userAccess = $_SESSION['steam_user']['access'];
 
 							if($userAccess === "1" || $userAccess === "2" || $userAccess === "3"){
@@ -125,7 +124,14 @@ foreach ($answers as $a)
 													<?
 														echo DateUtil::showDate($a["when_added"]);
 													?>
-												</b> <span class="plus_minus"><a id="voteA<? echo $a["answer_id"] ?>minus" href="#" class="minus<? echo (isset($a["user_vote"]) && $a["user_vote"]==-1 ? "s" : "") ?>" onclick="voteA(<? echo $a["answer_id"] ?>, 'minus');return false;"></a><strong style="color:#f9cc4f" title="Кол-во патронов" id="avotes<? echo $a["answer_id"] ?>"><? echo $a["votes"] ?></strong><a id="voteA<? echo $a["answer_id"] ?>plus" href="#" class="plus<? echo (isset($a["user_vote"]) && $a["user_vote"]==1 ? "s" : "") ?>" title="Подсыпать патронов" onclick="voteA(<? echo $a["answer_id"] ?>, 'plus');return false;"></a></span>
+												</b>
+
+											<span class="plus_minus">
+												<a id="voteA<? echo $a["answer_id"] ?>minus" href="#" class="minus<? echo (isset($a["user_vote"]) && $a["user_vote"]==-1 ? "s" : "") ?>" onclick="voteA(<? echo $a["answer_id"] ?>, 'minus');return false;"></a>
+												<strong style="color:#f9cc4f" title="Кол-во патронов" id="avotes<? echo $a["answer_id"] ?>"><? echo $a["votes"] ?></strong>
+												<a id="voteA<? echo $a["answer_id"] ?>plus" href="#" class="plus<? echo (isset($a["user_vote"]) && $a["user_vote"]==1 ? "s" : "") ?>" title="Подсыпать патронов" onclick="voteA(<? echo $a["answer_id"] ?>, 'plus');return false;"></a>
+											</span>
+
 												<div style="margin:27px 0 0 20px;clear: both;">
 													<p style="margin:27px 0 0 20px;clear: both;"><? echo $a["answer_text"] ?>
 												</div>
