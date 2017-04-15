@@ -107,5 +107,6 @@
 
     new QuestionVoting();
     new RecordPining();
+    new QuestionDelete();
   });
 })(jQuery);

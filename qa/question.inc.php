@@ -2,6 +2,7 @@
 include_once ("../div0/utils/DateUtil.php");
 include_once ("../div0/utils/StringUtil.php");
 include_once ("../div0/question/pining/view/QuestionPinView.php");
+include_once ("../div0/question/delete/view/QuestionDeleteView.php");
 ?>
 <div id="contentType" style="display: none;">questionPageContent</div>
 
@@ -64,14 +65,10 @@ echo '<div style="display: none;" id="userId">'.$userId.'</div>';
 								
 								$questionPinedDate = $Q["pinedTill"];
 
+								echo "<table id='editQuestionContainer' style='width: 100%;'><tbody><tr>";
 								new QuestionPinView($questionPinedDate);
-								/*
-								echo '<div><div id="pinedTillContainer"><p style="color: #fff;" id="pinedTillContent">Закреплена до:'.$questionPinedDate.'</p></div>';
-								echo '<div><p style="color: #fff;">Закрепить на</p>';
-								echo '<p><select id="pinDurationSelect"><option value="0day">открепить</option><option value="1day">1 день</option><option value="2days">2 дня</option><option value="1week">1 неделю</option><option value="2weeks">2 недели</option><option value="1month">1 месяц</option></select></p>';
-								echo '<input type="button" value="Применить" id="pinButton"/>';
-								echo '</div>';
-								*/
+								new QuestionDeleteView($questionId);
+								echo "</tr></tbody></table>";
 							}
 
 							if ($Q["when_added"] != $Q["when_edited"] && $Q["when_edited"]!='0000-00-00 00:00:00') {

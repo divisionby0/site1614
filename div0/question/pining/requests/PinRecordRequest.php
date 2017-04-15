@@ -49,24 +49,5 @@ class PinRecordRequest extends Remote
             $result = array("result"=>"error", "text"=>"undefined duration");
             echo json_encode($result);
         }
-
-        /*
-        $stmt = $this->db->prepare('UPDATE qa_questions SET pinedTill=:pinedTill WHERE id=:id LIMIT 1');
-        $stmt->execute(array("id" => $recordId));
-        $res = $stmt->fetch();
-
-        $recordIsPinedPreviously = $res === "0000-00-00" ? 1:0;
-        
-        if($recordIsPinedPreviously == 1){
-            // update pinedTill parameter starting today date
-        }
-        else{
-            
-        }
-        */
-
-        //echo "duration:".$duration;
-        
-        //return "pined";
     }
 }

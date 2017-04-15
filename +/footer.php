@@ -45,12 +45,15 @@ echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/voting/Voting.js"></
 echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/pining/RecordPining.js"></script>';
 echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/pining/ajax/PinRecordAjaxRequest.js"></script>';
 echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/voting/QuestionVoting.js"></script>';
+echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/deleting/QuestionDelete.js"></script>';
+echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/deleting/ajax/DeleteQuestionAjaxRequest.js"></script>';
 echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/voting/RatingControlsUpdate.js"></script>';
 echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/voting/QuestionNegativeDisabledRatingControlsUpdate.js"></script>';
 echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/voting/QuestionNegativeEnabledRatingControlsUpdate.js"></script>';
 echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/voting/ajax/ChangeQuestionRatingAjaxRequest.js"></script>';
 echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/voting/ajax/GetQuestionRatingAjaxRequest.js"></script>';
 echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/voting/ajax/GetQuestionUserLastRatingValueAjaxRequest.js"></script>';
+echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/GetQuestionsPageUrlAjaxRequest.js"></script>';
 echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/voting/colors.js"></script>';
 ?>
 

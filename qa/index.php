@@ -82,12 +82,6 @@ elseif (preg_match("|/qa/page([0-9]+)/|", $uri, $m) || $uri=='/qa/') {
 elseif ($isAtAddQuestionPage && !isset($_SESSION['steam_user']['user_id'])) {
 	//header("Location: http://".$_SERVER['HTTP_HOST']."/qa/");
 	redirectToQuestionsRootPage();
-	/*
-	Logger::logError("adding question");
-	Logger::logError($_SESSION['steam_user']['name']);
-	Logger::logError($_SESSION['steam_user']['user_id']);
-	Logger::logError($_SESSION['steam_user']['access']);
-	*/
 	exit;
 }
 elseif ($isAtAddQuestionPage) {
