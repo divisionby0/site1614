@@ -9,7 +9,8 @@ class AnswerVoting
         $HowToVote=$voteData[2];
 
         if (isset($_SESSION['steam_user']['user_id'])){
-            echo $qa->voteAnswer($_SESSION['steam_user']['user_id'], $AnswerID, $HowToVote);
+            $newRating = $qa->voteAnswer($_SESSION['steam_user']['user_id'], $AnswerID, $HowToVote);
+            echo $newRating;
         }
     }
 }

@@ -1,4 +1,5 @@
 <?php
+echo "LOGIN.PHP";
 session_start();
 require_once('steamsignin.php');
 if(isset($_GET['a']) && $_GET['a'] == 'logout')
@@ -18,6 +19,7 @@ else
         $steam->saveUser($_SESSION['steam_user']);
 		
         $userData = $steam->getUserByRemoteID($_SESSION['steam_user']['id']);
+
         $_SESSION['steam_user']['role'] = $userData["role_id"];
         $_SESSION['steam_user']['user_id'] = $userData["id"];
         $_SESSION['steam_user']['access'] = $userData["access"];

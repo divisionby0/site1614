@@ -34,7 +34,8 @@ function voteA(id, how) {
     var currentRating = parseInt($("#avotes"+id).text());
     console.log("currentRating="+currentRating);
 
-    $.get('/qa/voteA/?id='+id+'&how='+how, function (data) {
+    // executes index.php
+    $.get('/qa/voteA/?id='+id+'&how='+how+"&currentRating="+currentRating, function (data) {
         $('#avotes'+id).text(data);
     });
 

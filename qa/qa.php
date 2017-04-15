@@ -64,6 +64,7 @@ class QA extends Remote{
         return $res;
     }
 
+
     function getQuestion($id=0, $UserID=0){
 		if (!$id) return NULL;
 		
@@ -75,6 +76,7 @@ class QA extends Remote{
 			qq.text as question_text,
 			qq.when_added as when_added,
 			qq.when_edited as when_edited,
+			qq.pinedTill as pinedTill,
 			qq.views as views,
 			qq.votes as votes,
 			qq.answers as answers,
@@ -111,13 +113,13 @@ class QA extends Remote{
     function addQuestion($question){
 
 		$hasImage = "0";
-
+		$currentDate = new DateTime();
 		$pos = strpos($question["text"], "<img src=");
 		if(isset($pos) && $pos!==false){
 			$hasImage = "1";
 		}
 
-        $stmt = $this->db->prepare("INSERT INTO qa_questions SET section_id=:section_id, title=:title, text=:text, when_added=NOW(), user_id=:user_id, f_imaged=:imaged");
+        $stmt = $this->db->prepare("INSERT INTO qa_questions SET section_id=:section_id, title=:title, text=:text, when_added=NOW(), user_id=:user_id, f_imaged=:imaged, pinedTill=:pinedTill");
 
 
         $stmt->execute(
@@ -126,7 +128,8 @@ class QA extends Remote{
 				":title" => $question["title"],
 				":text" => $question["text"],
 				":user_id" => $question["user_id"],
-				":imaged" => $hasImage
+				":imaged" => $hasImage,
+				":pinedTill" => $currentDate->format("Y-m-d")
 			)
 		);
 
@@ -241,7 +244,8 @@ class QA extends Remote{
 	function voteAnswer($UserID, $AnswerID, $HowToVote) {
 		if ($HowToVote=="plus") $HTV=1;
 		if ($HowToVote=="minus") $HTV=-1;
-		
+
+
 		if ($HTV) {
 			$stmt = $this->db->prepare("SELECT id FROM qa_answer_votes WHERE answer_id=:answer_id AND user_id=:user_id LIMIT 1");
 			$stmt->execute(array("answer_id" => $AnswerID, "user_id" => $UserID));

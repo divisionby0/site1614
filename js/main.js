@@ -106,5 +106,6 @@
     );
 
     new QuestionVoting();
+    new RecordPining();
   });
 })(jQuery);

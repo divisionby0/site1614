@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 require_once('qa.php');
 require_once('../div0/utils/Logger.php');
 require_once('../div0/pageContent/404/Page404Content.php');
@@ -44,7 +43,6 @@ if (isset($_POST["atext"]) && isset($_SESSION['steam_user']['name']))
 $inc="";
 $uri = $_SERVER["REQUEST_URI"];
 
-
 $isAtAddQuestionPage;
 if($uri == '/qa/add' || $uri == '/qa/add/'){
 	$isAtAddQuestionPage = 1;
@@ -81,9 +79,15 @@ elseif (preg_match("|/qa/page([0-9]+)/|", $uri, $m) || $uri=='/qa/') {
 		$inc="questionlist.inc.php";
 	}
 }
-elseif ($isAtAddQuestionPage && !isset($userData)) {
+elseif ($isAtAddQuestionPage && !isset($_SESSION['steam_user']['user_id'])) {
 	//header("Location: http://".$_SERVER['HTTP_HOST']."/qa/");
 	redirectToQuestionsRootPage();
+	/*
+	Logger::logError("adding question");
+	Logger::logError($_SESSION['steam_user']['name']);
+	Logger::logError($_SESSION['steam_user']['user_id']);
+	Logger::logError($_SESSION['steam_user']['access']);
+	*/
 	exit;
 }
 elseif ($isAtAddQuestionPage) {

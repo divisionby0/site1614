@@ -1,6 +1,7 @@
 <?php 
 include_once ("../div0/utils/DateUtil.php");
 include_once ("../div0/utils/StringUtil.php");
+include_once ("../div0/question/pining/view/QuestionPinView.php");
 ?>
 <div id="contentType" style="display: none;">questionPageContent</div>
 
@@ -54,13 +55,23 @@ echo '<div style="display: none;" id="userId">'.$userId.'</div>';
 							</ul>
 							<?
 
+
 							$userAccess = $_SESSION['steam_user']['access'];
 
+							Logger::logMessage("useraccess: ".$userAccess);
+
 							if($userAccess === "1" || $userAccess === "2" || $userAccess === "3"){
-								// decorate with FIX select element
+								
+								$questionPinedDate = $Q["pinedTill"];
+
+								new QuestionPinView($questionPinedDate);
+								/*
+								echo '<div><div id="pinedTillContainer"><p style="color: #fff;" id="pinedTillContent">Закреплена до:'.$questionPinedDate.'</p></div>';
 								echo '<div><p style="color: #fff;">Закрепить на</p>';
-								echo '<p><select id="fixQuestionSelect"><option>1 день</option><option>2 дня</option><option>1 неделю</option><option>2 недели</option><option>1 месяц</option></select></p>';
+								echo '<p><select id="pinDurationSelect"><option value="0day">открепить</option><option value="1day">1 день</option><option value="2days">2 дня</option><option value="1week">1 неделю</option><option value="2weeks">2 недели</option><option value="1month">1 месяц</option></select></p>';
+								echo '<input type="button" value="Применить" id="pinButton"/>';
 								echo '</div>';
+								*/
 							}
 
 							if ($Q["when_added"] != $Q["when_edited"] && $Q["when_edited"]!='0000-00-00 00:00:00') {
@@ -103,7 +114,9 @@ $best_comment=array("votes" => 0);
 foreach ($answers as $a)
 {
 	// По ходу дела запоминаем ответ с самой большой суммой голосов (как самый полезный)
-	if ($a["votes"]>10 && $a["votes"]>$best_comment["votes"]) $best_comment=$a;
+	if ($a["votes"]>10 && $a["votes"]>$best_comment["votes"]) {
+		$best_comment=$a;
+	}
 ?>
 								<table class="comment<? if ($a["level"]==1) echo " secondlevel"; if ($a["level"]>1) echo " thirdlevel"; ?>" cellpadding="0" cellspacing="0" id="comment<? echo $a["answer_id"] ?>">
 									<tr>
@@ -126,7 +139,7 @@ foreach ($answers as $a)
 													?>
 												</b>
 
-											<span class="plus_minus">
+											<span class="plus_minus" id="answerRating">
 												<a id="voteA<? echo $a["answer_id"] ?>minus" href="#" class="minus<? echo (isset($a["user_vote"]) && $a["user_vote"]==-1 ? "s" : "") ?>" onclick="voteA(<? echo $a["answer_id"] ?>, 'minus');return false;"></a>
 												<strong style="color:#f9cc4f" title="Кол-во патронов" id="avotes<? echo $a["answer_id"] ?>"><? echo $a["votes"] ?></strong>
 												<a id="voteA<? echo $a["answer_id"] ?>plus" href="#" class="plus<? echo (isset($a["user_vote"]) && $a["user_vote"]==1 ? "s" : "") ?>" title="Подсыпать патронов" onclick="voteA(<? echo $a["answer_id"] ?>, 'plus');return false;"></a>
