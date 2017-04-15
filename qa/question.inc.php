@@ -4,6 +4,7 @@ include_once ("../div0/utils/StringUtil.php");
 include_once ("../div0/question/pining/view/QuestionPinView.php");
 include_once ("../div0/question/delete/view/QuestionDeleteView.php");
 include_once ("../div0/question/edit/view/QuestionEditView.php");
+include_once ("../div0/answer/delete/view/DeleteAnswerView.php");
 ?>
 <div id="contentType" style="display: none;">questionPageContent</div>
 
@@ -166,6 +167,7 @@ foreach ($answers as $a)
 												</div>
 												<ul>
 													<li><a href="#loginforcomment" class="otvet">Ответить</a></li>
+													<?php new DeleteAnswerView($a["answer_id"]); ?>
 												</ul>
 												<input type="hidden" name="pid" value="<? echo $a["answer_id"] ?>" class="pid">
 											</td>

@@ -109,5 +109,6 @@
     new RecordPining();
     new QuestionDelete();
     new QuestionEdit();
+    new AnswerDelete();
   });
 })(jQuery);

@@ -49,6 +49,9 @@ echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/voting/QuestionVotin
 echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/deleting/QuestionDelete.js"></script>';
 echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/deleting/ajax/DeleteQuestionAjaxRequest.js"></script>';
 
+echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/deleting/AnswerDelete.js"></script>';
+echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/deleting/ajax/DeleteAnswerAjaxRequest.js"></script>';
+
 echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/editing/QuestionEdit.js"></script>';
 echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/editing/ajax/UpdateQuestionAjaxRequest.js"></script>';
 
