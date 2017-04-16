@@ -1,4 +1,5 @@
 ///<reference path="../events/EventBus.ts"/>
+///<reference path="../editing/AnswerEdit.ts"/>
 var AnswerDelete = (function () {
     function AnswerDelete() {
         var _this = this;
@@ -7,6 +8,7 @@ var AnswerDelete = (function () {
         this.answerId = this.deleteButton.data("answerid");
         this.createButtonListener();
         EventBus.addEventListener("ANSWER_DELETE_REQUEST_RESULT", function (response) { return _this.onAnswerDeleteRequestResponse(response); });
+        EventBus.addEventListener("ANSWER_EDITOR_STATE_CHANGED", function (data) { return _this.onAnswerEditorStateChanged(data); });
     }
     AnswerDelete.prototype.getButton = function () {
         this.deleteButton = this.$j(".deleteAnswerButton");
@@ -37,6 +39,16 @@ var AnswerDelete = (function () {
     };
     AnswerDelete.prototype.updateTotalAnswersInfo = function (total) {
         this.$j("#totalAnswersInfoElement").html(total + " ответов. " + '<a href="#all_comments" title="Перейти к последнему комментарию" class="last_comment"></a>');
+    };
+    AnswerDelete.prototype.onAnswerEditorStateChanged = function (data) {
+        console.log("on editor state changed ", data);
+        var answerId = data.answerId;
+        if (data.state == AnswerEdit.EDITING) {
+            this.$j("#deleteAnswerButton" + answerId).hide();
+        }
+        else if (data.state == AnswerEdit.NORMAL) {
+            this.$j("#deleteAnswerButton" + answerId).show();
+        }
     };
     return AnswerDelete;
 }());

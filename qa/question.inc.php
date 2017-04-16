@@ -5,6 +5,7 @@ include_once ("../div0/question/pining/view/QuestionPinView.php");
 include_once ("../div0/question/delete/view/QuestionDeleteView.php");
 include_once ("../div0/question/edit/view/QuestionEditView.php");
 include_once ("../div0/answer/delete/view/DeleteAnswerView.php");
+include_once ("../div0/answer/edit/view/AnswerEditView.php");
 ?>
 <div id="contentType" style="display: none;">questionPageContent</div>
 
@@ -162,12 +163,21 @@ foreach ($answers as $a)
 												<a id="voteA<? echo $a["answer_id"] ?>plus" href="#" class="plus<? echo (isset($a["user_vote"]) && $a["user_vote"]==1 ? "s" : "") ?>" title="Подсыпать патронов" onclick="voteA(<? echo $a["answer_id"] ?>, 'plus');return false;"></a>
 											</span>
 
-												<div style="margin:27px 0 0 20px;clear: both;">
-													<p style="margin:27px 0 0 20px;clear: both;"><? echo $a["answer_text"] ?>
+												<div style="margin:27px 0 0 20px;clear: both;" id="answerContainer<?php echo $a["answer_id"];?>">
+													<p style="margin:27px 0 0 20px;clear: both;"><? echo $a["answer_text"] ?></p>
 												</div>
 												<ul>
 													<li><a href="#loginforcomment" class="otvet">Ответить</a></li>
-													<?php new DeleteAnswerView($a["answer_id"], $questionId); ?>
+													<?php
+
+													echo "<div id='editAnswerHeader".$a["answer_id"]."' style='width: 100%; text-align:center; color:red; display: none; padding: 20px;'><h1>Редактирование комментарий</h1></div>";
+													echo "<textarea class='editAnswerTextArea' id='editAnswerTextArea".$a["answer_id"]."' style='display: none; height: 500px;' cols='30' rows='8'>".$a["answer_text"]."</textarea>";
+													
+													echo "<table><tbody>";
+													new DeleteAnswerView($a["answer_id"], $questionId);
+													new AnswerEditView($a["answer_id"], $questionId);
+													echo "</tbody></table>";
+													?>
 												</ul>
 												<input type="hidden" name="pid" value="<? echo $a["answer_id"] ?>" class="pid">
 											</td>

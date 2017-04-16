@@ -1,4 +1,5 @@
 ///<reference path="../events/EventBus.ts"/>
+///<reference path="../editing/AnswerEdit.ts"/>
 // TODO это можно сделать потомком общего класса и для QuestionDelete в том числе
 declare var DeleteAnswerAjaxRequest:any;
 class AnswerDelete{
@@ -13,7 +14,8 @@ class AnswerDelete{
         this.answerId = this.deleteButton.data("answerid");
         this.createButtonListener();
         
-        EventBus.addEventListener("ANSWER_DELETE_REQUEST_RESULT", (response)=>this.onAnswerDeleteRequestResponse(response))
+        EventBus.addEventListener("ANSWER_DELETE_REQUEST_RESULT", (response)=>this.onAnswerDeleteRequestResponse(response));
+        EventBus.addEventListener("ANSWER_EDITOR_STATE_CHANGED", (data)=>this.onAnswerEditorStateChanged(data));
     }
 
     private getButton():void {
@@ -52,5 +54,17 @@ class AnswerDelete{
 
     private updateTotalAnswersInfo(total:string):void{
         this.$j("#totalAnswersInfoElement").html(total+" ответов. "+'<a href="#all_comments" title="Перейти к последнему комментарию" class="last_comment"></a>');
+    }
+
+    private onAnswerEditorStateChanged(data:any):void {
+        console.log("on editor state changed ",data);
+
+        var answerId:string = data.answerId;
+        if(data.state == AnswerEdit.EDITING){
+            this.$j("#deleteAnswerButton"+answerId).hide();
+        }
+        else if(data.state == AnswerEdit.NORMAL){
+            this.$j("#deleteAnswerButton"+answerId).show();
+        }
     }
 }

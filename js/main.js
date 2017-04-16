@@ -110,5 +110,6 @@
     new QuestionDelete();
     new QuestionEdit();
     new AnswerDelete();
+    new AnswerEdit();
   });
 })(jQuery);
