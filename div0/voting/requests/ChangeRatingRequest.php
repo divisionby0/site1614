@@ -1,6 +1,6 @@
 <?php
 
-include_once($_SERVER['DOCUMENT_ROOT'].'div0/voting/requests/GetRatingRequest.php');
+include_once($_SERVER['DOCUMENT_ROOT'].'/div0/voting/requests/GetRatingRequest.php');
 class ChangeRatingRequest extends Remote
 {
     public function __construct()

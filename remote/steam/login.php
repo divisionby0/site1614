@@ -1,5 +1,4 @@
 <?php
-echo "LOGIN.PHP";
 session_start();
 require_once('steamsignin.php');
 if(isset($_GET['a']) && $_GET['a'] == 'logout')

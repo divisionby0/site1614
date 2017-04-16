@@ -1,5 +1,5 @@
 <?php
-include_once($_SERVER['DOCUMENT_ROOT'].'div0/question/delete/requests/DeleteQuestionRequest.php');
+include_once($_SERVER['DOCUMENT_ROOT'].'/div0/question/delete/requests/DeleteQuestionRequest.php');
 
 if(isset($_POST["questionId"])){
 

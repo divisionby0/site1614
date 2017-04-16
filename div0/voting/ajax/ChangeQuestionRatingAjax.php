@@ -1,5 +1,5 @@
 <?php
-include_once($_SERVER['DOCUMENT_ROOT'].'div0/voting/requests/question/ChangeQuestionRatingRequest.php');
+include_once($_SERVER['DOCUMENT_ROOT'].'/div0/voting/requests/question/ChangeQuestionRatingRequest.php');
 
 if(isset($_POST["questionId"]) && isset($_POST["value"]) && isset($_POST["userId"])){
     $changeQuestionRatingRequest = new ChangeQuestionRatingRequest();

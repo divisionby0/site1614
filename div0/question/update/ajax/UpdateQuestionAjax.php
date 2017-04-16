@@ -1,5 +1,5 @@
 <?php
-include_once($_SERVER['DOCUMENT_ROOT'].'div0/question/update/requests/UpdateQuestionRequest.php');
+include_once($_SERVER['DOCUMENT_ROOT'].'/div0/question/update/requests/UpdateQuestionRequest.php');
 
 if(isset($_POST["questionId"])){
     $questionId = $_POST["questionId"];

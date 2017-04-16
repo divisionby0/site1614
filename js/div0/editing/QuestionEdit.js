@@ -30,6 +30,8 @@ var QuestionEdit = (function () {
         this.onStateChanged();
         this.questionContent = this.$j("#editQuestionTextArea").val();
         this.questionView.html(this.questionContent);
+        this.$j("#questionSectionLink").text(this.currentSectionText);
+        this.$j("#questionSectionLink").attr("href", this.currentSectionLink);
         // execute ajax
         this.saveQuestion();
     };
@@ -89,7 +91,8 @@ var QuestionEdit = (function () {
     };
     QuestionEdit.prototype.onSectionChanged = function () {
         this.currentSection = this.sectionsSelect.val();
-        //console.log("section changed to "+this.currentSection);
+        this.currentSectionLink = this.sectionsSelect.find(':selected').data('url');
+        this.currentSectionText = this.sectionsSelect.find(':selected').text();
     };
     QuestionEdit.NORMAL = "normal";
     QuestionEdit.EDITING = "editing";

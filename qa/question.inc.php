@@ -39,7 +39,7 @@ echo '<div style="display: none;" id="userId">'.$userId.'</div>';
 									echo $timePastSincePostCreated;
 									?>
 									в
-									<a href="/qa/<? echo $Q["section_uri"] ?>/"><? echo $Q["section_name"] ?></a>
+									<a id="questionSectionLink" href="/qa/<? echo $Q["section_uri"] ?>/"><? echo $Q["section_name"] ?></a>
 								</p>
 							</figure>
 
@@ -69,23 +69,26 @@ echo '<div style="display: none;" id="userId">'.$userId.'</div>';
 								echo "<table id='editQuestionContainer' style='width: 100%;'><tbody><tr>";
 								new QuestionPinView($questionPinedDate);
 
-								echo "<div id='editQuestionHeader' style='width: 100%; text-align:center; color:red; display: none; padding: 20px;'><h1>Редактирование вопроса</h1></div>";
-								echo "<input type='text' id='questionTitleInput' value='".$Q["question_title"]."' style='display:none;' class='editQuestionTitleInput'>";
-								echo "<textarea id='editQuestionTextArea' style='display: none; height: 500px;' cols='30' rows='8'>".$Q["question_text"]."</textarea>";
 								$qa = new QA();
 								$sections = $qa->getSections();
 								$questionSection = $Q["section_id"];
+
+								echo "<div id='editQuestionHeader' style='width: 100%; text-align:center; color:red; display: none; padding: 20px;'><h1>Редактирование вопроса</h1></div>";
+								echo "<input type='text' id='questionTitleInput' value='".$Q["question_title"]."' style='display:none;' class='editQuestionTitleInput'>";
+								echo "<textarea id='editQuestionTextArea' style='display: none; height: 500px;' cols='30' rows='8'>".$Q["question_text"]."</textarea>";
+
 								echo "<div id='editQuestionSectionsContainer' style='display: none;'><select id='editQuestionSectionsSelect' class='editQuestionSectionsSelect'>";
+
 								foreach($sections as $section){
+
 									if($section["id"] === $questionSection){
-										echo "<option value='".$section["id"]."' selected='selected'>".$section["name"]."</option>";
+										echo "<option value='".$section["id"]."' selected='selected' data-url='"."/qa/".$section["uri"]."/'>".$section["name"]."</option>";
 									}
 									else{
-										echo "<option value='".$section["id"]."'>".$section["name"]."</option>";
+										echo "<option value='".$section["id"]."' data-url='"."/qa/".$section["uri"]."/'>".$section["name"]."</option>";
 									}
 								}
 								echo "</select><input type='text' id='questionSectionInput' value='".$questionSection."' style='display:none;'></div>";
-
 
 								new QuestionEditView($questionId);
 								new QuestionDeleteView($questionId);

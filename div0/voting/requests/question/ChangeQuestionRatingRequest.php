@@ -1,5 +1,5 @@
 <?php
-include_once($_SERVER['DOCUMENT_ROOT'].'div0/voting/requests/ChangeRatingRequest.php');
+include_once($_SERVER['DOCUMENT_ROOT'].'/div0/voting/requests/ChangeRatingRequest.php');
 
 class ChangeQuestionRatingRequest extends ChangeRatingRequest
 {

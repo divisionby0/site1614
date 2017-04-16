@@ -16,6 +16,8 @@ class QuestionEdit{
     private questionTitleElement:any;
     private questionContent:string;
     private currentSection:string;
+    private currentSectionText:string;
+    private currentSectionLink:string;
     private sectionsSelect:any;
 
     constructor(){
@@ -53,7 +55,11 @@ class QuestionEdit{
 
         this.questionContent = this.$j("#editQuestionTextArea").val();
         this.questionView.html(this.questionContent);
-        
+
+        this.$j("#questionSectionLink").text(this.currentSectionText);
+        this.$j("#questionSectionLink").attr("href", this.currentSectionLink);
+
+
         // execute ajax
         this.saveQuestion();
     }
@@ -122,6 +128,7 @@ class QuestionEdit{
 
     private onSectionChanged():void {
         this.currentSection = this.sectionsSelect.val();
-        //console.log("section changed to "+this.currentSection);
+        this.currentSectionLink = this.sectionsSelect.find(':selected').data('url');
+        this.currentSectionText = this.sectionsSelect.find(':selected').text();
     }
 }

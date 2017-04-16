@@ -1,5 +1,5 @@
 <?php
-include_once($_SERVER['DOCUMENT_ROOT'].'remote/Remote.php');
+include_once($_SERVER['DOCUMENT_ROOT'].'/remote/Remote.php');
 //include_once ("../../../remote/Remote.php");
 class GetUserLastRatingRequest extends Remote
 {
