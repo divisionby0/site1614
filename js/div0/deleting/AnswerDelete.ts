@@ -1,3 +1,4 @@
+///<reference path="../events/EventBus.ts"/>
 // TODO это можно сделать потомком общего класса и для QuestionDelete в том числе
 declare var DeleteAnswerAjaxRequest:any;
 class AnswerDelete{
@@ -25,15 +26,20 @@ class AnswerDelete{
 
     private onDeleteButtonClicked(event):void {
         this.answerId = this.$j(event.target).data("answerid");
+        var questionId:string = this.$j(event.target).data("questionid");
         if (confirm('Удалить комментарий ?')) {
-            DeleteAnswerAjaxRequest.create(this.answerId);
+            DeleteAnswerAjaxRequest.create(this.answerId, questionId);
         }
     }
 
     private onAnswerDeleteRequestResponse(response:string):void {
         var data:any = JSON.parse(response);
+
+        console.log(data);
         var answerId:string = data.id;
         this.removeAnswerView(answerId);
+
+        this.updateTotalAnswersInfo(data.parentQuestionTotalAnswers);
     }
 
     private removeAnswerView(answerId:string):void {
@@ -42,5 +48,9 @@ class AnswerDelete{
 
         this.$j("#"+viewId).remove();
         this.$j("#"+buttonId).remove();
+    }
+
+    private updateTotalAnswersInfo(total:string):void{
+        this.$j("#totalAnswersInfoElement").html(total+" ответов. "+'<a href="#all_comments" title="Перейти к последнему комментарию" class="last_comment"></a>');
     }
 }

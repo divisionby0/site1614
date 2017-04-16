@@ -53,7 +53,7 @@ echo '<div style="display: none;" id="userId">'.$userId.'</div>';
 										<a id="voteQplus" class="pluss" title="Подсыпать патронов"></a>
 									</li>
 									<li><? echo $Q["views"] ?> просмотров</li>
-									<li><? echo $Q["answers"] ?> ответов <a href="#all_comments" title="Перейти к последнему комментарию" class="last_comment"></a></li>
+									<li id="totalAnswersInfoElement"><? echo $Q["answers"] ?> ответов <a href="#all_comments" title="Перейти к последнему комментарию" class="last_comment"></a></li>
 									<? if ($Q["f_approved"]) { ?><li>Одобрено модератором <a href="#" class="green">skvsk</a></li><? } ?>
 							</ul>
 							<?
@@ -167,7 +167,7 @@ foreach ($answers as $a)
 												</div>
 												<ul>
 													<li><a href="#loginforcomment" class="otvet">Ответить</a></li>
-													<?php new DeleteAnswerView($a["answer_id"]); ?>
+													<?php new DeleteAnswerView($a["answer_id"], $questionId); ?>
 												</ul>
 												<input type="hidden" name="pid" value="<? echo $a["answer_id"] ?>" class="pid">
 											</td>

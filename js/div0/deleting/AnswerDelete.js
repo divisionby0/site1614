@@ -1,3 +1,4 @@
+///<reference path="../events/EventBus.ts"/>
 var AnswerDelete = (function () {
     function AnswerDelete() {
         var _this = this;
@@ -16,20 +17,26 @@ var AnswerDelete = (function () {
     };
     AnswerDelete.prototype.onDeleteButtonClicked = function (event) {
         this.answerId = this.$j(event.target).data("answerid");
+        var questionId = this.$j(event.target).data("questionid");
         if (confirm('Удалить комментарий ?')) {
-            DeleteAnswerAjaxRequest.create(this.answerId);
+            DeleteAnswerAjaxRequest.create(this.answerId, questionId);
         }
     };
     AnswerDelete.prototype.onAnswerDeleteRequestResponse = function (response) {
         var data = JSON.parse(response);
+        console.log(data);
         var answerId = data.id;
         this.removeAnswerView(answerId);
+        this.updateTotalAnswersInfo(data.parentQuestionTotalAnswers);
     };
     AnswerDelete.prototype.removeAnswerView = function (answerId) {
         var viewId = "comment" + answerId;
         var buttonId = "deleteAnswerButton" + answerId;
         this.$j("#" + viewId).remove();
         this.$j("#" + buttonId).remove();
+    };
+    AnswerDelete.prototype.updateTotalAnswersInfo = function (total) {
+        this.$j("#totalAnswersInfoElement").html(total + " ответов. " + '<a href="#all_comments" title="Перейти к последнему комментарию" class="last_comment"></a>');
     };
     return AnswerDelete;
 }());
