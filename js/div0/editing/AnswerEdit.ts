@@ -16,9 +16,11 @@ class AnswerEdit{
 
     private answerView:any;
     private answerContent:string;
+    private userId:string;
 
     constructor(){
         this.$j = jQuery.noConflict();
+        this.userId = this.$j("#userId").text();
         this.createListeners();
     }
     
@@ -56,7 +58,7 @@ class AnswerEdit{
     }
 
     private saveAnswer():void {
-        UpdateAnswerAjaxRequest.create(this.answerId, this.answerContent);
+        UpdateAnswerAjaxRequest.create(this.answerId, this.answerContent, this.userId);
     }
 
     private onStateChanged():void {

@@ -8,10 +8,14 @@ class UpdateAnswerRequest extends Remote
         parent::__construct();
     }
 
-    public function execute($answerId, $answerContent){
+    public function execute($answerId, $answerContent, $userId){
         if(isset($answerId) && isset($answerContent)){
-            $stmt = $this->db->prepare("UPDATE qa_answers SET text=:text WHERE id=:id LIMIT 1");
-            $stmt->execute(array("text"=>$answerContent,"id" => $answerId));
+
+            $modificationDateTime = new DateTime();
+            $modificationDateTimeString = $modificationDateTime->format("Y-m-d H:i:s");
+
+            $stmt = $this->db->prepare("UPDATE qa_answers SET text=:text, when_edited=:when_edited, editor_id=:editor_id WHERE id=:id LIMIT 1");
+            $stmt->execute(array("text"=>$answerContent,"id" => $answerId, "when_edited"=>$modificationDateTimeString, "editor_id"=>$userId));
 
             $result = array("result"=>"complete");
             echo json_encode($result);

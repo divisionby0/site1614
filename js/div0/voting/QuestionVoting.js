@@ -38,8 +38,13 @@ var QuestionVoting = (function (_super) {
         EventBus.addEventListener("QUESTION_RATING_CHANGE_REQUEST_ERROR", function (error) { return _this.onRatingChangeRequestError(error); });
         EventBus.addEventListener("QUESTION_RATING_REQUEST_RESULT", function (result) { return _this.onRatingRequestResult(result); });
         EventBus.addEventListener("QUESTION_RATING_REQUEST_ERROR", function (error) { return _this.onRatingRequestError(error); });
-        EventBus.addEventListener("QUESTION_USER_LAST_RATING_VALUE_RESULT", function (result) { return _this.onUserLastRatingValueRequestResult(result); });
-        EventBus.addEventListener("QUESTION_USER_LAST_RATING_VALUE_ERROR", function (error) { return _this.onUserLastRatingValueError(error); });
+        if (this.state != Voting.DISABLED) {
+            EventBus.addEventListener("QUESTION_USER_LAST_RATING_VALUE_RESULT", function (result) { return _this.onUserLastRatingValueRequestResult(result); });
+            EventBus.addEventListener("QUESTION_USER_LAST_RATING_VALUE_ERROR", function (error) { return _this.onUserLastRatingValueError(error); });
+        }
+        else {
+            console.log("disabling question rating user last value listener");
+        }
     };
     QuestionVoting.prototype.getEntityId = function () {
         this.entityId = this.$j("#questionId").text();

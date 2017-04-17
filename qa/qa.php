@@ -76,6 +76,7 @@ class QA extends Remote{
 			qq.text as question_text,
 			qq.when_added as when_added,
 			qq.when_edited as when_edited,
+			qq.editor_id as editor_id,
 			qq.pinedTill as pinedTill,
 			qq.views as views,
 			qq.votes as votes,
@@ -94,7 +95,20 @@ class QA extends Remote{
 			$stmt->execute(array("question_id" => $id, "user_id" => $UserID));
 			if($r=$stmt->fetch()) $res["user_vote"]=$r["vote"];
 		}
-		
+
+		$editorId = $res["editor_id"];
+		$editorIdStatement = $this->db->prepare("SELECT username FROM steam_user WHERE id=:id LIMIT 1");
+		$editorIdStatement->execute(array("id"=>$editorId));
+		$editorIdRes = $editorIdStatement->fetch();
+		$editorUsername = $editorIdRes["username"];
+
+		if(!isset($editorUsername)){
+			$editorUsername = "Undefined user";
+		}
+
+		$res["editorUserName"] = $editorUsername;
+		//$res["authorUserName"] = $authorUsername;
+
         return $res;
     }
 
@@ -119,8 +133,7 @@ class QA extends Remote{
 			$hasImage = "1";
 		}
 
-        $stmt = $this->db->prepare("INSERT INTO qa_questions SET section_id=:section_id, title=:title, text=:text, when_added=NOW(), user_id=:user_id, f_imaged=:imaged, pinedTill=:pinedTill");
-
+        $stmt = $this->db->prepare("INSERT INTO qa_questions SET section_id=:section_id, title=:title, text=:text, when_added=NOW(), user_id=:user_id, editor_id=:user_id, f_imaged=:imaged, pinedTill=:pinedTill");
 
         $stmt->execute(
 			array(
@@ -142,13 +155,12 @@ class QA extends Remote{
 					)
 			);
 		}
-		
 		return $LastInsertID;
     }
 
     function addAnswer($answer){
 		#echo "<pre>"; print_r($answer); echo "</pre>"; exit;
-        $stmt = $this->db->prepare("INSERT INTO qa_answers SET question_id=:question_id, parent_id=:parent_id, text=:text, when_added=NOW(), user_id=:user_id");
+        $stmt = $this->db->prepare("INSERT INTO qa_answers SET question_id=:question_id, parent_id=:parent_id, text=:text, when_added=NOW(), when_edited=NOW(), editor_id=:user_id, user_id=:user_id");
         $stmt->execute(
 			array(
 				":question_id" => $answer["question_id"],
@@ -177,6 +189,8 @@ class QA extends Remote{
 			qa.parent_id as parent_answer_id,
 			qa.text as answer_text,
 			qa.when_added as when_added,
+			qa.when_edited as when_edited,
+			qa.editor_id as editor_id,
 			qa.votes as votes,
 			su.username as user_name,
 			su.avatar_url as user_avatar_url,
@@ -198,7 +212,19 @@ class QA extends Remote{
 				$s->execute(array("answer_id" => $answer["answer_id"], "user_id" => $UserID));
 				if($r=$s->fetch()) $answer["user_vote"]=$r["vote"];
 			}
-		
+
+			$editorId = $answer["editor_id"];
+			$editorIdStatement = $this->db->prepare("SELECT username FROM steam_user WHERE id=:id LIMIT 1");
+			$editorIdStatement->execute(array("id"=>$editorId));
+			$editorIdRes = $editorIdStatement->fetch();
+			$editorUsername = $editorIdRes["username"];
+
+			if(!isset($editorUsername)){
+				$editorUsername = "Undefined user";
+			}
+
+			$answer["editorUserName"] = $editorUsername;
+
 			$answers[]=$answer;
 			
 			$answers=array_merge ($answers, $this->getAnswers($a["answer_id"], $level+1, $UserID, $answer));

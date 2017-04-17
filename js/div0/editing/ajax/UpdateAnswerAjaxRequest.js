@@ -3,11 +3,11 @@ var UpdateAnswerAjaxRequest = (function(){
     var $ = jQuery.noConflict();
     
     return{
-        create:function(answerId, answerContent){
+        create:function(answerId, answerContent, userId){
             $.ajax({
                 type: 'POST',
                 url: '../../div0/answer/update/ajax/UpdateAnswerAjax.php',
-                data: 'answerId='+answerId+"&answerContent="+answerContent,
+                data: 'answerId='+answerId+"&answerContent="+answerContent+"&userId="+userId,
                 success: function(data){
                     console.log("update answer response: "+data);
                     //EventBus.dispatchEvent("QUESTION_DELETE_REQUEST_RESULT", data);

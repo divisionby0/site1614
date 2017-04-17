@@ -1,12 +1,16 @@
+///<reference path="../events/EventBus.ts"/>
 var QuestionEdit = (function () {
     function QuestionEdit() {
+        var _this = this;
         this.$j = jQuery.noConflict();
         this.getChildren();
         this.questionId = this.editButton.data("questionid");
         this.currentSection = this.$j("#questionSectionInput").val();
+        this.userId = this.$j("#userId").text();
         this.createListeners();
         this.state = QuestionEdit.NORMAL;
         this.onStateChanged();
+        EventBus.addEventListener("QUESTION_UPDATE_REQUEST_RESULT", function (response) { return _this.onUpdateRequestResponse(response); });
     }
     QuestionEdit.prototype.getChildren = function () {
         this.editButton = this.$j("#editQuestionButton");
@@ -30,13 +34,12 @@ var QuestionEdit = (function () {
         this.onStateChanged();
         this.questionContent = this.$j("#editQuestionTextArea").val();
         this.questionView.html(this.questionContent);
-        this.$j("#questionSectionLink").text(this.currentSectionText);
-        this.$j("#questionSectionLink").attr("href", this.currentSectionLink);
+        this.updateSectionLink();
         // execute ajax
         this.saveQuestion();
     };
     QuestionEdit.prototype.saveQuestion = function () {
-        UpdateQuestionAjaxRequest.create(this.questionId, this.questionContent, this.currentSection, this.questionTitleElement.val());
+        UpdateQuestionAjaxRequest.create(this.questionId, this.questionContent, this.currentSection, this.questionTitleElement.val(), this.userId);
     };
     QuestionEdit.prototype.onStateChanged = function () {
         if (this.state == QuestionEdit.NORMAL) {
@@ -93,6 +96,17 @@ var QuestionEdit = (function () {
         this.currentSection = this.sectionsSelect.val();
         this.currentSectionLink = this.sectionsSelect.find(':selected').data('url');
         this.currentSectionText = this.sectionsSelect.find(':selected').text();
+    };
+    QuestionEdit.prototype.updateSectionLink = function () {
+        this.$j("#questionSectionLink").text(this.currentSectionText);
+        this.$j("#questionSectionLink").attr("href", this.currentSectionLink);
+    };
+    QuestionEdit.prototype.onModificationDateTimeChanged = function (dateTime, modifierName) {
+        this.$j("#questionModificationDateTimeElement").text("Последний раз редактировалось " + dateTime + ". Редактор: " + modifierName);
+    };
+    QuestionEdit.prototype.onUpdateRequestResponse = function (response) {
+        var data = JSON.parse(response);
+        this.onModificationDateTimeChanged(data.modificationDateTime, data.modifierName);
     };
     QuestionEdit.NORMAL = "normal";
     QuestionEdit.EDITING = "editing";

@@ -2,15 +2,16 @@
 ///<reference path="../events/EventBus.ts"/>
 ///<reference path="QuestionNegativeEnabledRatingControlsUpdate.ts"/>
 ///<reference path="QuestionNegativeDisabledRatingControlsUpdate.ts"/>
+///<reference path="QuestionDisabledRatingControlsUpdate.ts"/>
 declare var COLORS:any;
 declare var ChangeQuestionRatingAjaxRequest:any;
 declare var GetQuestionRatingAjaxRequest:any;
 declare var GetQuestionUserLastRatingValueAjaxRequest:any;
 class Voting{
-    
     protected $j:any;
-    private static NORMAL:string = "NORMAL";
-    private static NEGATIVE_DISABLED:string = "NEGATIVE_DISABLED";
+    public static NORMAL:string = "NORMAL";
+    public static NEGATIVE_DISABLED:string = "NEGATIVE_DISABLED";
+    public static DISABLED:string = "VOTING_DISABLED";
 
     private negativeVoteButton:any;
     private positiveVoteButton:any;
@@ -23,31 +24,36 @@ class Voting{
 
     private rating:number;
 
-    private state:string;
+    protected state:string;
     protected userLastRatingValue:number;
+    protected userAccess:number;
 
     constructor(){
         this.state = Voting.NORMAL;
 
         this.$j = jQuery.noConflict();
 
-        this.positiveVoteButton = this.getPositiveVoteButton();
-        this.negativeVoteButton = this.getNegativeVoteButton();
+        this.userAccess = this.getUserAccess();
+        console.log("user access= "+this.userAccess);
+
         this.currentRatingElement = this.getValueElement();
-
-        this.negativeVoteButton.click(()=>this.onNegativeButtonClicked());
-        this.positiveVoteButton.click(()=>this.onPositiveButtonClicked());
-
-        this.onRatingChanged();
-        this.currentRatingElement.show();
-
         this.userId = this.$j("#userId").text();
 
+        this.positiveVoteButton = this.getPositiveVoteButton();
+        this.negativeVoteButton = this.getNegativeVoteButton();
+        
+        if(this.userAccess < 4 ){
+            this.negativeVoteButton.click(()=>this.onNegativeButtonClicked());
+            this.positiveVoteButton.click(()=>this.onPositiveButtonClicked());
+        }
+        else{
+            this.state = Voting.DISABLED;
+        }
+
         this.getEntityId();
-
         this.createListeners();
-
-        // get question rating
+        this.onRatingChanged();
+        this.currentRatingElement.show();
         this.getRating();
     }
 
@@ -74,16 +80,26 @@ class Voting{
     }
 
     private onRatingChanged():void{
-        if(this.rating > 0){
-            this.state = Voting.NORMAL;
+        if(this.state == Voting.DISABLED){
+            this.onRatingChangeDisabled();
         }
         else{
-            this.state = Voting.NEGATIVE_DISABLED;
-            this.rating = 0;
-            this.updateRatingElement();
+            if(this.rating > 0){
+                this.state = Voting.NORMAL;
+            }
+            else{
+                this.state = Voting.NEGATIVE_DISABLED;
+                this.rating = 0;
+                this.updateRatingElement();
+            }
         }
+        
         this.calculateColor();
         this.updateRatingElement();
+    }
+
+    private onRatingChangeDisabled():void {
+        new QuestionDisabledRatingControlsUpdate(0);
     }
 
     private updateRatingElement():void{
@@ -145,16 +161,6 @@ class Voting{
     }
 
     protected createListeners():void {
-        /*
-        EventBus.addEventListener("QUESTION_RATING_CHANGE_REQUEST_RESULT", (result)=>this.onRatingChangeRequestResult(result));
-        EventBus.addEventListener("QUESTION_RATING_CHANGE_REQUEST_ERROR", (error)=>this.onRatingChangeRequestError(error));
-
-        EventBus.addEventListener("QUESTION_RATING_REQUEST_RESULT", (result)=>this.onRatingRequestResult(result));
-        EventBus.addEventListener("QUESTION_RATING_REQUEST_ERROR", (error)=>this.onRatingRequestError(error));
-
-        EventBus.addEventListener("QUESTION_USER_LAST_RATING_VALUE_RESULT", (result)=>this.onUserLastRatingValueRequestResult(result));
-        EventBus.addEventListener("QUESTION_USER_LAST_RATING_VALUE_ERROR", (error)=>this.onUserLastRatingValueError(error));
-        */
     }
 
     protected onUserLastRatingValueError(error:any):void {
@@ -169,5 +175,9 @@ class Voting{
 
     protected getEntityId():void {
         //this.entityId = this.$j("#questionId").text();
+    }
+
+    private getUserAccess():number {
+        return parseInt(this.$j("#userAccess").text())
     }
 }

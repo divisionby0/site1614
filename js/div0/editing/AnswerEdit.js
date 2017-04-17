@@ -2,6 +2,7 @@
 var AnswerEdit = (function () {
     function AnswerEdit() {
         this.$j = jQuery.noConflict();
+        this.userId = this.$j("#userId").text();
         this.createListeners();
     }
     AnswerEdit.prototype.getChildren = function () {
@@ -30,7 +31,7 @@ var AnswerEdit = (function () {
         this.saveAnswer();
     };
     AnswerEdit.prototype.saveAnswer = function () {
-        UpdateAnswerAjaxRequest.create(this.answerId, this.answerContent);
+        UpdateAnswerAjaxRequest.create(this.answerId, this.answerContent, this.userId);
     };
     AnswerEdit.prototype.onStateChanged = function () {
         if (this.state == AnswerEdit.NORMAL) {

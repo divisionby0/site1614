@@ -1,5 +1,5 @@
 ///<reference path="Voting.ts"/>
-class QuestionVoting extends  Voting{
+class QuestionVoting extends Voting{
     constructor(){
         super();
     }
@@ -41,8 +41,13 @@ class QuestionVoting extends  Voting{
         EventBus.addEventListener("QUESTION_RATING_REQUEST_RESULT", (result)=>this.onRatingRequestResult(result));
         EventBus.addEventListener("QUESTION_RATING_REQUEST_ERROR", (error)=>this.onRatingRequestError(error));
 
-        EventBus.addEventListener("QUESTION_USER_LAST_RATING_VALUE_RESULT", (result)=>this.onUserLastRatingValueRequestResult(result));
-        EventBus.addEventListener("QUESTION_USER_LAST_RATING_VALUE_ERROR", (error)=>this.onUserLastRatingValueError(error));
+        if(this.state!=Voting.DISABLED){
+            EventBus.addEventListener("QUESTION_USER_LAST_RATING_VALUE_RESULT", (result)=>this.onUserLastRatingValueRequestResult(result));
+            EventBus.addEventListener("QUESTION_USER_LAST_RATING_VALUE_ERROR", (error)=>this.onUserLastRatingValueError(error));
+        }
+        else{
+            console.log("disabling question rating user last value listener");
+        }
     }
 
     protected getEntityId():void {

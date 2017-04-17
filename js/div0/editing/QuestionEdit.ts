@@ -1,3 +1,4 @@
+///<reference path="../events/EventBus.ts"/>
 declare var WYSIWYGEditor:any;
 declare var tinymce:any;
 declare var UpdateQuestionAjaxRequest:any;
@@ -19,6 +20,8 @@ class QuestionEdit{
     private currentSectionText:string;
     private currentSectionLink:string;
     private sectionsSelect:any;
+    private userId:string;
+    private modifierName:string;
 
     constructor(){
         this.$j = jQuery.noConflict();
@@ -26,10 +29,13 @@ class QuestionEdit{
 
         this.questionId = this.editButton.data("questionid");
         this.currentSection = this.$j("#questionSectionInput").val();
+        this.userId = this.$j("#userId").text();
         this.createListeners();
 
         this.state = QuestionEdit.NORMAL;
         this.onStateChanged();
+        
+        EventBus.addEventListener("QUESTION_UPDATE_REQUEST_RESULT", (response)=>this.onUpdateRequestResponse(response))
     }
 
     private getChildren():void {
@@ -56,16 +62,14 @@ class QuestionEdit{
         this.questionContent = this.$j("#editQuestionTextArea").val();
         this.questionView.html(this.questionContent);
 
-        this.$j("#questionSectionLink").text(this.currentSectionText);
-        this.$j("#questionSectionLink").attr("href", this.currentSectionLink);
-
+        this.updateSectionLink();
 
         // execute ajax
         this.saveQuestion();
     }
 
     private saveQuestion():void {
-        UpdateQuestionAjaxRequest.create(this.questionId, this.questionContent, this.currentSection, this.questionTitleElement.val());
+        UpdateQuestionAjaxRequest.create(this.questionId, this.questionContent, this.currentSection, this.questionTitleElement.val(), this.userId);
     }
 
     private onStateChanged():void {
@@ -130,5 +134,19 @@ class QuestionEdit{
         this.currentSection = this.sectionsSelect.val();
         this.currentSectionLink = this.sectionsSelect.find(':selected').data('url');
         this.currentSectionText = this.sectionsSelect.find(':selected').text();
+    }
+
+    private updateSectionLink():void {
+        this.$j("#questionSectionLink").text(this.currentSectionText);
+        this.$j("#questionSectionLink").attr("href", this.currentSectionLink);
+    }
+
+    private onModificationDateTimeChanged(dateTime:string, modifierName:string):void{
+        this.$j("#questionModificationDateTimeElement").text("Последний раз редактировалось "+dateTime+". Редактор: "+modifierName);
+    }
+
+    private onUpdateRequestResponse(response:string):void {
+        var data:any = JSON.parse(response);
+        this.onModificationDateTimeChanged(data.modificationDateTime, data.modifierName);
     }
 }

@@ -790,7 +790,11 @@ div.content	ul.after_article 	{margin:38px 0 30px 80px;overflow: hidden;}
               font:normal 1em dinpro-b, verdana, arial, sans-serif;cursor:crosshair
             }
 			
-div.content div.edited {margin:0 0 0 80px;color:#292724;font:normal 1.3em helios, verdana, arial, sans-serif;}
+div.content div.edited {
+  margin:0 0 0 80px;
+  color:#292724;
+  font:normal 1.3em helios, verdana, arial, sans-serif;
+}
 
 div.content div.more_questions 		{margin:52px 0 0 80px;overflow: hidden;}
 			div.more_questions div	{float: left;width:48%}
@@ -1576,4 +1580,9 @@ div.copyright form input {
   color:#fff;
   font-size:1.8em;
   background:#424242;
+}
+.answerModifierInfo{
+  margin: 0 !important;
+  color:#292724;
+  font:normal 1em helios, verdana, arial, sans-serif !important;
 }

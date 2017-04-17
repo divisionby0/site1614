@@ -61,6 +61,7 @@ echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/editing/ajax/UpdateA
 echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/voting/RatingControlsUpdate.js"></script>';
 echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/voting/QuestionNegativeDisabledRatingControlsUpdate.js"></script>';
 echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/voting/QuestionNegativeEnabledRatingControlsUpdate.js"></script>';
+echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/voting/QuestionDisabledRatingControlsUpdate.js"></script>';
 echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/voting/ajax/ChangeQuestionRatingAjaxRequest.js"></script>';
 echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/voting/ajax/GetQuestionRatingAjaxRequest.js"></script>';
 echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/voting/ajax/GetQuestionUserLastRatingValueAjaxRequest.js"></script>';

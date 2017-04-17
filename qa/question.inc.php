@@ -6,6 +6,7 @@ include_once ("../div0/question/delete/view/QuestionDeleteView.php");
 include_once ("../div0/question/edit/view/QuestionEditView.php");
 include_once ("../div0/answer/delete/view/DeleteAnswerView.php");
 include_once ("../div0/answer/edit/view/AnswerEditView.php");
+include_once ("../div0/answer/RatingValueView.php");
 ?>
 <div id="contentType" style="display: none;">questionPageContent</div>
 
@@ -17,8 +18,15 @@ if(isset($_SESSION['steam_user'])){
 else{
 	$userId = - 1;
 }
+$userAccess = $_SESSION['steam_user']['access'];
+if(!isset($userAccess)){
+	$userAccess = 5; // not authorized
+}
+
 echo '<div style="display: none;" id="questionId">'.$questionId.'</div>';
 echo '<div style="display: none;" id="userId">'.$userId.'</div>';
+echo '<div style="display: none;" id="userAccess">'.$userAccess.'</div>';
+Logger::logMessage("useraccess: ".$userAccess);
 ?>
 
 <h1 class="left">
@@ -58,9 +66,6 @@ echo '<div style="display: none;" id="userId">'.$userId.'</div>';
 									<? if ($Q["f_approved"]) { ?><li>Одобрено модератором <a href="#" class="green">skvsk</a></li><? } ?>
 							</ul>
 							<?
-							$userAccess = $_SESSION['steam_user']['access'];
-
-							Logger::logMessage("useraccess: ".$userAccess);
 
 							if($userAccess === "1" || $userAccess === "2" || $userAccess === "3"){
 								
@@ -94,10 +99,8 @@ echo '<div style="display: none;" id="userId">'.$userId.'</div>';
 								new QuestionDeleteView($questionId);
 								echo "</tr></tbody></table>";
 							}
-
-							if ($Q["when_added"] != $Q["when_edited"] && $Q["when_edited"]!='0000-00-00 00:00:00') {
-								?>
-								<div class="edited">Последний раз редактировалось 13 сентября в 15:00</div><? } ?>
+							echo "<div class='edited' id='questionModificationDateTimeElement'>Последний раз редактировалось ".$Q["when_edited"].". Редактор: ".$Q["editorUserName"]."</div>";
+							?>
 							
 							<div class="more_questions">
 							
@@ -161,9 +164,31 @@ foreach ($answers as $a)
 												</b>
 
 											<span class="plus_minus" id="answerRating">
-												<a id="voteA<? echo $a["answer_id"] ?>minus" href="#" class="minus<? echo (isset($a["user_vote"]) && $a["user_vote"]==-1 ? "s" : "") ?>" onclick="voteA(<? echo $a["answer_id"] ?>, 'minus');return false;"></a>
-												<strong style="color:#f9cc4f" title="Кол-во патронов" id="avotes<? echo $a["answer_id"] ?>"><? echo $a["votes"] ?></strong>
-												<a id="voteA<? echo $a["answer_id"] ?>plus" href="#" class="plus<? echo (isset($a["user_vote"]) && $a["user_vote"]==1 ? "s" : "") ?>" title="Подсыпать патронов" onclick="voteA(<? echo $a["answer_id"] ?>, 'plus');return false;"></a>
+												<?php
+												if($userAccess === "1" || $userAccess === "2" || $userAccess === "3"){
+													?>
+													<a id="voteA<? echo $a["answer_id"] ?>minus" href="#" class="minus<? echo (isset($a["user_vote"]) && $a["user_vote"]==-1 ? "s" : "") ?>" onclick="voteA(<? echo $a["answer_id"] ?>, 'minus');return false;"></a>
+													<?php
+												}
+												else{
+													?>
+													<a class="minuss"></a>
+													<?php
+												}
+
+												new RatingValueView($a["votes"], $a["answer_id"]);
+												if($userAccess === "1" || $userAccess === "2" || $userAccess === "3"){
+													?>
+													<a id="voteA<? echo $a["answer_id"] ?>plus" href="#" class="plus<? echo (isset($a["user_vote"]) && $a["user_vote"]==1 ? "s" : "") ?>" title="Подсыпать патронов" onclick="voteA(<? echo $a["answer_id"] ?>, 'plus');return false;"></a>
+												<?php
+												}
+												else{
+													?>
+													<a class="pluss"></a>
+												<?php
+												}
+												?>
+
 											</span>
 
 												<div style="margin:27px 0 0 20px;clear: both;" id="answerContainer<?php echo $a["answer_id"];?>">
@@ -172,14 +197,16 @@ foreach ($answers as $a)
 												<ul>
 													<li><a href="#loginforcomment" class="otvet">Ответить</a></li>
 													<?php
+													echo "<div class='answerModifierInfo'>Последний раз редактировалось ".$a["when_edited"].". Редактор: ".$a["editorUserName"]."</div>";
 
-													echo "<div id='editAnswerHeader".$a["answer_id"]."' style='width: 100%; text-align:center; color:red; display: none; padding: 20px;'><h1>Редактирование комментарий</h1></div>";
-													echo "<textarea class='editAnswerTextArea' id='editAnswerTextArea".$a["answer_id"]."' style='display: none; height: 500px;' cols='30' rows='8'>".$a["answer_text"]."</textarea>";
-													
-													echo "<table><tbody>";
-													new DeleteAnswerView($a["answer_id"], $questionId);
-													new AnswerEditView($a["answer_id"], $questionId);
-													echo "</tbody></table>";
+													if($userAccess === "1" || $userAccess === "2" || $userAccess === "3"){
+														echo "<div id='editAnswerHeader".$a["answer_id"]."' style='width: 100%; text-align:center; color:red; display: none; padding: 20px;'><h1>Редактирование комментарий</h1></div>";
+														echo "<textarea class='editAnswerTextArea' id='editAnswerTextArea".$a["answer_id"]."' style='display: none; height: 500px;' cols='30' rows='8'>".$a["answer_text"]."</textarea>";
+														echo "<table><tbody>";
+														new DeleteAnswerView($a["answer_id"], $questionId);
+														new AnswerEditView($a["answer_id"], $questionId);
+														echo "</tbody></table>";
+													}
 													?>
 												</ul>
 												<input type="hidden" name="pid" value="<? echo $a["answer_id"] ?>" class="pid">
