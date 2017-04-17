@@ -23,6 +23,7 @@ var AnswerDelete = (function () {
         if (confirm('Удалить комментарий ?')) {
             DeleteAnswerAjaxRequest.create(this.answerId, questionId);
         }
+        return false;
     };
     AnswerDelete.prototype.onAnswerDeleteRequestResponse = function (response) {
         var data = JSON.parse(response);

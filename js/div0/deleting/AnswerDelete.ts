@@ -26,12 +26,13 @@ class AnswerDelete{
         this.deleteButton.click((event)=>this.onDeleteButtonClicked(event));
     }
 
-    private onDeleteButtonClicked(event):void {
+    private onDeleteButtonClicked(event):boolean {
         this.answerId = this.$j(event.target).data("answerid");
         var questionId:string = this.$j(event.target).data("questionid");
         if (confirm('Удалить комментарий ?')) {
             DeleteAnswerAjaxRequest.create(this.answerId, questionId);
         }
+        return false;
     }
 
     private onAnswerDeleteRequestResponse(response:string):void {

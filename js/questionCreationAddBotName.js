@@ -1,5 +1,5 @@
 $(document).ready(function ($){
     var botNameContainer = $("#botNameContainer");
     var botName = botNameContainer.text();
-    $("#questionAuthorName").append($('<option>', { value : "88888" }).text(botName));
+    $("#questionAuthorName").append($('<option>', { value : "1" }).text(botName));
 });

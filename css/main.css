@@ -1586,3 +1586,25 @@ div.copyright form input {
   color:#292724;
   font:normal 1em helios, verdana, arial, sans-serif !important;
 }
+.editAnswerButton{
+  font: normal 1.1em helios, verdana, arial, sans-serif;
+  color: #7f7f7f;
+  text-decoration: none!important;
+  background: url(/i/dotted_u.png) repeat-x left 11px;
+}
+.editAnswerButton:hover{
+  cursor: hand;
+  color: #5aa0de !important;
+}
+
+.editAnswerTextArea{
+  display: block;
+  float: left;
+}
+
+.answerEditingStateButton{
+  display: block;
+  float: left;
+}
+
+

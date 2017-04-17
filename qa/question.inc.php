@@ -13,6 +13,7 @@ include_once ("../div0/answer/RatingValueView.php");
 <div id="contentType" style="display: none;">questionPageContent</div>
 
 <?php
+
 $questionId = StringUtil::parseQuestionId($_SERVER['REQUEST_URI']);
 if(isset($_SESSION['steam_user'])){
 	$userId = $_SESSION['steam_user']['user_id'];
@@ -20,6 +21,9 @@ if(isset($_SESSION['steam_user'])){
 else{
 	$userId = - 1;
 }
+
+
+
 $userAccess = $_SESSION['steam_user']['access'];
 if(!isset($userAccess)){
 	$userAccess = 5; // not authorized
@@ -28,7 +32,6 @@ if(!isset($userAccess)){
 echo '<div style="display: none;" id="questionId">'.$questionId.'</div>';
 echo '<div style="display: none;" id="userId">'.$userId.'</div>';
 echo '<div style="display: none;" id="userAccess">'.$userAccess.'</div>';
-Logger::logMessage("useraccess: ".$userAccess);
 ?>
 
 <h1 class="left">
@@ -140,7 +143,7 @@ foreach ($answers as $a)
 												<?php
 												if($userAccess === "1" || $userAccess === "2" || $userAccess === "3"){
 													?>
-													<a id="voteA<? echo $a["answer_id"] ?>minus" href="#" class="minus<? echo (isset($a["user_vote"]) && $a["user_vote"]==-1 ? "s" : "") ?>" onclick="voteA(<? echo $a["answer_id"] ?>, 'minus');return false;"></a>
+													<a id="voteA<? echo $a["answer_id"] ?>minus" href="#" class="minus<? echo (isset($a["user_vote"]) && $a["user_vote"]==0 ? "s" : "") ?>" onclick="voteA(<? echo $a["answer_id"] ?>, 'minus');return false;"></a>
 													<?php
 												}
 												else{
@@ -148,7 +151,6 @@ foreach ($answers as $a)
 													<a class="minuss"></a>
 													<?php
 												}
-
 												new RatingValueView($a["votes"], $a["answer_id"]);
 												if($userAccess === "1" || $userAccess === "2" || $userAccess === "3"){
 													?>
@@ -163,14 +165,24 @@ foreach ($answers as $a)
 												?>
 
 											</span>
-
 												<div style="margin:27px 0 0 20px;clear: both;" id="answerContainer<?php echo $a["answer_id"];?>">
 													<p style="margin:27px 0 0 20px;clear: both;"><? echo $a["answer_text"] ?></p>
 												</div>
+											<?php
+											echo "<div class='answerModifierInfo'>Последний раз редактировалось ".$a["when_edited"].". Редактор: ".$a["editorUserName"]."</div>";
+											?>
 												<ul>
-													<li><a href="#loginforcomment" class="otvet">Ответить</a></li>
+
 													<?php
-													echo "<div class='answerModifierInfo'>Последний раз редактировалось ".$a["when_edited"].". Редактор: ".$a["editorUserName"]."</div>";
+													if($userAccess === "1" || $userAccess === "2" || $userAccess === "3"){
+														?>
+														<li>
+															<a href="#loginforcomment" class="otvet" id="createAnswerButton<?php echo $a["answer_id"];?>">Ответить</a>
+														</li>
+														<?php
+													}
+													?>
+													<?php
 													new AnswerModerationView($userAccess, $a, $questionId, $userId);
 													?>
 												</ul>
@@ -205,9 +217,10 @@ if ($best_comment["votes"])
 												<div style="margin:27px 0 0 20px;clear: both;">
 													<p><? echo $best_comment["answer_text"] ?>
 												</div>
-												<ul>
-													<li><a href="#loginforcomment" class="otvet">Ответить</a></li>
-												</ul>
+											<ul>
+												<li><a href="#loginforcomment" class="otvet">Ответить</a></li>
+											</ul>
+
 												<input type="hidden" name="pid" value="<? echo $best_comment["answer_id"] ?>">
 											</td>
 									</tr>

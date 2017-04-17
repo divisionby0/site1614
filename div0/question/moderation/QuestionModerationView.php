@@ -11,9 +11,9 @@ class QuestionModerationView
         $isNewsmaker = $userAccess ===  "2";
         $isUser = $userAccess ===  "3";
 
-        Logger::logError("isModerator: ".$isModerator);
-        Logger::logError("isNewsmaker: ".$isNewsmaker);
-        Logger::logError("isUser: ".$isUser);
+        //Logger::logError("isModerator: ".$isModerator);
+        //Logger::logError("isNewsmaker: ".$isNewsmaker);
+        //Logger::logError("isUser: ".$isUser);
 
         $questionSection = $question["section_id"];
         $questionPinedDate = $question["pinedTill"];
@@ -25,7 +25,6 @@ class QuestionModerationView
             $isOwn = 1;
         }
 
-        Logger::logError("is own question : ".$isOwn);
         echo "<table id='editQuestionContainer' style='width: 100%;'><tbody><tr>";
         if($isModerator){
             new QuestionPinView($questionPinedDate);
@@ -33,7 +32,6 @@ class QuestionModerationView
             new QuestionDeleteView($questionId);
         }
         else if(($isNewsmaker || $isUser) && $isOwn == 1){
-            new QuestionPinView($questionPinedDate);
             $this->showQuestionEdit($question, $sections, $questionSection, $questionId, $userId);
             new QuestionDeleteView($questionId);
         }

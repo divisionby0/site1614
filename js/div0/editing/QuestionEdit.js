@@ -9,36 +9,35 @@ var QuestionEdit = (function () {
         this.questionId = this.editButton.data("questionid");
         this.currentSection = this.$j("#questionSectionInput").val();
         this.userId = this.$j("#userId").text();
-        var questionAuthorId = parseInt(this.$j("#questionContainer").data("authorid"));
-        var questionCreationDateTime = this.$j("#questionContainer").data("createddatetime");
-        console.log("questionAuthorId=" + questionAuthorId);
-        console.log("userId=" + this.userId);
-        if (parseInt(this.userId) == questionAuthorId) {
+        /*
+        var questionAuthorId:number =  parseInt(this.$j("#questionContainer").data("authorid"));
+        var questionCreationDateTime:string =  this.$j("#questionContainer").data("createddatetime");
+
+        console.log("questionAuthorId="+questionAuthorId);
+        console.log("userId="+this.userId);
+
+        if(parseInt(this.userId) == questionAuthorId){
             this.isOwner = true;
         }
-        var userAccess = this.$j("#userAccess").text();
-        console.log("userAccess=" + userAccess);
-        console.log("is owner: " + this.isOwner);
-        if (userAccess == "1") {
+
+        var userAccess:string = this.$j("#userAccess").text();
+        console.log("userAccess="+userAccess);
+        console.log("is owner: "+this.isOwner);
+
+        if(userAccess == "1"){
+            // can edit everything
         }
-        else if (userAccess == "2" && !this.isOwner) {
+        else if(userAccess == "2" && !this.isOwner){
             console.error("Cannot edit non proprietary question ");
             return;
         }
-        else if (userAccess == "2" || userAccess == "3" && this.isOwner) {
+        else if(userAccess == "2" || userAccess == "3" && this.isOwner){
             console.log("Can edit own question ");
         }
-        else {
+        else{
             console.error("Cannot edit question ");
             return;
         }
-        /*
-        var currentDateTime = moment();
-        var creationDateTime = moment(questionCreationDateTime);
-        console.log("currentDateTime "+currentDateTime);
-        console.log("creationDateTime "+creationDateTime);
-        var durationMinutes:number = (currentDateTime - creationDateTime)/1000/60;
-        console.log("durationMinutes="+durationMinutes);
         */
         this.createListeners();
         this.state = QuestionEdit.NORMAL;

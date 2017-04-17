@@ -4,6 +4,6 @@ class DeleteAnswerView
 {
     public function __construct($answerId, $questionId)
     {
-        echo "<td><input id='deleteAnswerButton".$answerId."' class='deleteAnswerButton' type='button' value='Удалить комментарий' data-answerid='".$answerId."' data-questionid='".$questionId."'></td>";
+        echo "<li><a href='#' id='deleteAnswerButton".$answerId."' class='delete deleteAnswerButton' data-answerid='".$answerId."' data-questionid='".$questionId."'>Удалить</a></li>";
     }
 }

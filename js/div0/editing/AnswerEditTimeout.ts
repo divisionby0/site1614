@@ -2,7 +2,6 @@ declare var moment:any;
 class AnswerEditTimeout{
 
     private $j:any;
-
     private userId:string;
     
     private MODERATOR:number = 1;
@@ -11,47 +10,57 @@ class AnswerEditTimeout{
     private UNAUTHORIZED_USER:number = 4;
 
     private minAnswerDurationMinutesTillEditDisabled:number = 0;
-    private maxAnswerDurationMinutesTillEditDisabled:number = 18;
-    
+    private maxAnswerDurationMinutesTillEditDisabled:number = 10; // 10 minutes
+
+    private userAccess:number;
+
     constructor(){
         this.$j = jQuery.noConflict();
         this.userId = this.$j("#userId").text();
 
-        var userAccess:string = this.$j("#userAccess").text();
+        this.userAccess = parseInt(this.$j("#userAccess").text());
         
         // find all answers
-        if(parseInt(userAccess) == this.NEWSMAKER || parseInt(userAccess) == this.USER){
-            this.$j('[data-answercreationdatetime]').each((index, value)=>this.iterateAnswers(index, value));
-            console.log("minAnswerDurationMinutesTillEditDisabled="+this.minAnswerDurationMinutesTillEditDisabled);
+        if(this.userAccess == this.NEWSMAKER || this.userAccess == this.USER){
+            this.$j('[data-answercreationdatetime]').each((index, value)=>this.iterateEntities(index, value));
         }
-
     }
 
-    private iterateAnswers(index:number, value:any):void{
-        console.log("Answer:",value);
+    private iterateEntities(index:number, value:any):void{
         var answerElement:any = this.$j(value);
+        var answerId:string = answerElement.data("answerid");
         var answerCreationDateTime:string = answerElement.data("answercreationdatetime");
         var answerOwnerUserId:string = answerElement.data("owneruserid");
 
-        if(parseInt(this.userId)==parseInt(answerOwnerUserId)){
-            console.log("is own answer");
+        var isAnswerOwner:boolean = parseInt(this.userId)==parseInt(answerOwnerUserId);
+
+        if(isAnswerOwner){
             var currentDateTime = moment();
             var creationDateTime = moment(answerCreationDateTime);
             var durationMinutes:number = (currentDateTime - creationDateTime)/1000/60;
-            console.log("durationMinutes="+durationMinutes);
 
             if(durationMinutes < this.maxAnswerDurationMinutesTillEditDisabled){
-                console.log("can edit answer yet");
                 if(this.minAnswerDurationMinutesTillEditDisabled < durationMinutes){
                     this.minAnswerDurationMinutesTillEditDisabled = durationMinutes;
                 }
             }
             else{
-                var answerId:string = answerElement.data("answerid");
-                console.log("cannot edit answer "+answerId);
-
-                this.$j("#editAnswerControlsContainer"+answerId).remove();
+                this.disableDeleteButton(answerId);
+                this.disableEditButton(answerId);
             }
         }
+        else{
+            if(this.userAccess != this.MODERATOR){
+                this.disableDeleteButton(answerId);
+                this.disableEditButton(answerId);
+            }
+        }
+    }
+
+    private disableEditButton(answerId):void{
+        this.$j("#editAnswerButton"+answerId).remove();
+    }
+    private disableDeleteButton(answerId):void{
+        this.$j("#deleteAnswerButton"+answerId).remove();
     }
 }

@@ -2,8 +2,6 @@
 ///<reference path="AnswerEditTimeout.ts"/>
 var AnswerEdit = (function () {
     function AnswerEdit() {
-        this.isOwner = false;
-        this.useTimeout = false;
         this.$j = jQuery.noConflict();
         this.userId = this.$j("#userId").text();
         new AnswerEditTimeout();
@@ -17,14 +15,18 @@ var AnswerEdit = (function () {
         var _this = this;
         this.$j(".editAnswerButton").click(function (event) { return _this.onEditButtonClicked(event); });
         this.$j(".updateEditedAnswerButton").click(function (event) { return _this.onUpdateButtonClicked(event); });
+        this.$j(".cancelEditAnswerButton").click(function (event) { return _this.onCancelEditButtonClicked(event); });
     };
     AnswerEdit.prototype.onEditButtonClicked = function (event) {
         this.state = AnswerEdit.NORMAL;
         this.onStateChanged();
         this.answerId = this.$j(event.target).data("answerid");
+        this.answerInitText = this.$j("#editAnswerTextArea" + this.answerId).val();
+        console.log("this.answerInitText=" + this.answerInitText);
         this.getChildren();
         this.state = AnswerEdit.EDITING;
         this.onStateChanged();
+        return false;
     };
     AnswerEdit.prototype.onUpdateButtonClicked = function (event) {
         this.state = AnswerEdit.NORMAL;
@@ -34,6 +36,11 @@ var AnswerEdit = (function () {
         this.$j("#answerContainer" + this.answerId).html(this.answerContent);
         this.saveAnswer();
     };
+    AnswerEdit.prototype.onCancelEditButtonClicked = function (event) {
+        this.state = AnswerEdit.NORMAL;
+        this.onStateChanged();
+        this.$j("#editAnswerTextArea" + this.answerId).val(this.answerInitText);
+    };
     AnswerEdit.prototype.saveAnswer = function () {
         UpdateAnswerAjaxRequest.create(this.answerId, this.answerContent, this.userId);
     };
@@ -41,11 +48,15 @@ var AnswerEdit = (function () {
         if (this.state == AnswerEdit.NORMAL) {
             this.showEditButton();
             this.hideUpdateButton();
+            this.hideEditAnswerCancelButton();
+            this.showCreateAnswerButton();
             this.hideEditor();
         }
         else if (this.state == AnswerEdit.EDITING) {
             this.hideEditButton();
             this.showUpdateButton();
+            this.hideCreateAnswerButton();
+            this.showEditAnswerCancelButton();
             this.showEditor();
         }
         EventBus.dispatchEvent("ANSWER_EDITOR_STATE_CHANGED", { state: this.state, answerId: this.answerId });
@@ -60,6 +71,18 @@ var AnswerEdit = (function () {
         tinymce.EditorManager.execCommand('mceRemoveEditor', true, "editAnswerTextArea" + this.answerId);
         this.$j("#editAnswerTextArea" + this.answerId).hide();
         this.$j("#editQuestionHeader" + this.answerId).hide();
+    };
+    AnswerEdit.prototype.showEditAnswerCancelButton = function () {
+        this.$j("#cancelEditAnswerButton" + this.answerId).show();
+    };
+    AnswerEdit.prototype.hideEditAnswerCancelButton = function () {
+        this.$j("#cancelEditAnswerButton" + this.answerId).hide();
+    };
+    AnswerEdit.prototype.showCreateAnswerButton = function () {
+        this.$j("#createAnswerButton" + this.answerId).show();
+    };
+    AnswerEdit.prototype.hideCreateAnswerButton = function () {
+        this.$j("#createAnswerButton" + this.answerId).hide();
     };
     AnswerEdit.prototype.showEditButton = function () {
         if (this.editButton) {

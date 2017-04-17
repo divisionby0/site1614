@@ -34,6 +34,9 @@ class QuestionEdit{
         this.questionId = this.editButton.data("questionid");
         this.currentSection = this.$j("#questionSectionInput").val();
         this.userId = this.$j("#userId").text();
+
+
+        /*
         var questionAuthorId:number =  parseInt(this.$j("#questionContainer").data("authorid"));
         var questionCreationDateTime:string =  this.$j("#questionContainer").data("createddatetime");
 
@@ -62,14 +65,6 @@ class QuestionEdit{
             console.error("Cannot edit question ");
             return;
         }
-
-        /*
-        var currentDateTime = moment();
-        var creationDateTime = moment(questionCreationDateTime);
-        console.log("currentDateTime "+currentDateTime);
-        console.log("creationDateTime "+creationDateTime);
-        var durationMinutes:number = (currentDateTime - creationDateTime)/1000/60;
-        console.log("durationMinutes="+durationMinutes);
         */
 
         this.createListeners();
