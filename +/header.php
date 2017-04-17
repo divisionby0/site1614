@@ -2,7 +2,7 @@
 require_once($_SERVER['DOCUMENT_ROOT'].'/remote/steam/steamsignin.php');
 ?>
 <header>
-		<p>BOT Eliot: Comeback Israel</p>
+		<p id="botNameContainer">BOT Eliot: Comeback Israel</p>
 
 	<?php if(isset($_SESSION['steam_user'])): ?>
 		<ul class="auth" style="background:url(<?= $_SESSION['steam_user']['avatar']?>) no-repeat;">

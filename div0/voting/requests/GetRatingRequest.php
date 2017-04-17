@@ -14,7 +14,12 @@ class GetRatingRequest extends Remote
         $stmt = $this->db->prepare("SELECT votes FROM ".$tableName." WHERE id=:".$entityId." LIMIT 1");
         $stmt->execute(array($entityId => $entityCurrentId));
         $res = $stmt->fetch();
-        echo $res["votes"];
+        $rating = $res["votes"];
+        if(is_nan($rating) || is_null($rating)){
+            $rating = 0;
+        }
+
+        echo $rating;
     }
 
     protected function getEntityId(){

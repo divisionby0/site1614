@@ -4,6 +4,8 @@ include_once ("../div0/utils/StringUtil.php");
 include_once ("../div0/question/pining/view/QuestionPinView.php");
 include_once ("../div0/question/delete/view/QuestionDeleteView.php");
 include_once ("../div0/question/edit/view/QuestionEditView.php");
+include_once ("../div0/question/moderation/QuestionModerationView.php");
+include_once ("../div0/answer/moderation/AnswerModerationView.php");
 include_once ("../div0/answer/delete/view/DeleteAnswerView.php");
 include_once ("../div0/answer/edit/view/AnswerEditView.php");
 include_once ("../div0/answer/RatingValueView.php");
@@ -67,38 +69,9 @@ Logger::logMessage("useraccess: ".$userAccess);
 							</ul>
 							<?
 
-							if($userAccess === "1" || $userAccess === "2" || $userAccess === "3"){
-								
-								$questionPinedDate = $Q["pinedTill"];
-
-								echo "<table id='editQuestionContainer' style='width: 100%;'><tbody><tr>";
-								new QuestionPinView($questionPinedDate);
-
-								$qa = new QA();
-								$sections = $qa->getSections();
-								$questionSection = $Q["section_id"];
-
-								echo "<div id='editQuestionHeader' style='width: 100%; text-align:center; color:red; display: none; padding: 20px;'><h1>Редактирование вопроса</h1></div>";
-								echo "<input type='text' id='questionTitleInput' value='".$Q["question_title"]."' style='display:none;' class='editQuestionTitleInput'>";
-								echo "<textarea id='editQuestionTextArea' style='display: none; height: 500px;' cols='30' rows='8'>".$Q["question_text"]."</textarea>";
-
-								echo "<div id='editQuestionSectionsContainer' style='display: none;'><select id='editQuestionSectionsSelect' class='editQuestionSectionsSelect'>";
-
-								foreach($sections as $section){
-
-									if($section["id"] === $questionSection){
-										echo "<option value='".$section["id"]."' selected='selected' data-url='"."/qa/".$section["uri"]."/'>".$section["name"]."</option>";
-									}
-									else{
-										echo "<option value='".$section["id"]."' data-url='"."/qa/".$section["uri"]."/'>".$section["name"]."</option>";
-									}
-								}
-								echo "</select><input type='text' id='questionSectionInput' value='".$questionSection."' style='display:none;'></div>";
-
-								new QuestionEditView($questionId);
-								new QuestionDeleteView($questionId);
-								echo "</tr></tbody></table>";
-							}
+							$qa = new QA();
+							$sections = $qa->getSections();
+							new QuestionModerationView($questionId, $userAccess, $Q, $sections, $userId);
 							echo "<div class='edited' id='questionModificationDateTimeElement'>Последний раз редактировалось ".$Q["when_edited"].". Редактор: ".$Q["editorUserName"]."</div>";
 							?>
 							
@@ -198,15 +171,7 @@ foreach ($answers as $a)
 													<li><a href="#loginforcomment" class="otvet">Ответить</a></li>
 													<?php
 													echo "<div class='answerModifierInfo'>Последний раз редактировалось ".$a["when_edited"].". Редактор: ".$a["editorUserName"]."</div>";
-
-													if($userAccess === "1" || $userAccess === "2" || $userAccess === "3"){
-														echo "<div id='editAnswerHeader".$a["answer_id"]."' style='width: 100%; text-align:center; color:red; display: none; padding: 20px;'><h1>Редактирование комментарий</h1></div>";
-														echo "<textarea class='editAnswerTextArea' id='editAnswerTextArea".$a["answer_id"]."' style='display: none; height: 500px;' cols='30' rows='8'>".$a["answer_text"]."</textarea>";
-														echo "<table><tbody>";
-														new DeleteAnswerView($a["answer_id"], $questionId);
-														new AnswerEditView($a["answer_id"], $questionId);
-														echo "</tbody></table>";
-													}
+													new AnswerModerationView($userAccess, $a, $questionId, $userId);
 													?>
 												</ul>
 												<input type="hidden" name="pid" value="<? echo $a["answer_id"] ?>" class="pid">

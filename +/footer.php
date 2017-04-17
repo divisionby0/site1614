@@ -27,6 +27,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"></script>
 	<script src="/js/main.js"></script>
 	<script src="/js/answerCreation.js"></script>
+	<script src="/js/questionCreationAddBotName.js"></script>
 	<script src="/js/voting.js"></script>
 	<script src="/js/scrolltotop.js"></script>
 

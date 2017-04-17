@@ -1,7 +1,7 @@
 		<div id="contentType" style="display: none;">addQuestionPageContent</div>
 		<h1 class="left">Новый вопрос от имени 
-			<select name="name" form="question">
-				<option><? echo $_SESSION['steam_user']['name'] ?></option>
+			<select name="name" form="question" id="questionAuthorName">
+				<option value="<? echo $_SESSION['steam_user']['user_id'] ?>"><? echo $_SESSION['steam_user']['name'] ?></option>
 			</select>
 			</h1>
 		

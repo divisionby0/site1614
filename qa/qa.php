@@ -78,6 +78,7 @@ class QA extends Remote{
 			qq.when_edited as when_edited,
 			qq.editor_id as editor_id,
 			qq.pinedTill as pinedTill,
+			qq.user_id as user_id,
 			qq.views as views,
 			qq.votes as votes,
 			qq.answers as answers,
