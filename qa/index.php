@@ -13,15 +13,6 @@ $UnansweredQuestionsCount=$qa->getUnansweredQuestionsCount();
 // Добавление вопроса
 if (isset($_POST["text"]) && isset($_SESSION['steam_user']['name']))
 {
-	/*
-	$question = array(
-		"section_id" => $_POST["razdel"],
-		"title" => $_POST["headline"],
-		"text" => $_POST["text"],
-		//"user_id" => $_SESSION['steam_user']['user_id']
-		"user_id" => $_POST['name']
-	);
-	*/
 	$question = array(
 		"section_id" => $_POST["razdel"],
 		"title" => $_POST["headline"],
@@ -30,7 +21,6 @@ if (isset($_POST["text"]) && isset($_SESSION['steam_user']['name']))
 	);
 
 	$question_id=$qa->addQuestion($question);
-	//echo "question creating author ".$_POST["name"];
 	header("Location: http://".$_SERVER['HTTP_HOST']."/qa/".$question_id."/");
 }
 

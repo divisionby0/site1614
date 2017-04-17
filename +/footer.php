@@ -25,6 +25,7 @@
 	<p id="back-top"><a href="#top"><span><img src="/i/up.png"/></span></a></p>
 	<script src="/js/jquery.jscrollpane.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"></script>
+	<script src="/js/lib/moment.min.js"></script>
 	<script src="/js/main.js"></script>
 	<script src="/js/answerCreation.js"></script>
 	<script src="/js/questionCreationAddBotName.js"></script>
@@ -33,12 +34,12 @@
 
 <?php
 
-echo "<script type='application/javascript' src='http://".$_SERVER['HTTP_HOST']."/js/div0/collections//iterators/ListIterator.js'></script>";
-echo "<script type='application/javascript' src='http://".$_SERVER['HTTP_HOST']."/js/div0/collections//iterators/MapIterator.js'></script>";
-echo "<script type='application/javascript' src='http://".$_SERVER['HTTP_HOST']."/js/div0/collections//json/MapJsonDecoder.js'></script>";
-echo "<script type='application/javascript' src='http://".$_SERVER['HTTP_HOST']."/js/div0/collections//json/MapJsonEncoder.js'></script>";
-echo "<script type='application/javascript' src='http://".$_SERVER['HTTP_HOST']."/js/div0/collections//List.js'></script>";
-echo "<script type='application/javascript' src='http://".$_SERVER['HTTP_HOST']."/js/div0/collections//Map.js'></script>";
+echo "<script type='application/javascript' src='http://".$_SERVER['HTTP_HOST']."/js/div0/collections/iterators/ListIterator.js'></script>";
+echo "<script type='application/javascript' src='http://".$_SERVER['HTTP_HOST']."/js/div0/collections/iterators/MapIterator.js'></script>";
+echo "<script type='application/javascript' src='http://".$_SERVER['HTTP_HOST']."/js/div0/collections/json/MapJsonDecoder.js'></script>";
+echo "<script type='application/javascript' src='http://".$_SERVER['HTTP_HOST']."/js/div0/collections/json/MapJsonEncoder.js'></script>";
+echo "<script type='application/javascript' src='http://".$_SERVER['HTTP_HOST']."/js/div0/collections/List.js'></script>";
+echo "<script type='application/javascript' src='http://".$_SERVER['HTTP_HOST']."/js/div0/collections/Map.js'></script>";
 
 echo "<script type='application/javascript' src='http://".$_SERVER['HTTP_HOST']."/js/div0/events/EventBus.js'></script>";
 
@@ -56,6 +57,7 @@ echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/deleting/ajax/Delete
 echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/editing/QuestionEdit.js"></script>';
 echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/editing/ajax/UpdateQuestionAjaxRequest.js"></script>';
 
+echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/editing/AnswerEditTimeout.js"></script>';
 echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/editing/AnswerEdit.js"></script>';
 echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/editing/ajax/UpdateAnswerAjaxRequest.js"></script>';
 

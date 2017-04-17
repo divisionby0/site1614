@@ -1,8 +1,12 @@
 ///<reference path="../events/EventBus.ts"/>
+///<reference path="AnswerEditTimeout.ts"/>
 var AnswerEdit = (function () {
     function AnswerEdit() {
+        this.isOwner = false;
+        this.useTimeout = false;
         this.$j = jQuery.noConflict();
         this.userId = this.$j("#userId").text();
+        new AnswerEditTimeout();
         this.createListeners();
     }
     AnswerEdit.prototype.getChildren = function () {

@@ -1,9 +1,9 @@
 ///<reference path="../events/EventBus.ts"/>
+///<reference path="AnswerEditTimeout.ts"/>
 declare var tinymce:any;
 declare var WYSIWYGEditor:any;
 declare var UpdateAnswerAjaxRequest:any;
 class AnswerEdit{
-
     private $j:any;
     private editButton:any;
     private updateButton:any;
@@ -18,12 +18,20 @@ class AnswerEdit{
     private answerContent:string;
     private userId:string;
 
+    private isOwner:boolean = false;
+    private useTimeout:boolean = false;
+    
     constructor(){
         this.$j = jQuery.noConflict();
         this.userId = this.$j("#userId").text();
+        
+        new AnswerEditTimeout();
+        
         this.createListeners();
     }
+
     
+
     private getChildren():void {
         this.editButton = this.$j("#editAnswerButton"+this.answerId);
         this.updateButton = this.$j("#updateEditedAnswerButton"+this.answerId);

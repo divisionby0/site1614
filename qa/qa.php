@@ -189,6 +189,7 @@ class QA extends Remote{
 			qa.id as answer_id,
 			qa.parent_id as parent_answer_id,
 			qa.text as answer_text,
+			qa.user_id as user_id,
 			qa.when_added as when_added,
 			qa.when_edited as when_edited,
 			qa.editor_id as editor_id,

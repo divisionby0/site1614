@@ -2,7 +2,6 @@
 
 class QuestionModerationView
 {
-
     // 1- moderator
     // 2 - newsmaker
     // 3 - user
@@ -33,11 +32,10 @@ class QuestionModerationView
             $this->showQuestionEdit($question, $sections, $questionSection, $questionId, $userId);
             new QuestionDeleteView($questionId);
         }
-        else if($isNewsmaker){
+        else if(($isNewsmaker || $isUser) && $isOwn == 1){
             new QuestionPinView($questionPinedDate);
-            if($isOwn == 1){
-                $this->showQuestionEdit($question, $sections, $questionSection, $questionId, $userId);
-            }
+            $this->showQuestionEdit($question, $sections, $questionSection, $questionId, $userId);
+            new QuestionDeleteView($questionId);
         }
 
         echo "</tr></tbody></table>";

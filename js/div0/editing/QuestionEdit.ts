@@ -2,6 +2,7 @@
 declare var WYSIWYGEditor:any;
 declare var tinymce:any;
 declare var UpdateQuestionAjaxRequest:any;
+declare var moment:any;
 class QuestionEdit{
 
     private $j:any;
@@ -23,6 +24,9 @@ class QuestionEdit{
     private userId:string;
     private modifierName:string;
 
+    private isOwner:boolean = false;
+    private useTimeout:boolean = false;
+
     constructor(){
         this.$j = jQuery.noConflict();
         this.getChildren();
@@ -30,6 +34,44 @@ class QuestionEdit{
         this.questionId = this.editButton.data("questionid");
         this.currentSection = this.$j("#questionSectionInput").val();
         this.userId = this.$j("#userId").text();
+        var questionAuthorId:number =  parseInt(this.$j("#questionContainer").data("authorid"));
+        var questionCreationDateTime:string =  this.$j("#questionContainer").data("createddatetime");
+
+        console.log("questionAuthorId="+questionAuthorId);
+        console.log("userId="+this.userId);
+
+        if(parseInt(this.userId) == questionAuthorId){
+            this.isOwner = true;
+        }
+
+        var userAccess:string = this.$j("#userAccess").text();
+        console.log("userAccess="+userAccess);
+        console.log("is owner: "+this.isOwner);
+
+        if(userAccess == "1"){
+            // can edit everything
+        }
+        else if(userAccess == "2" && !this.isOwner){
+            console.error("Cannot edit non proprietary question ");
+            return;
+        }
+        else if(userAccess == "2" || userAccess == "3" && this.isOwner){
+            console.log("Can edit own question ");
+        }
+        else{
+            console.error("Cannot edit question ");
+            return;
+        }
+
+        /*
+        var currentDateTime = moment();
+        var creationDateTime = moment(questionCreationDateTime);
+        console.log("currentDateTime "+currentDateTime);
+        console.log("creationDateTime "+creationDateTime);
+        var durationMinutes:number = (currentDateTime - creationDateTime)/1000/60;
+        console.log("durationMinutes="+durationMinutes);
+        */
+
         this.createListeners();
 
         this.state = QuestionEdit.NORMAL;

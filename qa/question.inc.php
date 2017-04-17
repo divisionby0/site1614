@@ -39,7 +39,7 @@ Logger::logMessage("useraccess: ".$userAccess);
 		<div class="grid2">
 			<div class="left_column">
 						<div class="content">
-							<figure class="author">
+							<figure id="questionContainer" class="author" data-createdDateTime="<? echo $Q['when_added'] ?>" data-authorid="<? echo $Q['user_id'] ?>">
 								<a href="#"><img src="<? echo $Q['user_avatar'] ?>" alt=""></a>
 								<p><a href="#" class="green">
 										<? echo $Q["user_name"] ?>
@@ -115,7 +115,7 @@ foreach ($answers as $a)
 		$best_comment=$a;
 	}
 ?>
-								<table class="comment<? if ($a["level"]==1) echo " secondlevel"; if ($a["level"]>1) echo " thirdlevel"; ?>" cellpadding="0" cellspacing="0" id="comment<? echo $a["answer_id"] ?>">
+								<table class="comment<? if ($a["level"]==1) echo " secondlevel"; if ($a["level"]>1) echo " thirdlevel"; ?>" cellpadding="0" cellspacing="0" id="comment<? echo $a["answer_id"] ?>" data-answercreationdatetime="<? echo $a["when_added"] ?>" data-owneruserid="<? echo $a["user_id"] ?>" data-answerid="<? echo $a["answer_id"] ?>">
 									<tr>
 										<td	valign="top" class="left"><? echo ($a["level"] ? "<span>".($a["level"]+1)."</span>" : "") ?><a href="#"><img src="<? echo $a["user_avatar_url"] ?>" alt=""></a></td>
 										<td valign="top" class="right">
