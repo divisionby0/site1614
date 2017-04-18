@@ -22,8 +22,6 @@ else{
 	$userId = - 1;
 }
 
-
-
 $userAccess = $_SESSION['steam_user']['access'];
 if(!isset($userAccess)){
 	$userAccess = 5; // not authorized

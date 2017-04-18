@@ -111,5 +111,6 @@
     new QuestionEdit();
     new AnswerDelete();
     new AnswerEdit();
+    new AddQuestionPageView();
   });
 })(jQuery);

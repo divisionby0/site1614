@@ -1,4 +1,14 @@
-		<div id="contentType" style="display: none;">addQuestionPageContent</div>
+<?php
+
+$userAccess = $_SESSION['steam_user']['access'];
+if(!isset($userAccess)){
+	$userAccess = 5; // not authorized
+}
+
+echo '<div style="display: none;" id="userAccess">'.$userAccess.'</div>';
+
+?>
+<div id="contentType" style="display: none;">addQuestionPageContent</div>
 		<h1 class="left">Новый вопрос от имени 
 			<select name="name" form="question" id="questionAuthorName">
 				<option value="<? echo $_SESSION['steam_user']['user_id'] ?>"><? echo $_SESSION['steam_user']['name'] ?></option>

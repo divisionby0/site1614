@@ -1,8 +1,13 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/remote/steam/steamsignin.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/remote/bot/Bot.php');
 ?>
 <header>
-		<p id="botNameContainer">BOT Eliot: Comeback Israel</p>
+		<?php
+		$bot = new Bot();
+		$botName = $bot->getName("1");
+		echo "<p id='botNameContainer' data-botname='".$botName."'>".$botName.": Comeback Israel</p>";
+		?>
 
 	<?php if(isset($_SESSION['steam_user'])): ?>
 		<ul class="auth" style="background:url(<?= $_SESSION['steam_user']['avatar']?>) no-repeat;">
