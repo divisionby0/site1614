@@ -28,7 +28,6 @@
 	<script src="/js/lib/moment.min.js"></script>
 	<script src="/js/main.js"></script>
 	<script src="/js/answerCreation.js"></script>
-	<script src="/js/questionCreationAddBotName.js"></script>
 	<script src="/js/voting.js"></script>
 	<script src="/js/scrolltotop.js"></script>
 

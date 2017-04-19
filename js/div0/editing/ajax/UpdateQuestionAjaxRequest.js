@@ -9,7 +9,7 @@ var UpdateQuestionAjaxRequest = (function(){
                 url: '../../div0/question/update/ajax/UpdateQuestionAjax.php',
                 data: 'questionId='+questionId+"&questionContent="+questionContent+"&section="+section+"&title="+title+"&userId="+userId,
                 success: function(data){
-                    //console.log("update response: "+data);
+                    console.log("question update response: "+data);
                     EventBus.dispatchEvent("QUESTION_UPDATE_REQUEST_RESULT", data);
                 },
                 error: function (jqXHR, exception) {

@@ -22,7 +22,7 @@ class UpdateQuestionRequest  extends Remote
             $res = $stmt->fetch();
             $modifierName = $res["username"];
 
-            $result = array("result"=>"complete", "modificationDateTime"=>$modificationDateTimeString, "modifierName"=>$modifierName);
+            $result = array("result"=>"complete", "modificationDateTime"=>$modificationDateTimeString, "modifierName"=>$modifierName,"title"=>$title);
             echo json_encode($result);
         }
         else{

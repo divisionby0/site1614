@@ -32,7 +32,7 @@ echo '<div style="display: none;" id="userId">'.$userId.'</div>';
 echo '<div style="display: none;" id="userAccess">'.$userAccess.'</div>';
 ?>
 
-<h1 class="left">
+<h1 class="left" id="questionTitleContainer">
 	<?
 	echo $Q["question_title"] ;
 	?>

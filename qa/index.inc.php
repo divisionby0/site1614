@@ -8,10 +8,15 @@ include_once ("../div0/voting/VotesElementColor.php");
 		<div class="news__row">
 			<h2>Новые вопросы</h2>
 <?php
+
 function RenderQList($questions, $limit=5, $page=1)
 {
 	foreach ($questions as $i=>$q)
 	{
+
+        //Logger::logMessage("question:");
+        //var_dump($q);
+
 		if ($i<($page-1)*$limit) continue;
 		if ($i>$page*$limit-1) break;
 ?>
@@ -60,15 +65,17 @@ function RenderQList($questions, $limit=5, $page=1)
 <?php
 	}
 }
-$Questions=$qa->getQuestions("qq.when_added>'".date("Y-m-d H:i:s", time()-7*24*60*60)."'", "qq.votes");
+//$Questions=$qa->getQuestions("qq.when_added>'".date("Y-m-d H:i:s", time()-7*24*60*60)."'", "qq.votes");
+$Questions=$qa->getQuestions("qq.when_added>'".date("Y-m-d H:i:s", time()-7*24*60*60)."'");
+
 RenderQList($Questions, 5, $CurrPage);
 ?>
 		</div>
 		<div class="right_side">
 			<h2>Популярные за неделю</h2>
 <?php
-
-RenderQList($Questions, 4);
+$Questions=$qa->getQuestions("qq.when_added>'".date("Y-m-d H:i:s", time()-7*24*60*60)."'", "qq.answers");
+RenderQList($Questions, 5);
 ?>
 			</div>
 		

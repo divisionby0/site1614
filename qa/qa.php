@@ -64,6 +64,27 @@ class QA extends Remote{
         return $res;
     }
 
+	/*
+    function getQuestionsOrderByAnswersTotal($where="", $order="qq.when_added"){
+        $stmt = $this->db->prepare("SELECT
+			qq.id as question_id,
+			qs.name as section_name,
+			qs.uri as section_uri,
+			qq.title as question_title,
+			qq.when_added as when_added,
+			qq.views as views,
+			qq.votes as votes,
+			qq.answers as answers,
+			qq.f_imaged as f_imaged,
+			qq.f_sticked as f_sticked,
+			su.username as user_name
+			FROM qa_questions qq, qa_sections qs, steam_user su WHERE qq.section_id=qs.id AND qq.user_id=su.id ".($where ? " AND ".$where : "")." ORDER BY ".$order." DESC");
+        $stmt->execute();
+        $res = $stmt->fetchAll();
+        return $res;
+    }
+	*/
+
 
     function getQuestion($id=0, $UserID=0){
 		if (!$id) return NULL;

@@ -6,7 +6,6 @@ if(!isset($userAccess)){
 }
 
 echo '<div style="display: none;" id="userAccess">'.$userAccess.'</div>';
-
 ?>
 <div id="contentType" style="display: none;">addQuestionPageContent</div>
 		<h1 class="left">Новый вопрос от имени 
