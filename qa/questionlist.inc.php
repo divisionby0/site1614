@@ -29,7 +29,7 @@ foreach ($Questions as $i=>$q)
 													?>
 													от
 													<a href="#" title="Профиль пользователя <? echo $q["user_name"] ?>"><? echo $q["user_name"] ?></a></b></span></div>
-										<h4><a href="/qa/<? echo $q["question_id"] ?>/"><? echo $q["question_title"] ?></a></h4>
+										<h4><a href="/qa/<? echo $q["question_id"] ?>/"><? echo StringUtil::uppercaseFirstCharacter($q["question_title"]) ?></a></h4>
 										<ul>
 										  <li><a href="/qa/<? echo $q["section_uri"] ?>/"><? echo $q["section_name"] ?></a></li>
 										  <li><? echo $q["views"] ?> просмотров</li>

@@ -126,7 +126,7 @@ elseif (preg_match("|/qa/([0-9]+)/|", $uri, $m)) {
 	$qa->viewQuestion($QuestionID);
 	$Q=$qa->getQuestion($QuestionID, (isset($_SESSION['steam_user']['user_id']) ? $_SESSION['steam_user']['user_id'] : 0));
 
-	$AddBreadcrupms='<li><img src="/i/bullet.png" alt=""></li><li><a href="/qa/'.$Q["section_uri"].'/">'.$Q["section_name"].'</a></li><li><img src="/i/bullet.png" alt=""></li><li>'.$Q["question_title"].'</li>';
+	$AddBreadcrupms='<li><img src="/i/bullet.png" alt=""></li><li><a href="/qa/'.$Q["section_uri"].'/">'.$Q["section_name"].'</a></li><li><img src="/i/bullet.png" alt=""></li><li>'.StringUtil::uppercaseFirstCharacter($Q["question_title"]).'</li>';
 	$inc="question.inc.php";
 }
 

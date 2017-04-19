@@ -34,7 +34,7 @@ echo '<div style="display: none;" id="userAccess">'.$userAccess.'</div>';
 
 <h1 class="left" id="questionTitleContainer">
 	<?
-	echo $Q["question_title"] ;
+	echo StringUtil::uppercaseFirstCharacter($Q["question_title"]);
 	?>
 </h1>
 		<div class="grid2">
@@ -96,7 +96,7 @@ foreach ($AnotherQuestions as $i=>$aq)
 										<a href="#" class="green"><? echo $aq["user_name"] ?></a>
 									</p>
 
-									<h5><a href="/qa/<? echo $aq["question_id"] ?>/"><? echo $aq["question_title"] ?></a></h5>
+									<h5><a href="/qa/<? echo $aq["question_id"] ?>/"><? echo StringUtil::uppercaseFirstCharacter($aq["question_title"]) ?></a></h5>
 									<ul>
 										<? if ($aq["votes"]) { ?><li><strong style="color:#f9cc4f" title="Кол-во патронов"><? echo $aq["votes"] ?></strong></li><? } ?>
 										<li><? echo $aq["views"] ?> просмотров</li>
@@ -279,7 +279,7 @@ if (isset($_SESSION['steam_user']['user_id']))
 											</div>
 
 											<input type="hidden" name="qid" value="<? echo $QuestionID ?>" id="questionIdInput">
-											<button type="submit" class="formCommentButton" onclick='send_form(this)'>Ответить</button>
+											<button type="submit" class="formCommentButton" id="newAnswerButton">Ответить</button>
 											<a href="#loginforcomment" class="cancel" style="display:none;">Отменить</a>
 										</form>
 									</div>

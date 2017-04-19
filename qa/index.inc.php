@@ -52,7 +52,7 @@ function RenderQList($questions, $limit=5, $page=1)
                         </b>
                     </span>
                 </div>
-                <h4><a href="/qa/<?php echo $q["question_id"] ?>/"><?php echo $q["question_title"] ?></a></h4>
+                <h4><a href="/qa/<?php echo $q["question_id"] ?>/"><?php echo StringUtil::uppercaseFirstCharacter($q["question_title"]) ?></a></h4>
                 <ul>
                   <li><a href="/qa/<?php echo $q["section_uri"] ?>/"><?php echo $q["section_name"] ?></a></li>
                   <li><?php echo $q["views"] ?> просмотров</li>

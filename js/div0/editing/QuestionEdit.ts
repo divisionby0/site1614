@@ -9,10 +9,11 @@ class QuestionEdit{
     private $j:any;
     private editButton:any;
     private updateButton:any;
+    private cancelUpdateButton:any;
     private questionId:string;
 
-    private static NORMAL:string = "normal";
-    private static EDITING:string = "editing";
+    public static NORMAL:string = "normal";
+    public static EDITING:string = "editing";
     private state:string;
 
     private questionView:any;
@@ -27,6 +28,8 @@ class QuestionEdit{
 
     private isOwner:boolean = false;
     private useTimeout:boolean = false;
+
+    private questionInitText:string;
 
     constructor(){
         this.$j = jQuery.noConflict();
@@ -49,6 +52,7 @@ class QuestionEdit{
     private getChildren():void {
         this.editButton = this.$j("#editQuestionButton");
         this.updateButton = this.$j("#updateEditedQuestionButton");
+        this.cancelUpdateButton = this.$j("#cancelUpdatingEditedQuestionButton");
         this.questionView = this.$j(".questionView");
         this.sectionsSelect = this.$j("#editQuestionSectionsSelect");
         this.questionTitleElement = this.$j("#questionTitleInput");
@@ -56,10 +60,21 @@ class QuestionEdit{
     private createListeners():void {
         this.editButton.click(()=>this.onEditButtonClicked());
         this.updateButton.click(()=>this.onSaveButtonClicked());
+        this.cancelUpdateButton.click(()=>this.onCancelEditButtonClicked());
         this.sectionsSelect.change(()=>this.onSectionChanged());
     }
 
+    private onCancelEditButtonClicked():void{
+        this.state = QuestionEdit.NORMAL;
+        this.onStateChanged();
+        this.$j("#editQuestionTextArea").val(this.questionInitText);
+    }
+
     private onEditButtonClicked():void {
+
+        this.questionInitText = this.$j("#editQuestionTextArea").val();
+        console.log("question init text: "+this.questionInitText);
+
         this.state = QuestionEdit.EDITING;
         this.onStateChanged();
     }
@@ -105,6 +120,7 @@ class QuestionEdit{
             this.showSectionsSelect();
             this.showQuestionTitleElement();
         }
+        EventBus.dispatchEvent("QUESTION_EDITOR_STATE_CHANGED", {state:this.state});
     }
 
     private hideQuestionTitleElement():void {
@@ -142,9 +158,11 @@ class QuestionEdit{
 
     private showSaveButton():void {
         this.updateButton.show();
+        this.cancelUpdateButton.show();
     }
     private hideSaveButton():void {
         this.updateButton.hide();
+        this.cancelUpdateButton.hide();
     }
 
     private onSectionChanged():void {

@@ -796,7 +796,12 @@ div.content div.edited {
   font:normal 1.3em helios, verdana, arial, sans-serif;
 }
 
-div.content div.more_questions 		{margin:52px 0 0 80px;overflow: hidden;}
+div.content div.more_questions
+{
+  margin:52px 0 0 80px;
+  overflow: hidden;
+  padding-top: 30px;
+}
 			div.more_questions div	{float: left;width:48%}
 			div.more_questions h4	{margin-left:0;margin-bottom: 22px;}
 			div.more_questions div h5 {margin: 10px 50px 10px 0;font:normal 1.5em helios, verdana, arial, sans-serif;line-height: 1.5;}
@@ -1574,15 +1579,15 @@ div.copyright form input {
   font-size: 2em !important;
 }
 .editQuestionTitleInput{
-  margin: 10px;
-  width:84.5%;
+  padding: 10px;
+  width:100%;
   border:none;
   color:#fff;
   font-size:1.8em;
   background:#424242;
 }
 .answerModifierInfo{
-  margin: 0 !important;
+  margin: 0 0 0 18px !important;
   color:#292724;
   font:normal 1em helios, verdana, arial, sans-serif !important;
 }
@@ -1626,10 +1631,17 @@ div.copyright form input {
 }
 
 .editQuestionControlsContainer{
-  margin: 15px 0 0 80px;
+  /*margin: 15px 0 0 80px;*/
   min-height: 40px;
 }
 .editQuestionControlsContainer li{
+  float: left;
+  margin-right: 27px;
+  display: inline;
+}
+
+.pinQuestionControlsContainer{
+  margin: 15px 0 0 80px;
   float: left;
   margin-right: 27px;
   display: inline;

@@ -19,6 +19,7 @@ var QuestionEdit = (function () {
     QuestionEdit.prototype.getChildren = function () {
         this.editButton = this.$j("#editQuestionButton");
         this.updateButton = this.$j("#updateEditedQuestionButton");
+        this.cancelUpdateButton = this.$j("#cancelUpdatingEditedQuestionButton");
         this.questionView = this.$j(".questionView");
         this.sectionsSelect = this.$j("#editQuestionSectionsSelect");
         this.questionTitleElement = this.$j("#questionTitleInput");
@@ -27,9 +28,17 @@ var QuestionEdit = (function () {
         var _this = this;
         this.editButton.click(function () { return _this.onEditButtonClicked(); });
         this.updateButton.click(function () { return _this.onSaveButtonClicked(); });
+        this.cancelUpdateButton.click(function () { return _this.onCancelEditButtonClicked(); });
         this.sectionsSelect.change(function () { return _this.onSectionChanged(); });
     };
+    QuestionEdit.prototype.onCancelEditButtonClicked = function () {
+        this.state = QuestionEdit.NORMAL;
+        this.onStateChanged();
+        this.$j("#editQuestionTextArea").val(this.questionInitText);
+    };
     QuestionEdit.prototype.onEditButtonClicked = function () {
+        this.questionInitText = this.$j("#editQuestionTextArea").val();
+        console.log("question init text: " + this.questionInitText);
         this.state = QuestionEdit.EDITING;
         this.onStateChanged();
     };
@@ -66,6 +75,7 @@ var QuestionEdit = (function () {
             this.showSectionsSelect();
             this.showQuestionTitleElement();
         }
+        EventBus.dispatchEvent("QUESTION_EDITOR_STATE_CHANGED", { state: this.state });
     };
     QuestionEdit.prototype.hideQuestionTitleElement = function () {
         this.questionTitleElement.hide();
@@ -98,9 +108,11 @@ var QuestionEdit = (function () {
     };
     QuestionEdit.prototype.showSaveButton = function () {
         this.updateButton.show();
+        this.cancelUpdateButton.show();
     };
     QuestionEdit.prototype.hideSaveButton = function () {
         this.updateButton.hide();
+        this.cancelUpdateButton.hide();
     };
     QuestionEdit.prototype.onSectionChanged = function () {
         this.currentSection = this.sectionsSelect.val();

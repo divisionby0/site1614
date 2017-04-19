@@ -1,4 +1,5 @@
 ///<reference path="../events/EventBus.ts"/>
+///<reference path="../editing/QuestionEdit.ts"/>
 declare var DeleteQuestionAjaxRequest:any;
 declare var GetQuestionsPageUrlAjaxRequest:any;
 class QuestionDelete{
@@ -15,6 +16,7 @@ class QuestionDelete{
         EventBus.addEventListener("QUESTION_DELETE_REQUEST_RESULT", (response)=>this.onDeleteRequestComplete(response));
         EventBus.addEventListener("QUESTION_DELETE_REQUEST_ERROR", (response)=>this.onDeleteRequestError(response));
         EventBus.addEventListener("GET_QUESTIONS_PAGE_URL_REQUEST_RESULT", (response)=>this.onGetQuestionsPageRequestComplete(response));
+        EventBus.addEventListener("QUESTION_EDITOR_STATE_CHANGED", (data)=>this.onQuestionsEditorStateChanged(data));
     }
 
     private getButton():void {
@@ -41,5 +43,15 @@ class QuestionDelete{
     private onGetQuestionsPageRequestComplete(response:string):void {
         var data = JSON.parse(response);
         window.location.href = data.url;
+    }
+
+    private onQuestionsEditorStateChanged(data:any):void{
+        console.log("question editor state changed to "+data.state);
+        if(data.state == QuestionEdit.EDITING){
+            this.deleteButton.hide();
+        }
+        else{
+            this.deleteButton.show();
+        }
     }
 }

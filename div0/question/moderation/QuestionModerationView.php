@@ -36,10 +36,10 @@ class QuestionModerationView
     }
 
     private function createQuestionEditElement($question){
-        echo "<div id='editQuestionHeader' style='width: 100%; text-align:center; color:red; display: none; padding: 20px;'>";
+        echo "<div id='editQuestionHeader' style='width: 100%; text-align:center; color:red; display: none; padding: 20px; float: left;'>";
         echo "<h1>Редактирование вопроса</h1></div>";
-        echo "<input type='text' id='questionTitleInput' value='".$question["question_title"]."' style='display:none;' class='editQuestionTitleInput'>";
-        echo "<textarea id='editQuestionTextArea' style='display: none; height: 500px;' cols='30' rows='8'>".$question["question_text"]."</textarea>";
+        echo "<input type='text' id='questionTitleInput' value='".StringUtil::uppercaseFirstCharacter($question["question_title"])."' style='display:none;' class='editQuestionTitleInput'>";
+        echo "<textarea id='editQuestionTextArea' style='display: none; height: 500px; float: left;' cols='20' rows='8'>".$question["question_text"]."</textarea>";
     }
 
     private function showQuestionEdit($question, $sections, $questionSection, $questionId, $userId){

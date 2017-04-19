@@ -13,7 +13,7 @@ class IndexPageQuestionRenderer
         $this->containerClass = "question";
 
         $id = $question["question_id"];
-        $title = $question["question_title"];
+        $title = StringUtil::uppercaseFirstCharacter($question["question_title"]);
         $this->questionHasImage = $question["f_imaged"] == 1 ? true:false;
         $rating = $question["votes"];
         $ratingColor = RatingColorUtil::getColor($rating);

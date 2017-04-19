@@ -12,7 +12,8 @@ class AnswerForm{
     }
 
     public create(action:string, avatar:string, parentNodeAuthorName:string, questionId:string, parentAnswerId:string):void{
-        
+
+        console.log("AnswerForm create");
         var respond:any = this.$j('<div id="respond"></div>');
         var formContainer:any = this.$j('<div class="send"></div>');
         var form:any = this.$j("<form action='"+action+"'></form>");
@@ -54,9 +55,10 @@ class AnswerForm{
         this.submitButton.click((event)=>this.onSubmitButtonClick(event));
     }
 
-    private onSubmitButtonClick(event):void {
+    private onSubmitButtonClick(event):boolean {
         event.preventDefault();
         console.log("on submit button clicked");
+        return false;
     }
 
     private createEditor():void{

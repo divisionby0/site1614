@@ -5,6 +5,7 @@ var AnswerForm = (function () {
         this.$j = jQuery.noConflict();
     }
     AnswerForm.prototype.create = function (action, avatar, parentNodeAuthorName, questionId, parentAnswerId) {
+        console.log("AnswerForm create");
         var respond = this.$j('<div id="respond"></div>');
         var formContainer = this.$j('<div class="send"></div>');
         var form = this.$j("<form action='" + action + "'></form>");
@@ -38,6 +39,7 @@ var AnswerForm = (function () {
     AnswerForm.prototype.onSubmitButtonClick = function (event) {
         event.preventDefault();
         console.log("on submit button clicked");
+        return false;
     };
     AnswerForm.prototype.createEditor = function () {
         var wysiwygEditor = new WYSIWYGEditor();
