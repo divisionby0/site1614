@@ -26,7 +26,7 @@
 	<script src="/js/jquery.jscrollpane.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"></script>
 	<script src="/js/lib/moment.min.js"></script>
-	<script src="/js/main.js"></script>
+	<!--<script src="/js/main.js"></script>-->
 	<script src="/js/answerCreation.js"></script>
 	<script src="/js/voting.js"></script>
 	<script src="/js/scrolltotop.js"></script>
@@ -55,6 +55,7 @@ echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/deleting/ajax/Delete
 echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/deleting/AnswerDelete.js"></script>';
 echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/deleting/ajax/DeleteAnswerAjaxRequest.js"></script>';
 
+echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/editing/QuestionEditTimeout.js"></script>';
 echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/editing/QuestionEdit.js"></script>';
 echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/editing/ajax/UpdateQuestionAjaxRequest.js"></script>';
 
@@ -76,3 +77,4 @@ echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/js/div0/voting/colors.js"></
 	<script src="/js/div0/view/AnswerForm.js"></script>
 	<!--<script src="/js/div0/voting/QuestionVoting.js"></script>-->
 	<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>

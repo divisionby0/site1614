@@ -5,6 +5,6 @@ class QuestionDeleteView
 {
     public function __construct($id)
     {
-        echo '<td><input id="deleteQuestionButton" value="Удалить вопрос" type="button" data-questionId="'.$id.'"/></td>';
+        echo '<li><a href="#" id="deleteQuestionButton" class="delete deleteQuestionButton" data-questionId="'.$id.'">Удалить вопрос</a></li>';
     }
 }

@@ -1,7 +1,7 @@
 
 (function () {
 
-  //var $ = jQuery.noConflict();
+  var $ = jQuery.noConflict();
 
   $(document).ready(function ($) {
     

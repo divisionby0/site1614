@@ -1,5 +1,6 @@
+var $ = jQuery.noConflict();
 $(document).ready(function ($){
-
+    
     var subAnswerForm;
 
     $('.otvet').click(function (evt){

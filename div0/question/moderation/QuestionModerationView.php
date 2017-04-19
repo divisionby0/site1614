@@ -11,10 +11,6 @@ class QuestionModerationView
         $isNewsmaker = $userAccess ===  "2";
         $isUser = $userAccess ===  "3";
 
-        //Logger::logError("isModerator: ".$isModerator);
-        //Logger::logError("isNewsmaker: ".$isNewsmaker);
-        //Logger::logError("isUser: ".$isUser);
-
         $questionSection = $question["section_id"];
         $questionPinedDate = $question["pinedTill"];
 
@@ -25,7 +21,7 @@ class QuestionModerationView
             $isOwn = 1;
         }
 
-        echo "<table id='editQuestionContainer' style='width: 100%;'><tbody><tr>";
+        echo "<ul id='editQuestionContainer' style='width: 100%;' class='editQuestionControlsContainer'>";
         if($isModerator){
             new QuestionPinView($questionPinedDate);
             $this->showQuestionEdit($question, $sections, $questionSection, $questionId, $userId);
@@ -36,11 +32,12 @@ class QuestionModerationView
             new QuestionDeleteView($questionId);
         }
 
-        echo "</tr></tbody></table>";
+        echo "</ul>";
     }
 
     private function createQuestionEditElement($question){
-        echo "<div id='editQuestionHeader' style='width: 100%; text-align:center; color:red; display: none; padding: 20px;'><h1>Редактирование вопроса</h1></div>";
+        echo "<div id='editQuestionHeader' style='width: 100%; text-align:center; color:red; display: none; padding: 20px;'>";
+        echo "<h1>Редактирование вопроса</h1></div>";
         echo "<input type='text' id='questionTitleInput' value='".$question["question_title"]."' style='display:none;' class='editQuestionTitleInput'>";
         echo "<textarea id='editQuestionTextArea' style='display: none; height: 500px;' cols='30' rows='8'>".$question["question_text"]."</textarea>";
     }

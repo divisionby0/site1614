@@ -1597,6 +1597,18 @@ div.copyright form input {
   color: #5aa0de !important;
 }
 
+.editQuestionButton{
+  display: inline-block;
+  font: normal 1.1em helios, verdana, arial, sans-serif;
+  color: #7f7f7f;
+  text-decoration: none!important;
+  background: url(/i/dotted_u.png) repeat-x left 11px;
+}
+.editQuestionButton:hover{
+  cursor: hand;
+  color: #5aa0de !important;
+}
+
 .editAnswerTextArea{
   display: block;
   float: left;
@@ -1605,6 +1617,22 @@ div.copyright form input {
 .answerEditingStateButton{
   display: block;
   float: left;
+}
+
+.deleteQuestionButton{
+  color: #4f0202;
+  background: none;
+  text-decoration: none;
+}
+
+.editQuestionControlsContainer{
+  margin: 15px 0 0 80px;
+  min-height: 40px;
+}
+.editQuestionControlsContainer li{
+  float: left;
+  margin-right: 27px;
+  display: inline;
 }
 
 

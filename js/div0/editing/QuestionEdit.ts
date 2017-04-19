@@ -1,4 +1,5 @@
 ///<reference path="../events/EventBus.ts"/>
+///<reference path="QuestionEditTimeout.ts"/>
 declare var WYSIWYGEditor:any;
 declare var tinymce:any;
 declare var UpdateQuestionAjaxRequest:any;
@@ -35,6 +36,8 @@ class QuestionEdit{
         this.currentSection = this.$j("#questionSectionInput").val();
         this.userId = this.$j("#userId").text();
 
+        new QuestionEditTimeout();
+        
         this.createListeners();
 
         this.state = QuestionEdit.NORMAL;

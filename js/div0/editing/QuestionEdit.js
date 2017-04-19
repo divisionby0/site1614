@@ -1,4 +1,5 @@
 ///<reference path="../events/EventBus.ts"/>
+///<reference path="QuestionEditTimeout.ts"/>
 var QuestionEdit = (function () {
     function QuestionEdit() {
         var _this = this;
@@ -9,6 +10,7 @@ var QuestionEdit = (function () {
         this.questionId = this.editButton.data("questionid");
         this.currentSection = this.$j("#questionSectionInput").val();
         this.userId = this.$j("#userId").text();
+        new QuestionEditTimeout();
         this.createListeners();
         this.state = QuestionEdit.NORMAL;
         this.onStateChanged();

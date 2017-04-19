@@ -5,8 +5,8 @@ var AnswerEditTimeout = (function () {
         this.NEWSMAKER = 2;
         this.USER = 3;
         this.UNAUTHORIZED_USER = 4;
-        this.minAnswerDurationMinutesTillEditDisabled = 0;
-        this.maxAnswerDurationMinutesTillEditDisabled = 10; // 10 minutes
+        this.minDurationMinutesTillEditDisabled = 0;
+        this.maxDurationMinutesTillEditDisabled = 10; // 10 minutes
         this.$j = jQuery.noConflict();
         this.userId = this.$j("#userId").text();
         this.userAccess = parseInt(this.$j("#userAccess").text());
@@ -25,9 +25,9 @@ var AnswerEditTimeout = (function () {
             var currentDateTime = moment();
             var creationDateTime = moment(answerCreationDateTime);
             var durationMinutes = (currentDateTime - creationDateTime) / 1000 / 60;
-            if (durationMinutes < this.maxAnswerDurationMinutesTillEditDisabled) {
-                if (this.minAnswerDurationMinutesTillEditDisabled < durationMinutes) {
-                    this.minAnswerDurationMinutesTillEditDisabled = durationMinutes;
+            if (durationMinutes < this.maxDurationMinutesTillEditDisabled) {
+                if (this.minDurationMinutesTillEditDisabled < durationMinutes) {
+                    this.minDurationMinutesTillEditDisabled = durationMinutes;
                 }
             }
             else {

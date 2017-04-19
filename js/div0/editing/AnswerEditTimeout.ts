@@ -9,8 +9,8 @@ class AnswerEditTimeout{
     private USER:number = 3;
     private UNAUTHORIZED_USER:number = 4;
 
-    private minAnswerDurationMinutesTillEditDisabled:number = 0;
-    private maxAnswerDurationMinutesTillEditDisabled:number = 10; // 10 minutes
+    private minDurationMinutesTillEditDisabled:number = 0;
+    private maxDurationMinutesTillEditDisabled:number = 10; // 10 minutes
 
     private userAccess:number;
 
@@ -39,9 +39,9 @@ class AnswerEditTimeout{
             var creationDateTime = moment(answerCreationDateTime);
             var durationMinutes:number = (currentDateTime - creationDateTime)/1000/60;
 
-            if(durationMinutes < this.maxAnswerDurationMinutesTillEditDisabled){
-                if(this.minAnswerDurationMinutesTillEditDisabled < durationMinutes){
-                    this.minAnswerDurationMinutesTillEditDisabled = durationMinutes;
+            if(durationMinutes < this.maxDurationMinutesTillEditDisabled){
+                if(this.minDurationMinutesTillEditDisabled < durationMinutes){
+                    this.minDurationMinutesTillEditDisabled = durationMinutes;
                 }
             }
             else{

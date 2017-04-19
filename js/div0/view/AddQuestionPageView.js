@@ -1,7 +1,6 @@
 var AddQuestionPageView = (function () {
     function AddQuestionPageView() {
         this.$j = jQuery.noConflict();
-        console.log("AddQuestionPageView");
         var botNameContainer = this.$j("#botNameContainer");
         var botName = botNameContainer.data("botname");
         var userAccess = parseInt(this.$j("#userAccess").text());
