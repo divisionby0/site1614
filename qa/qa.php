@@ -1,6 +1,6 @@
 <?php
 require_once(__DIR__ . '/../remote/Remote.php');
-
+include_once($_SERVER['DOCUMENT_ROOT'].'/div0/utils/StringUtil.php');
 class QA extends Remote{
 	
 	public function __construct()
@@ -52,6 +52,7 @@ class QA extends Remote{
 			qs.uri as section_uri,
 			qq.title as question_title,
 			qq.when_added as when_added,
+			qq.pinedTill as pinedTill,
 			qq.views as views,
 			qq.votes as votes,
 			qq.answers as answers,
@@ -148,12 +149,14 @@ class QA extends Remote{
 
     function addQuestion($question){
 
-		$hasImage = "0";
+		$hasImage = StringUtil::hasImageTag($question["text"]);
+		/*
 		$currentDate = new DateTime();
 		$pos = strpos($question["text"], "<img src=");
 		if(isset($pos) && $pos!==false){
 			$hasImage = "1";
 		}
+		*/
 
         $stmt = $this->db->prepare("INSERT INTO qa_questions SET section_id=:section_id, title=:title, text=:text, when_added=NOW(), user_id=:user_id, editor_id=:user_id, f_imaged=:imaged, pinedTill=:pinedTill");
 
@@ -164,7 +167,7 @@ class QA extends Remote{
 				":text" => $question["text"],
 				":user_id" => $question["user_id"],
 				":imaged" => $hasImage,
-				":pinedTill" => $currentDate->format("Y-m-d")
+				":pinedTill" => "2015-01-01"
 			)
 		);
 

@@ -9,11 +9,15 @@
   <?php
   require_once("+/meta.php");
   include_once ("div0/utils/Logger.php");
+  include_once('qa/qa.php');
+  include_once('div0/IndexPageQuestionCollectionView.php');
   ?>
 </head>
 
 <body>
-  <?php require_once("+/header.php");?>
+  <?php
+  require_once("+/header.php");
+  ?>
     <!-- content -->
     <main class="index">
 <?php
@@ -180,105 +184,17 @@
         </div>
 
         <div class="all"><a href="#">Все сводки</a></div>
-
       </div>
+
 
       <div class="right_side">
         <h2><a href="#">Новые вопросы</a></h2>
-		
-		<div class="question sticked">
-          <img src="/i/img-inside.png" alt="" title="Вопрос подкреплён изображением или скриншотом" />
-          <table>
-            <tr>
-               <td valign="middle" align="center" width="50"><span class="patrons" style="color:#735f27" title="Кол-во патронов">18</span></td>
-              <td>
-                <div class="svodki_info_news"><span><b>Сегодня от <a href="#" title="Профиль пользователя Ugin">Ugin</a></b></span></div>
-                <h4><a href="#">Ошибка(Pure server: file [GAME]\pak01_001.vpk does not match the...</a></h4>
-                <ul>
-                  <li><a href="#">технические проблемы</a></li>
-                  <li>137 просмотров</li>
-                  <li>Ждёт ответа</li>
-                </ul>
-              </td>
-            </tr>
-          </table>
-        </div>
-		
-		<div class="question ">
-          <img src="/i/img-sticked.png" alt="" title="Закреплено" />
-          <table>
-            <tr>
-              <td valign="middle" align="center" width="50"><span class="patrons" style="color:#f9cc4f" title="Кол-во патронов">0</span></td>
-              <td>
-                <div class="svodki_info_news"><span><b>Сегодня от <a href="#" title="Профиль пользователя Levitas">Levitas</a></b></span></div>
-                <h4><a href="#">Внимание! Внимание! Говорит Германия</a></h4>
-                <ul>
-                  <li><a href="#">о проекте</a></li>
-                  <li>137 просмотров</li>
-                  <li>Ждёт ответа</li>
-                </ul>
-              </td>
-            </tr>
-          </table>
-        </div>
 
-        <div class="question">
-          <table>
-            <tr>
-              <td valign="middle" align="center" width="50"><span class="patrons" style="color:#735f27" title="Кол-во патронов">22</span></td>
-              <td>
-                <div class="svodki_info_news"><span><b>1 час назад от <a href="#" title="Профиль пользователя B3r1m0R">B3r1m0R</a></b></span></div>
-                <h4><a href="#">4:3 растянутый на windows 10</a></h4>
-                <ul>
-                  <li><a href="#">технические проблемы</a></li>
-                  <li>137 просмотров</li>
-                  <li><a href="#" class="svodki_comment_link">2 ответа</a>&nbsp;
-                    <a href="#" title="Перейти к последнему ответу" class="last_comment"></a>
-                  </li>
-                  <li></li>
-                </ul>
-              </td>
-            </tr>
-          </table>
-        </div>
-
-        <div class="question">
-          <table>
-            <tr>
-              <td valign="middle" align="center" width="50"><span class="patrons" style="color:#f9cc4f" title="Кол-во патронов">1&nbsp;012</span></td>
-              <td>
-                <div class="svodki_info_news"><span><b>Сегодня от <a href="#" title="Профиль пользователя Ugin">Ugin</a></b></span></div>
-                <h4><a href="#">Ошибка(Pure server: file [GAME]\pak01_001.vpk does not match the asdasdas asdas asddddd</a></h4>
-                <ul>
-                  <li><a href="#">технические проблемы</a></li>
-                  <li>137 просмотров</li>
-                  <li>Ждёт ответа</li>
-                </ul>
-              </td>
-            </tr>
-          </table>
-        </div>
-
-        <div class="question">
-          <img src="/i/img-inside.png" alt="" title="Вопрос подкреплён изображением или скриншотом" />
-          <table>
-            <tr>
-              <td valign="middle" align="center" width="50"><span class="patrons" style="color:#735f27" title="Кол-во патронов">120</span></td>
-              <td>
-                <div class="svodki_info_news"><span><b>1 час назад от <a href="#" title="Профиль пользователя B3r1m0R">B3r1m0R</a></b></span></div>
-                <h4><a href="#">4:3 растянутый на windows 10</a></h4>
-                <ul>
-                  <li><a href="#">технические проблемы</a></li>
-                  <li>137 просмотров</li>
-                  <li><a href="#" class="svodki_comment_link">2 ответа</a>&nbsp;
-                    <a href="#" title="Перейти к последнему ответу" class="last_comment"></a>
-                  </li>
-                </ul>
-              </td>
-            </tr>
-          </table>
-        </div>
-
+          <?php
+            $db = new QA();
+            $Questions=$db->getQuestions("qq.when_added>'".date("Y-m-d H:i:s", time()-7*24*60*60)."'");
+            new IndexPageQuestionCollectionView($Questions);
+          ?>
         <div class="all"><a href="#">Все вопросы</a></div>
 
         <h2 style="margin-top:45px"><a href="#">Новое в блогах</a></h2>

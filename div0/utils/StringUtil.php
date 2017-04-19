@@ -24,4 +24,13 @@ class StringUtil
         }
         return $id;
     }
+    
+    public static function hasImageTag($text){
+        $hasImage = "0";
+        $pos = strpos($text, "<img src=");
+        if(isset($pos) && $pos!==false){
+            $hasImage = "1";
+        }
+        return $hasImage;
+    }
 }
