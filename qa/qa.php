@@ -148,18 +148,8 @@ class QA extends Remote{
     }
 
     function addQuestion($question){
-
 		$hasImage = StringUtil::hasImageTag($question["text"]);
-		/*
-		$currentDate = new DateTime();
-		$pos = strpos($question["text"], "<img src=");
-		if(isset($pos) && $pos!==false){
-			$hasImage = "1";
-		}
-		*/
-
         $stmt = $this->db->prepare("INSERT INTO qa_questions SET section_id=:section_id, title=:title, text=:text, when_added=NOW(), user_id=:user_id, editor_id=:user_id, f_imaged=:imaged, pinedTill=:pinedTill");
-
         $stmt->execute(
 			array(
 				":section_id" => $question["section_id"],

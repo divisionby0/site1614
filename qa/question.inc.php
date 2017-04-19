@@ -75,7 +75,7 @@ echo '<div style="display: none;" id="userAccess">'.$userAccess.'</div>';
 
 							echo "<div class='edited' id='questionModificationDateTimeElement'>Последний раз редактировалось ".$Q["when_edited"].". Редактор: ".$Q["editorUserName"]."</div>";
 							new QuestionModerationView($questionId, $userAccess, $Q, $sections, $userId);
-							
+
 							?>
 							
 							<div class="more_questions">

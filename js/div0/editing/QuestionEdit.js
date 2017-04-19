@@ -34,9 +34,14 @@ var QuestionEdit = (function () {
         this.onStateChanged();
     };
     QuestionEdit.prototype.onSaveButtonClicked = function () {
+        // validate title and content
+        this.questionContent = this.$j("#editQuestionTextArea").val();
+        if (this.questionTitleElement.val() == "" || this.questionContent == "") {
+            alert("Нет заголовка или текст вопроса пуст.");
+            return;
+        }
         this.state = QuestionEdit.NORMAL;
         this.onStateChanged();
-        this.questionContent = this.$j("#editQuestionTextArea").val();
         this.questionView.html(this.questionContent);
         this.$j("#questionTitleContainer").text(this.questionTitleElement.val());
         this.updateSectionLink();

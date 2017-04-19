@@ -4,8 +4,8 @@ $userAccess = $_SESSION['steam_user']['access'];
 if(!isset($userAccess)){
 	$userAccess = 5; // not authorized
 }
-
 echo '<div style="display: none;" id="userAccess">'.$userAccess.'</div>';
+
 ?>
 <div id="contentType" style="display: none;">addQuestionPageContent</div>
 		<h1 class="left">Новый вопрос от имени 
@@ -18,11 +18,10 @@ echo '<div style="display: none;" id="userAccess">'.$userAccess.'</div>';
 				
 			<div class="left_column">
 						<div class="content">
-						
 								<form class="comment" id="question" method="post">
 									<a href="#"><img src="<? echo $_SESSION['steam_user']['avatar'] ?>" alt=""></a>
 									<label for="headline">Вопрос в короткой форме:</label>
-									<input type="text" name="headline">
+									<input type="text" name="headline" id="newQuestionTitleInput">
 									<label for="text">Расширенное описание проблемы или вопроса:</label>
 
 									<div style="padding-left: 6em; padding-right: 4em;">
@@ -37,7 +36,7 @@ foreach ($sections as $section)
 }
 ?>
 												</select>	</p>
-									<button class="formCommentButton">Задать вопрос</button>
+									<button class="formCommentButton" id="createQuestionButton">Задать вопрос</button>
 								</form>
 						</div>
 			</div>
