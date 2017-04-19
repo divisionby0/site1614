@@ -34,6 +34,7 @@ class StringUtil
         return $hasImage;
     }
     public static function uppercaseFirstCharacter($text){
-        return ucfirst($text);
+        //return ucfirst($text);
+        return mb_strtoupper(mb_substr($text, 0, 1)) . mb_substr($text, 1);
     }
 }

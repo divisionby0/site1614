@@ -14,6 +14,7 @@ class IndexPageQuestionRenderer
 
         $id = $question["question_id"];
         $title = StringUtil::uppercaseFirstCharacter($question["question_title"]);
+
         $this->questionHasImage = $question["f_imaged"] == 1 ? true:false;
         $rating = $question["votes"];
         $ratingColor = RatingColorUtil::getColor($rating);
