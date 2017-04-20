@@ -44,7 +44,8 @@ function RenderQList($questions, $limit=5, $page=1)
                     <span>
                         <b>
                             <?php
-                                $timePassed = DateUtil::showDate($q["when_added"]);
+                                $creationTime = strtotime($q["when_added"]);
+                                $timePassed = DateUtil::format($creationTime);
                                 echo $timePassed;
                             ?>
                             от

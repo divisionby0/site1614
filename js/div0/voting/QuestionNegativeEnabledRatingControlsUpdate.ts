@@ -6,7 +6,12 @@ class QuestionNegativeEnabledRatingControlsUpdate extends RatingControlsUpdate{
     }
 
     protected updateChildren():void {
-        if(this.userLastValue == 1){
+        if(isNaN(this.userLastValue)){
+            console.debug("user did not change rating for this question yet");
+            this.enableNegativeButton();
+            this.enablePositiveButton();
+        }
+        else if(this.userLastValue == 1){
             this.disablePositiveButton();
             this.enableNegativeButton();
         }

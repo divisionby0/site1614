@@ -18,7 +18,11 @@ class IndexPageQuestionRenderer
         $this->questionHasImage = $question["f_imaged"] == 1 ? true:false;
         $rating = $question["votes"];
         $ratingColor = RatingColorUtil::getColor($rating);
-        $creationTimeDuration = DateUtil::showDate($question["when_added"]);
+
+        $creationTime = strtotime($question["when_added"]);
+        //$creationTimeDuration = DateUtil::showDate($question["when_added"]);
+        $creationTimeDuration = DateUtil::format($creationTime);
+
         $author = $question["user_name"];
         $sectionURI = $question["section_uri"];
         $sectionName = $question["section_name"];

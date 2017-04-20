@@ -148,10 +148,15 @@ class Voting{
 
     protected onUserLastRatingValueRequestResult(result:string):void {
         this.userLastRatingValue = parseInt(result);
+
         this.onUserLastRatingValueChanged();
     }
 
     private onUserLastRatingValueChanged():void {
+
+        //console.log("onUserLastRatingValueChanged "+this.userLastRatingValue);
+        //console.log("this.state "+this.state);
+
         if(this.state!=Voting.NEGATIVE_DISABLED){
             new QuestionNegativeEnabledRatingControlsUpdate(this.userLastRatingValue);
         }

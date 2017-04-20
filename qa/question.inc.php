@@ -46,7 +46,10 @@ echo '<div style="display: none;" id="userAccess">'.$userAccess.'</div>';
 										<? echo $Q["user_name"] ?>
 									</a>
 									<?
-									$timePastSincePostCreated = DateUtil::showDate($Q["when_added"]);
+									//$timePastSincePostCreated = DateUtil::showDate($Q["when_added"]);
+									$creationTime = strtotime($Q["when_added"]);
+									//echo 'creation time: '.$creationTime;
+									$timePastSincePostCreated = DateUtil::format($creationTime);
 									echo $timePastSincePostCreated;
 									?>
 									в
@@ -65,7 +68,21 @@ echo '<div style="display: none;" id="userAccess">'.$userAccess.'</div>';
 										<a id="voteQplus" class="pluss" title="Подсыпать патронов"></a>
 									</li>
 									<li><? echo $Q["views"] ?> просмотров</li>
-									<li id="totalAnswersInfoElement"><? echo $Q["answers"] ?> ответов <a href="#all_comments" title="Перейти к последнему комментарию" class="last_comment"></a></li>
+									<li id="totalAnswersInfoElement">
+										<?
+										$totalAnswers = $Q["answers"];
+
+										if($totalAnswers === "0"){
+											$totalAnswers = "Ждет ответа";
+										}
+										else{
+											$totalAnswers." ответов ";
+										}
+
+										echo $totalAnswers;
+										?>
+										<a href="#all_comments" title="Перейти к последнему комментарию" class="last_comment"></a>
+									</li>
 									<? if ($Q["f_approved"]) { ?><li>Одобрено модератором <a href="#" class="green">skvsk</a></li><? } ?>
 							</ul>
 							<?
@@ -89,7 +106,11 @@ foreach ($AnotherQuestions as $i=>$aq)
 ?>								<div>
 									<p>
 										<?
-											$timePassed = DateUtil::showDate($aq["when_added"]);
+											//$timePassed = DateUtil::showDate($aq["when_added"]);
+											$creationTime = strtotime($aq["when_added"]);
+											//$timePassed = DateUtil::showDate($creationTime);
+											$timePassed = DateUtil::format($creationTime);
+
 											echo $timePassed;
 										?>
 										от
@@ -135,7 +156,8 @@ foreach ($answers as $a)
 													?>
 													<a href="#" class="green"><? echo ($a["to_whom"] ? $a["to_whom"] : $Q["user_name"]) ?></a>
 													<?
-														echo DateUtil::showDate($a["when_added"]);
+														$creationTime = strtotime($a["when_added"]);
+														echo DateUtil::format($creationTime);
 													?>
 												</b>
 
@@ -271,6 +293,7 @@ if (isset($_SESSION['steam_user']['user_id']))
 								<div id="respond">
 									<div class="send">
 										<form action="/qa/<? echo $QuestionID ?>/" method="post" class="comment" id="answerForm">
+											<div id="parentAnswerContainer"></div>
 											<a href="#"><img id="avatarImage" src="<? echo $_SESSION['steam_user']['avatar'] ?>" alt=""></a>
 											<label for="answer">Напиши ответ тс'y <a href="#" class="green" id="nodeAuthorLink"><? echo $Q["user_name"] ?></a>:</label>
 											

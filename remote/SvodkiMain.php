@@ -4,7 +4,6 @@ require_once('../div0/utils/Logger.php');
 require_once('../remote/Remote.php');
 require_once('../div0/utils/DateUtil.php');
 
-
 class SvodkiMain extends Remote
 {
     public $startdate;
@@ -27,6 +26,7 @@ class SvodkiMain extends Remote
         $instagram_enabled = file_exists( 'instagram/instagram.php');
 
         $this->services = [];
+
         if($twitter_enabled){
             $this->services[] = "'twitter'";
         }
@@ -60,12 +60,15 @@ class SvodkiMain extends Remote
                 $this->counts['current'] = (int)$row['cnt'];
             }
         }
+
         $this->counts['total'] = $total;
         $this->counts['current'] = isset($this->counts['current']) ? $this->counts['current'] : $total;
         $this->counts['perpage'] = ENTRIESPERPAGE;
     }
 
     function displaySvodki($page = 0){
+        Logger::logMessage("displaySvodki");
+
         $services_enabled = implode(',', $this->services);
         $svodki = $this->getEntries($services_enabled, $page * ENTRIESPERPAGE, ENTRIESPERPAGE, $this->startdate, $this->enddate);
         if(count($svodki) > 0) {

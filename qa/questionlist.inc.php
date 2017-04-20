@@ -24,7 +24,8 @@ foreach ($Questions as $i=>$q)
 											<span>
 												<b>
 													<?
-														$timePassed = DateUtil::showDate($q["when_added"]);
+														$creationTime = strtotime($q["when_added"]);
+														$timePassed = DateUtil::format($creationTime);
 														echo $timePassed
 													?>
 													от

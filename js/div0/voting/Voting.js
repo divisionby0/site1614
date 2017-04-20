@@ -107,6 +107,8 @@ var Voting = (function () {
         this.onUserLastRatingValueChanged();
     };
     Voting.prototype.onUserLastRatingValueChanged = function () {
+        //console.log("onUserLastRatingValueChanged "+this.userLastRatingValue);
+        //console.log("this.state "+this.state);
         if (this.state != Voting.NEGATIVE_DISABLED) {
             new QuestionNegativeEnabledRatingControlsUpdate(this.userLastRatingValue);
         }
