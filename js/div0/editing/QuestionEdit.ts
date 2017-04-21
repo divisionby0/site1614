@@ -46,7 +46,7 @@ class QuestionEdit{
         this.state = QuestionEdit.NORMAL;
         this.onStateChanged();
         
-        EventBus.addEventListener("QUESTION_UPDATE_REQUEST_RESULT", (response)=>this.onUpdateRequestResponse(response))
+        EventBus.addEventListener("QUESTION_UPDATE_REQUEST_RESULT", (response)=>this.onUpdateRequestResponse(response));
     }
 
     private getChildren():void {

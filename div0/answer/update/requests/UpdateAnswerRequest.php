@@ -17,7 +17,12 @@ class UpdateAnswerRequest extends Remote
             $stmt = $this->db->prepare("UPDATE qa_answers SET text=:text, when_edited=:when_edited, editor_id=:editor_id WHERE id=:id LIMIT 1");
             $stmt->execute(array("text"=>$answerContent,"id" => $answerId, "when_edited"=>$modificationDateTimeString, "editor_id"=>$userId));
 
-            $result = array("result"=>"complete");
+            $stmt = $this->db->prepare("SELECT username FROM steam_user WHERE id=:id LIMIT 1");
+            $stmt->execute(array("id"=>$userId));
+            $res = $stmt->fetch();
+            $modifierName = $res["username"];
+
+            $result = array("result"=>"complete","modificationDateTime"=>$modificationDateTimeString, "modifierName"=>$modifierName, "id"=>$answerId);
             echo json_encode($result);
         }
         else{

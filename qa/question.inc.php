@@ -9,6 +9,8 @@ include_once ("../div0/answer/moderation/AnswerModerationView.php");
 include_once ("../div0/answer/delete/view/DeleteAnswerView.php");
 include_once ("../div0/answer/edit/view/AnswerEditView.php");
 include_once ("../div0/answer/RatingValueView.php");
+include_once ("../div0/ModificationDateTimeView.php");
+include_once ("../div0/AnswerModificationDateTimeView.php");
 ?>
 <div id="contentType" style="display: none;">questionPageContent</div>
 
@@ -30,6 +32,10 @@ if(!isset($userAccess)){
 echo '<div style="display: none;" id="questionId">'.$questionId.'</div>';
 echo '<div style="display: none;" id="userId">'.$userId.'</div>';
 echo '<div style="display: none;" id="userAccess">'.$userAccess.'</div>';
+
+
+//echo str_replace ('<!--TITLE-->', "PAge title", "345");
+
 ?>
 
 <h1 class="left" id="questionTitleContainer">
@@ -42,9 +48,21 @@ echo '<div style="display: none;" id="userAccess">'.$userAccess.'</div>';
 						<div class="content">
 							<figure id="questionContainer" class="author" data-createdDateTime="<? echo $Q['when_added'] ?>" data-authorid="<? echo $Q['user_id'] ?>">
 								<a href="#"><img src="<? echo $Q['user_avatar'] ?>" alt=""></a>
-								<p><a href="#" class="green">
-										<? echo $Q["user_name"] ?>
-									</a>
+								<p>
+									<?php
+									
+									$authorIsBot = 0;
+									if($Q['user_id'] == "1"){
+										$authorIsBot = 1;
+									}
+									if($authorIsBot == 1){
+										echo "<div style='float: left; margin-right: -15px;'>".$Q["user_name"]."</div>";
+									}
+									else{
+										echo '<a href="#" class="green">'.$Q["user_name"].'</a>';
+									}
+									
+									?>
 									<?
 									//$timePastSincePostCreated = DateUtil::showDate($Q["when_added"]);
 									$creationTime = strtotime($Q["when_added"]);
@@ -76,9 +94,8 @@ echo '<div style="display: none;" id="userAccess">'.$userAccess.'</div>';
 											$totalAnswers = "Ждет ответа";
 										}
 										else{
-											$totalAnswers." ответов ";
+											$totalAnswers.=" ответов ";
 										}
-
 										echo $totalAnswers;
 										?>
 										<a href="#all_comments" title="Перейти к последнему комментарию" class="last_comment"></a>
@@ -90,7 +107,9 @@ echo '<div style="display: none;" id="userAccess">'.$userAccess.'</div>';
 							$qa = new QA();
 							$sections = $qa->getSections();
 
-							echo "<div class='edited' id='questionModificationDateTimeElement'>Последний раз редактировалось ".$Q["when_edited"].". Редактор: ".$Q["editorUserName"]."</div>";
+							new ModificationDateTimeView($Q["when_edited"], $Q['when_added'], $Q["editorUserName"]);
+							//echo "<div class='edited' id='questionModificationDateTimeElement'>Последний раз редактировалось ".$Q["when_edited"].". Редактор: ".$Q["editorUserName"]."</div>";
+							
 							new QuestionModerationView($questionId, $userAccess, $Q, $sections, $userId);
 
 							?>
@@ -110,11 +129,20 @@ foreach ($AnotherQuestions as $i=>$aq)
 											$creationTime = strtotime($aq["when_added"]);
 											//$timePassed = DateUtil::showDate($creationTime);
 											$timePassed = DateUtil::format($creationTime);
-
 											echo $timePassed;
+
+										$authorIsBot = 0;
+										if($aq['user_id'] == "1"){
+											$authorIsBot = 1;
+										}
+
+										if($authorIsBot == 1){
+											echo ' от '.$aq["user_name"];
+										}
+										else{
+											echo ' от <a href="#" class="green">'.$aq["user_name"].'</a>';
+										}
 										?>
-										от
-										<a href="#" class="green"><? echo $aq["user_name"] ?></a>
 									</p>
 
 									<h5><a href="/qa/<? echo $aq["question_id"] ?>/"><? echo StringUtil::uppercaseFirstCharacter($aq["question_title"]) ?></a></h5>
@@ -144,17 +172,38 @@ foreach ($answers as $a)
 										<td	valign="top" class="left"><? echo ($a["level"] ? "<span>".($a["level"]+1)."</span>" : "") ?><a href="#"><img src="<? echo $a["user_avatar_url"] ?>" alt=""></a></td>
 										<td valign="top" class="right">
 												<b>
-													<a href="#" class="green">
-														<?
-														echo $a["user_name"]
-														?>
-													</a> ответил(а)
-													<?
+													<?php
+
+													$questionAuthorId = $Q["user_id"];
+													$commentAuthorId = $a["user_id"];
+
+													$answererIsQuestionAuthor = $questionAuthorId === $commentAuthorId;
+													if($answererIsQuestionAuthor){
+														echo '<a href="#" class="ts_color">'.$a["user_name"].'</a>  тс ответил(а) ';
+													}
+													else{
+														echo '<a href="#" class="green">'.$a["user_name"].'</a> ответил(а) ';
+													}
+
 													if(isset($a["parent_id"])){
 														echo ($a["parent_id"] ? "" : "тс'у&nbsp;");
 													}
+
+													$answerAuthor = $a["to_whom"] ? $a["to_whom"] : $Q["user_name"];
+													$authorIsBot = 0;
+													if($Q['user_id'] == "1"){
+														$authorIsBot = 1;
+													}
+
+													if($authorIsBot == 1){
+														echo $Q["user_name"];
+													}
+													else{
+														echo '<a href="#" class="green">'.$answerAuthor.'</a>';
+													}
+
 													?>
-													<a href="#" class="green"><? echo ($a["to_whom"] ? $a["to_whom"] : $Q["user_name"]) ?></a>
+													<!--<a href="#" class="green"><? echo ($a["to_whom"] ? $a["to_whom"] : $Q["user_name"]) ?></a>-->
 													<?
 														$creationTime = strtotime($a["when_added"]);
 														echo DateUtil::format($creationTime);
@@ -191,7 +240,11 @@ foreach ($answers as $a)
 													<p style="margin:27px 0 0 20px;clear: both;"><? echo $a["answer_text"] ?></p>
 												</div>
 											<?php
-											echo "<div class='answerModifierInfo'>Последний раз редактировалось ".$a["when_edited"].". Редактор: ".$a["editorUserName"]."</div>";
+
+											//echo "Последний раз редактировалось";
+											new AnswerModificationDateTimeView($a["when_edited"], $a['when_added'], $a["editorUserName"], $a["answer_id"]);
+
+											//echo "<div class='answerModifierInfo'>Последний раз редактировалось ".$a["when_edited"].". Редактор: ".$a["editorUserName"]."</div>";
 											?>
 												<ul>
 
@@ -199,7 +252,7 @@ foreach ($answers as $a)
 													if($userAccess === "1" || $userAccess === "2" || $userAccess === "3"){
 														?>
 														<li>
-															<a href="#loginforcomment" class="otvet" id="createAnswerButton<?php echo $a["answer_id"];?>">Ответить</a>
+															<a href="#loginforcomment" class="otvet" id="createAnswerButton<?php echo $a["answer_id"];?>" data-answerAuthorName="<?php echo $a["user_name"];?>">Ответить</a>
 														</li>
 														<?php
 													}
@@ -295,7 +348,28 @@ if (isset($_SESSION['steam_user']['user_id']))
 										<form action="/qa/<? echo $QuestionID ?>/" method="post" class="comment" id="answerForm">
 											<div id="parentAnswerContainer"></div>
 											<a href="#"><img id="avatarImage" src="<? echo $_SESSION['steam_user']['avatar'] ?>" alt=""></a>
-											<label for="answer">Напиши ответ тс'y <a href="#" class="green" id="nodeAuthorLink"><? echo $Q["user_name"] ?></a>:</label>
+
+											<?php
+											$authorIsBot = 0;
+											if($Q['user_id'] == "1"){
+												$authorIsBot = 1;
+											}
+											?>
+
+											<label for="answer" id="answerFormPrefix">
+												<?php
+
+												if($authorIsBot == 1){
+													//echo ' от <div style="display:inline-block;">'.$q["user_name"].'</div></b>';
+													echo 'Напиши ответ тс\'y <div id="nodeAuthorLink" style="display: inline-block;">'.$Q["user_name"].'</div>:';
+													//echo 'Напиши ответ тс\'y <a href="#" class="green" id="nodeAuthorLink">'.$Q["user_name"].'</a>:';
+												}
+												else{
+													echo 'Напиши ответ тс\'y <a href="#" class="green" id="nodeAuthorLink">'.$Q["user_name"].'</a>:';
+												}
+												?>
+												<!--Напиши ответ тс'y <a href="#" class="green" id="nodeAuthorLink"><? echo $Q["user_name"] ?></a>:00>-->
+											</label>
 											
 											<div style="padding-left: 6em; padding-right: 4em;" id="formContainer">
 												<textarea name="atext" id="answerTextArea" cols="30" rows="8"></textarea>

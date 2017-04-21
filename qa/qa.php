@@ -58,6 +58,7 @@ class QA extends Remote{
 			qq.answers as answers,
 			qq.f_imaged as f_imaged,
 			qq.f_sticked as f_sticked,
+			qq.user_id as user_id,
 			su.username as user_name
 			FROM qa_questions qq, qa_sections qs, steam_user su WHERE qq.section_id=qs.id AND qq.user_id=su.id ".($where ? " AND ".$where : "")." ORDER BY ".$order." DESC");
         $stmt->execute();

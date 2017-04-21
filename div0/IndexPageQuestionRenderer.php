@@ -9,6 +9,8 @@ class IndexPageQuestionRenderer
 
     public function __construct($question)
     {
+        //var_dump($question);
+
         $this->question = $question;
         $this->containerClass = "question";
 
@@ -40,7 +42,20 @@ class IndexPageQuestionRenderer
         echo '<td>';
 
         echo '<div class="svodki_info_news"><span>';
-        echo '<b>'.$creationTimeDuration.' от <a href="#" title="Профиль пользователя '.$author.'">'.$author.'</a></b>';
+
+        $authorIsBot = 0;
+        if($question['user_id'] == "1"){
+            $authorIsBot = 1;
+        }
+
+        if($authorIsBot == 1){
+            echo '<b>'.$creationTimeDuration.' от <div style="display:inline-block;">'.$author.'</div></b>';
+        }
+        else{
+            echo '<b>'.$creationTimeDuration.' от <a href="#" title="Профиль пользователя '.$author.'">'.$author.'</a></b>';
+        }
+
+
         echo '</span></div>';
         echo '<h4><a href="/qa/'.$id.'">'.$title.'</a></h4>';
         echo '<ul>

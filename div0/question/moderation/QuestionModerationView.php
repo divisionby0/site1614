@@ -11,6 +11,7 @@ class QuestionModerationView
         $isNewsmaker = $userAccess ===  "2";
         $isUser = $userAccess ===  "3";
 
+        
         $questionSection = $question["section_id"];
         $questionPinedDate = $question["pinedTill"];
 

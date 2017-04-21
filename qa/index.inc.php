@@ -47,9 +47,23 @@ function RenderQList($questions, $limit=5, $page=1)
                                 $creationTime = strtotime($q["when_added"]);
                                 $timePassed = DateUtil::format($creationTime);
                                 echo $timePassed;
+
+                            $authorIsBot = 0;
+                            if($q['user_id'] == "1"){
+                                $authorIsBot = 1;
+                            }
+                            
+                            if($authorIsBot == 1){
+                                echo ' от <div style="display:inline-block;">'.$q["user_name"].'</div></b>';
+                            }
+                            else{
+                                echo ' от <a href="#" title="Профиль пользователя '.$q["user_name"].'">'.$q["user_name"].'</a>';
+                            }
                             ?>
+                            <!--
                             от
                             <a href="#" title="Профиль пользователя <?php echo $q["user_name"] ?>"><?php echo $q["user_name"] ?></a>
+                            -->
                         </b>
                     </span>
                 </div>

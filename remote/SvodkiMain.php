@@ -67,7 +67,6 @@ class SvodkiMain extends Remote
     }
 
     function displaySvodki($page = 0){
-        Logger::logMessage("displaySvodki");
 
         $services_enabled = implode(',', $this->services);
         $svodki = $this->getEntries($services_enabled, $page * ENTRIESPERPAGE, ENTRIESPERPAGE, $this->startdate, $this->enddate);

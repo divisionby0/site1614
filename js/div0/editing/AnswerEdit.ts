@@ -27,6 +27,18 @@ class AnswerEdit{
         new AnswerEditTimeout();
         
         this.createListeners();
+
+        EventBus.addEventListener("ANSWER_UPDATE_REQUEST_RESULT", (response)=>this.onUpdateRequestResponse(response));
+    }
+
+    private onUpdateRequestResponse(response:string):void {
+        var data:any = JSON.parse(response);
+        console.log(data);
+        this.onModificationDateTimeChanged(data.id, data.modificationDateTime, data.modifierName);
+    }
+
+    private onModificationDateTimeChanged(id:string, dateTime:string, modifierName:string):void{
+        this.$j("#answerModificationInfoContainer"+id).text("Последний раз редактировалось "+dateTime+". Редактор: "+modifierName);
     }
 
     private getChildren():void {

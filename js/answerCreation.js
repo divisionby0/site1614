@@ -16,14 +16,12 @@ $(document).ready(function ($){
         parentQuestionContainer.append(clonedForm);
         parentQuestionContainer.find('form').find('.cancel').show();
         parentQuestionContainer.find('form').prepend(parentQuestionContainer.find('.pid').clone(true));
-
-        //o.find('form').prepend(o.find('.pid').clone(true));					// копируем скрытое поле для определения принадлежности ответа другому ответу
-
+        
         var answerIdData = $(event.target).attr("id");
+        var answerAuthorName = $(event.target).data("answerauthorname");
 
         var data = answerIdData.split("createAnswerButton");
         var answerId = data[1];
-        console.log("answerId="+answerId);
 
         if(answerId){
             var parentAnswerIdInput = $('<input id="parentAnswerIdInput'+answerId+'" name="pid" value="'+answerId+'" class="pid" type="hidden">');

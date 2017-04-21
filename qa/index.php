@@ -173,7 +173,12 @@ function buildBreadcrumbs($AddBreadcrupms){
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Вопросы по CS:GO и ответы</title>
+		<?php
+		$questionTitle = StringUtil::uppercaseFirstCharacter($Q["question_title"]);
+		$questionSection = $Q["section_name"];
+		echo '<title>'.$questionTitle.' — '.$questionSection.' CS:GO</title>';
+		?>
+		<!--<title>Вопросы по CS:GO и ответы</title>-->
 		<?php require_once("../+/meta.php");?>
 		<script src="/js/lib/tinymce/tinymce.min.js"></script>
 		<script src="/js/div0/view/wysiwygEditor/WYSIWYGEditor.js"></script>

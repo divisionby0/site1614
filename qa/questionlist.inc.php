@@ -13,7 +13,9 @@ foreach ($Questions as $i=>$q)
 								<div class="question<? if ($q["f_sticked"]) echo " sticked" ?>">
 								<? if ($q["f_sticked"]) { ?><img src="/i/img-sticked.png" alt="" title="Закреплено" /><? } ?>
 									
-								<? if ($q["f_imaged"]) { ?><img src="/i/img-inside.png" alt="" title="Вопрос подкреплён изображением или скриншотом" /><? } ?>
+								<?
+								if ($q["f_imaged"]) { ?><img src="/i/img-inside.png" alt="" title="Вопрос подкреплён изображением или скриншотом" /><? }
+								?>
 								  <table>
 									<tr>
 									  <td valign="middle" align="center" width="50">
@@ -24,13 +26,27 @@ foreach ($Questions as $i=>$q)
 											<span>
 												<b>
 													<?
+													$author = $q["user_name"];
+
 														$creationTime = strtotime($q["when_added"]);
 														$timePassed = DateUtil::format($creationTime);
-														echo $timePassed
+														echo $timePassed;
+
+													$authorIsBot = 0;
+													if($q['user_id'] == "1"){
+														$authorIsBot = 1;
+													}
+
+													if($authorIsBot == 1){
+														echo ' от <div style="display:inline-block;">'.$author.'</div></b>';
+													}
+													else{
+														echo ' от <a href="#" title="Профиль пользователя '.$author.'">'.$author.'</a></b>';
+													}
 													?>
-													от
-													<a href="#" title="Профиль пользователя <? echo $q["user_name"] ?>"><? echo $q["user_name"] ?></a></b></span></div>
-										<h4><a href="/qa/<? echo $q["question_id"] ?>/"><? echo StringUtil::uppercaseFirstCharacter($q["question_title"]) ?></a></h4>
+												</b>
+										<h4>
+											<a href="/qa/<? echo $q["question_id"] ?>/"><? echo StringUtil::uppercaseFirstCharacter($q["question_title"]) ?></a></h4>
 										<ul>
 										  <li><a href="/qa/<? echo $q["section_uri"] ?>/"><? echo $q["section_name"] ?></a></li>
 										  <li><? echo $q["views"] ?> просмотров</li>
@@ -50,4 +66,6 @@ foreach ($Questions as $i=>$q)
 		
 		<div class="clear"></div>
 
-<? include "pagination.inc.php" ?>
+<?
+include "pagination.inc.php"
+?>

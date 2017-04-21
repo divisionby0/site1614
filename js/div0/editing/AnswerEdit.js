@@ -2,11 +2,21 @@
 ///<reference path="AnswerEditTimeout.ts"/>
 var AnswerEdit = (function () {
     function AnswerEdit() {
+        var _this = this;
         this.$j = jQuery.noConflict();
         this.userId = this.$j("#userId").text();
         new AnswerEditTimeout();
         this.createListeners();
+        EventBus.addEventListener("ANSWER_UPDATE_REQUEST_RESULT", function (response) { return _this.onUpdateRequestResponse(response); });
     }
+    AnswerEdit.prototype.onUpdateRequestResponse = function (response) {
+        var data = JSON.parse(response);
+        console.log(data);
+        this.onModificationDateTimeChanged(data.id, data.modificationDateTime, data.modifierName);
+    };
+    AnswerEdit.prototype.onModificationDateTimeChanged = function (id, dateTime, modifierName) {
+        this.$j("#answerModificationInfoContainer" + id).text("Последний раз редактировалось " + dateTime + ". Редактор: " + modifierName);
+    };
     AnswerEdit.prototype.getChildren = function () {
         this.editButton = this.$j("#editAnswerButton" + this.answerId);
         this.updateButton = this.$j("#updateEditedAnswerButton" + this.answerId);
